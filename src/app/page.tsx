@@ -16,6 +16,7 @@ import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { redirect } from 'next/navigation'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -105,9 +106,23 @@ function SocialLink({
 }
 
 function Newsletter() {
+  async function create(formData: FormData) {
+    'use server' // Mutate data and revalidate cache
+    console.log(formData)
+    const res = await fetch(
+      'https://hook.us1.make.com/aqfwpzp3yl3068qf4rimerhrc5a4xuax',
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+    console.log(res)
+    redirect('/thank-you')
+  }
+
   return (
     <form
-      action="/thank-you"
+      action={create}
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -120,6 +135,7 @@ function Newsletter() {
       <div className="mt-6 flex">
         <input
           type="email"
+          name="email"
           placeholder="Email address"
           aria-label="Email address"
           required
