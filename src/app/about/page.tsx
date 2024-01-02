@@ -6,7 +6,6 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/photos/personal-image.png'
-import Skills from '@/components/skills'
 
 function SocialLink({
   className,
