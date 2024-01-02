@@ -109,14 +109,16 @@ function Newsletter() {
   async function create(formData: FormData) {
     'use server' // Mutate data and revalidate cache
     console.log(formData)
-    const res = await fetch(
-      'https://hook.us1.make.com/aqfwpzp3yl3068qf4rimerhrc5a4xuax',
-      {
-        method: 'POST',
+    try {
+      const res = await fetch(process.env.NEWSLETTER_MAKE_WEBHOOK || '', {
+        method: 'PUT',
         body: formData,
-      }
-    )
-    console.log(res)
+      })
+      console.log(res)
+    } catch (e) {
+      console.log(e)
+      return
+    }
     redirect('/thank-you')
   }
 
