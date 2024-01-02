@@ -5,13 +5,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import Skills from '@/components/skills'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import logoBBG from '@/images/logos/bbg.svg'
 import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
@@ -272,13 +266,15 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, and amateur astronaut.
+            Software Engineer, Platform Engineering Lead @ Bloomberg and amateur
+            chef.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Sherod, a software designer and entrepreneur based in New York
-            City. I'm the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+            We're all about making life easier for Bloomberg Engineering. We
+            provide the tools and framework needed to create and run automation
+            on managed compute infrastructure. This means we help deliver the
+            necessary infrastructure quickly, reliably, and in a way that's easy
+            to understand.
           </p>
           <div className="mt-6 flex gap-6">
             {/* <SocialLink
