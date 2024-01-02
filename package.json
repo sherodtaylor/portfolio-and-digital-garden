@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --config prettier.config.js 'src/**/*.{ts,tsx,js,jsx}' --write",
+    "prettier": "prettier --config .prettierrc '{src,lib}/**/*.{ts,tsx,js,jsx}' --write",
     "lint": "next lint"
   },
   "browserslist": "defaults, not ie <= 11",

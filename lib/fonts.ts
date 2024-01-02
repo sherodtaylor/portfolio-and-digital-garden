@@ -1,4 +1,4 @@
-import localFont from 'next/font/local';
+import localFont from 'next/font/local'
 
 export const serif = localFont({
   variable: '--font-serif',
@@ -9,7 +9,7 @@ export const serif = localFont({
       style: 'italic',
     },
   ],
-});
+})
 
 export const sans = localFont({
   variable: '--font-sans',
@@ -35,4 +35,4 @@ export const sans = localFont({
       style: 'italic',
     },
   ],
-});
+})
