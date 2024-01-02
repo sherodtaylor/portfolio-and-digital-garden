@@ -277,7 +277,8 @@ function Photos() {
 }
 
 export default async function Home() {
-  const articles = (await getAllArticles()).slice(0, 4)
+  const fetchedArticles = await getAllArticles()
+  const articles = fetchedArticles?.slice(0, 4)
 
   return (
     <>
