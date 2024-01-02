@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import Skills from '@/components/skills'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -297,7 +298,9 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <Photos />
+      {/* <Container className="mt-24 md:mt-28">
+        <Skills />
+      </Container> */}
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
