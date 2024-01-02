@@ -1,35 +1,35 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+'use client'
+import { cn } from '@/lib/utils'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 export default function MotionList({
   children,
   className,
   delayOffset = 0,
   showWhenInView = true,
 }: {
-  children: React.ReactNode[];
-  className?: string;
-  delayOffset?: number;
-  showWhenInView?: boolean;
+  children: React.ReactNode[]
+  className?: string
+  delayOffset?: number
+  showWhenInView?: boolean
 }) {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation()
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
   useEffect(() => {
     if (!showWhenInView) {
-      controls.start("visible");
+      controls.start('visible')
     }
-  }, []);
+  }, [])
   useEffect(() => {
     if (isInView && showWhenInView) {
-      controls.start("visible");
+      controls.start('visible')
     }
-  }, [isInView]);
+  }, [isInView])
   return (
     <motion.ul
       ref={ref}
-      className={cn("flex gap-4", className)}
+      className={cn('flex gap-4', className)}
       initial="hidden"
       animate={controls}
       variants={{
@@ -58,7 +58,7 @@ export default function MotionList({
             },
           }}
           transition={{
-            type: "spring",
+            type: 'spring',
             damping: 20,
             stiffness: 100,
           }}
@@ -67,5 +67,5 @@ export default function MotionList({
         </motion.li>
       ))}
     </motion.ul>
-  );
+  )
 }
