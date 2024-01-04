@@ -134,7 +134,7 @@ function Newsletter() {
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
-      <div className="mt-6 flex">
+      <div className="mt-3 flex">
         <input
           type="email"
           name="email"
@@ -230,12 +230,12 @@ function Resume() {
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
       </h2>
-      <ol className="mt-6 space-y-4">
+      <ol className="mt-3 space-y-4">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
+      <Button href="#" variant="secondary" className="group mt-3 w-full">
         Download CV
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -287,14 +287,14 @@ export default async function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Platform Engineering Team Lead @ Bloomberg and amateur chef.
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400">
             We're all about making life easier for Bloomberg Engineering. We
             provide the tools and framework needed to create and run automation
             on managed compute infrastructure. This means we help deliver the
             necessary infrastructure quickly, reliably, and in a way that's easy
             to understand.
           </p>
-          <div className="mt-6 flex gap-6">
+          <div className="mt-3 flex gap-6">
             {/* <SocialLink
               href="https://twitter.com/"
               aria-label="Follow on Twitter"

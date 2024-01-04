@@ -66,7 +66,7 @@ export default function About() {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             I'm Sherod Taylor a Platform Engineering Team Lead @ Bloomberg.
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <div className="mt-3 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
               We're all about making life easier for Bloomberg Engineering. We
               provide the tools and framework needed to create and run managed
