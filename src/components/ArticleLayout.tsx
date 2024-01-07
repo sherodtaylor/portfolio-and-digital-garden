@@ -33,7 +33,7 @@ export function ArticleLayout({
   const { previousPathname } = useContext(AppContext)
 
   return (
-    <Container className="mt-16 lg:mt-32">
+    <Container className="articles mt-16 lg:mt-32">
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
           {previousPathname && (
@@ -59,7 +59,7 @@ export function ArticleLayout({
                 <span className="ml-3">{formatDate(article.date)}</span>
               </time>
             </header>
-            <Prose className="mt-4" data-mdx-content>
+            <Prose className="mt-8" data-mdx-content>
               {children}
             </Prose>
           </article>
