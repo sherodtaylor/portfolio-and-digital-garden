@@ -8,7 +8,10 @@ export function Prose({
     <div
       className={clsx(
         className,
-        'prose prose-md prose-slate dark:prose-invert'
+        'prose',
+        'prose-md',
+        'prose-slate',
+        'dark:prose-invert'
       )}
       {...props}
     />
