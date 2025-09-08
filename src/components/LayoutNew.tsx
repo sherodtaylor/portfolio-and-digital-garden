@@ -1,7 +1,7 @@
 import { Footer } from '@/components/Footer'
 import { NewHeader } from '@/components/NewHeader'
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function LayoutNew({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">

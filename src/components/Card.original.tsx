@@ -1,14 +1,18 @@
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
-import {
-  Card as ShadcnCard,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+
+function ChevronRightIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6.75 5.75 9.25 8l-2.5 2.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 export function Card<T extends React.ElementType = 'div'>({
   as,
@@ -21,12 +25,10 @@ export function Card<T extends React.ElementType = 'div'>({
   const Component = as ?? 'div'
 
   return (
-    <Component className={cn('group relative', className)}>
-      <ShadcnCard className="h-full border-0 bg-transparent shadow-none transition-all duration-200 group-hover:bg-accent/50">
-        <CardContent className="flex flex-col items-start p-6">
-          {children}
-        </CardContent>
-      </ShadcnCard>
+    <Component
+      className={clsx(className, 'group relative flex flex-col items-start')}
+    >
+      {children}
     </Component>
   )
 }
@@ -37,8 +39,8 @@ Card.Link = function CardLink({
 }: React.ComponentPropsWithoutRef<typeof Link>) {
   return (
     <>
-      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-accent/0 opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:bg-accent/50 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl" />
-      <Link {...props} className="relative z-10">
+      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
+      <Link {...props}>
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
       </Link>
@@ -57,7 +59,7 @@ Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
   const Component = as ?? 'h2'
 
   return (
-    <Component className="text-base font-semibold tracking-tight text-foreground">
+    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
   )
@@ -69,7 +71,7 @@ Card.Description = function CardDescription({
   children: React.ReactNode
 }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-muted-foreground">
+    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
     </p>
   )
@@ -79,10 +81,10 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
     >
       {children}
-      <ChevronRight className="ml-1 h-4 w-4" />
+      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
   )
 }
@@ -101,10 +103,10 @@ Card.Eyebrow = function CardEyebrow<T extends React.ElementType = 'p'>({
 
   return (
     <Component
-      className={cn(
-        'relative z-10 order-first mb-3 flex items-center text-sm text-muted-foreground',
-        decorate && 'pl-3.5',
-        className
+      className={clsx(
+        className,
+        'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
+        decorate && 'pl-3.5'
       )}
       {...props}
     >
@@ -113,7 +115,7 @@ Card.Eyebrow = function CardEyebrow<T extends React.ElementType = 'p'>({
           className="absolute inset-y-0 left-0 flex items-center"
           aria-hidden="true"
         >
-          <span className="h-4 w-0.5 rounded-full bg-border" />
+          <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
         </span>
       )}
       {children}

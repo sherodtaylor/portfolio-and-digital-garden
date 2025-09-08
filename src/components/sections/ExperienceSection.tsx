@@ -1,0 +1,213 @@
+'use client'
+
+import Image from 'next/image'
+import { Container } from '@/components/Container'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { CalendarDays, MapPin, Users, Zap } from 'lucide-react'
+import MotionDiv from '@/components/motion-div'
+import MotionList from '@/components/motion-list'
+import logoBBG from '@/images/logos/bbg.svg'
+import logoPaxos from '@/images/logos/paxos.svg'
+import logoMadisonReed from '@/images/logos/madison-reed.svg'
+
+const experiences = [
+  {
+    company: 'Bloomberg LP',
+    role: 'Platform Engineering Team Lead',
+    period: 'March 2023 - Present',
+    location: 'New York, NY',
+    type: 'Full-time',
+    logo: logoBBG,
+    description:
+      'Leading centralized API platform development and managing a 5-engineer team focused on developer tools. Created Bento UI framework using module federation.',
+    achievements: [
+      'Built centralized API platform for Private Cloud infrastructure',
+      'Designed Activity API platform providing infrastructure event visibility',
+      'Created Bento UI framework using module federation',
+      'Managed 5-engineer team focused on developer tools and infrastructure reliability',
+    ],
+    technologies: ['React', 'Node.js', 'TypeScript', 'Kubernetes', 'Docker', 'Golang', 'PostgreSQL', 'GraphQL', 'OpenStack'],
+    color: 'from-orange-500/20 to-red-500/20',
+  },
+  {
+    company: 'Bloomberg LP',
+    role: 'Senior Software Engineer',
+    period: 'August 2018 - March 2023',
+    location: 'New York, NY',
+    type: 'Full-time',
+    logo: logoBBG,
+    description:
+      'Led data center modernization project and architected full-stack software solutions for Bloomberg infrastructure.',
+    achievements: [
+      'Led data center modernization project',
+      'Built centralized API platform for Private Cloud infrastructure',
+      'Designed Activity API platform providing infrastructure event visibility',
+      'Architected full-stack software solutions for Bloomberg infrastructure',
+    ],
+    technologies: ['Python', 'JavaScript', 'React', 'Node.js', 'AWS', 'Golang', 'PostgreSQL', 'GraphQL', 'OpenStack'],
+    color: 'from-orange-500/20 to-red-500/20',
+  },
+  {
+    company: 'Paxos (formerly itBit)',
+    role: 'Senior Software Engineer',
+    period: 'April 2015 - August 2018',
+    location: 'New York, NY',
+    type: 'Full-time',
+    logo: logoPaxos,
+    description:
+      'Led infrastructure modernization and REST API platform development. Designed SWIFT banking system integration and implemented zero downtime deployments.',
+    achievements: [
+      'Completed full Terraform migration of manually deployed systems',
+      'Designed and implemented TLS client certificate authentication',
+      'Led REST API platform development for institutional trading',
+      'Designed SWIFT banking system for institutional trading integration',
+      'Implemented zero downtime deployments using HA Proxy',
+      'Proposed framework using Node.js, React.js, and Flux architecture',
+      'Contributed to becoming second-largest Bitcoin exchange by volume',
+    ],
+    technologies: ['Node.js', 'React.js', 'Terraform', 'Docker', 'PostgreSQL'],
+    color: 'from-blue-500/20 to-indigo-500/20',
+  },
+  {
+    company: 'Madison Reed',
+    role: 'Software Engineer',
+    period: 'September 2013 - May 2015',
+    location: 'San Francisco, CA',
+    type: 'Full-time',
+    logo: logoMadisonReed,
+    description:
+      'Implemented Redis caching system, developed custom CMS, and led migration from Magento to custom Node.js framework.',
+    achievements: [
+      'Implemented Redis caching system reducing database calls',
+      'Developed custom CMS tailored to company workflow',
+      'Led migration from Magento to custom Node.js order processing framework',
+    ],
+    technologies: ['Node.js', 'Redis', 'MongoDB', 'JavaScript', 'CSS'],
+    color: 'from-pink-500/20 to-rose-500/20',
+  },
+]
+
+interface ExperienceCardProps {
+  experience: (typeof experiences)[0]
+  index: number
+}
+
+function ExperienceCard({ experience, index }: ExperienceCardProps) {
+  return (
+    <MotionDiv className="relative">
+      <Card className="group relative h-full overflow-hidden transition-all duration-300 hover:shadow-lg">
+        <div
+          className={`absolute inset-0 bg-gradient-to-br ${experience.color} opacity-0 transition-opacity group-hover:opacity-100`}
+        />
+
+        <CardContent className="relative flex h-full flex-col p-4 sm:p-6">
+          <div className="flex gap-3 sm:gap-4">
+            {/* Company Logo */}
+            <div className="relative shrink-0">
+              <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/20 dark:bg-white/10 shadow-sm ring-1 ring-border">
+                <Image
+                  src={experience.logo}
+                  alt={`${experience.company} logo`}
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 sm:h-12 sm:w-12"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="min-w-0 flex-1 space-y-4">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {experience.role}
+                  </h3>
+                  <Badge variant="secondary">{experience.type}</Badge>
+                </div>
+                <p className="font-medium text-primary">
+                  {experience.company}
+                </p>
+                <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <CalendarDays className="h-3 w-3" />
+                    {experience.period}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <MapPin className="h-3 w-3" />
+                    {experience.location}
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm leading-6 text-muted-foreground">
+                {experience.description}
+              </p>
+
+              <div className="flex-1">
+                <h4 className="mb-2 text-sm font-medium text-foreground">
+                  Key Achievements
+                </h4>
+                <ul className="space-y-1">
+                  {experience.achievements.map((achievement, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                    >
+                      <Zap className="mt-0.5 h-3 w-3 shrink-0 text-primary" />
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-auto">
+                <h4 className="mb-2 text-sm font-medium text-foreground">
+                  Tech Stack
+                </h4>
+                <div className="flex flex-wrap gap-1">
+                  {experience.technologies.map((tech) => (
+                    <Badge key={tech} variant="outline" className="text-xs">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </MotionDiv>
+  )
+}
+
+export function ExperienceSection() {
+  const totalYears = new Date().getFullYear() - 2013
+
+  return (
+    <Container className="mt-16 sm:mt-20 md:mt-24 lg:mt-28">
+      <MotionDiv>
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Work Experience
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            {totalYears}+ years of building scalable software solutions
+          </p>
+        </div>
+      </MotionDiv>
+
+      <div className="mx-auto mt-12 max-w-6xl">
+        <MotionList className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={`${experience.company}-${experience.period}`}
+              experience={experience}
+              index={index}
+            />
+          ))}
+        </MotionList>
+      </div>
+    </Container>
+  )
+}

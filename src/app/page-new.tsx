@@ -1,9 +1,7 @@
 import { Container } from '@/components/Container'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { StrengthsSection } from '@/components/sections/StrengthsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
-import { CommunitySection } from '@/components/sections/CommunitySection'
 import { Card } from '@/components/Card'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
@@ -24,7 +22,7 @@ function Article({ article }: { article: ArticleWithSlug }) {
   )
 }
 
-export default async function Home() {
+export default async function NewHomePage() {
   const fetchedArticles = await getAllArticles()
   const articles = fetchedArticles?.slice(0, 3) || []
 
@@ -33,17 +31,11 @@ export default async function Home() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Core Strengths Section */}
-      <StrengthsSection />
-
       {/* Skills Section */}
       <SkillsSection />
 
       {/* Experience Section */}
       <ExperienceSection />
-
-      {/* Community Section */}
-      <CommunitySection />
 
       {/* Latest Articles Section */}
       <Container className="mt-24 md:mt-28">

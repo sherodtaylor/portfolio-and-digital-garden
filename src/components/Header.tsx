@@ -80,8 +80,8 @@ function MobileNavItem({
   children: React.ReactNode
 }) {
   return (
-    <li>
-      <Popover.Button as={Link} href={href} className="block py-2">
+    <li className="pointer-events-auto">
+      <Popover.Button as={Link} href={href} className="block py-2 pointer-events-auto cursor-pointer">
         {children}
       </Popover.Button>
     </li>
@@ -93,7 +93,7 @@ function MobileNavigation(
 ) {
   return (
     <Popover {...props}>
-      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <Popover.Button className="group flex items-center rounded-full bg-white/95 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
         Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </Popover.Button>
@@ -157,11 +157,11 @@ function NavItem({
   const isActive = usePathname() === href
 
   return (
-    <li>
+    <li className="pointer-events-auto z-10">
       <Link
         href={href}
         className={clsx(
-          'relative block px-3 py-2 transition',
+          'relative block px-3 py-2 transition pointer-events-auto cursor-pointer z-10',
           isActive
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
@@ -178,8 +178,8 @@ function NavItem({
 
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   return (
-    <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+    <nav {...props} className="pointer-events-auto z-50">
+      <ul className="flex rounded-full bg-white/95 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 pointer-events-auto z-50">
         <NavItem href="/">Home</NavItem>
         <NavItem href="/now">Now</NavItem>
         <NavItem href="/articles">Thoughts</NavItem>
@@ -204,7 +204,7 @@ function ThemeToggle() {
     <button
       type="button"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+      className="group rounded-full bg-white/95 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md transition dark:bg-zinc-800/95 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={() => setTheme(otherTheme)}
     >
       <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
@@ -227,7 +227,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10'
+        'h-10 w-10 rounded-full bg-white/95 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:bg-zinc-800/95 dark:ring-white/10'
       )}
       {...props}
     />
@@ -293,28 +293,24 @@ export function Header() {
         document.body.scrollHeight - window.innerHeight
       )
 
-      if (isInitial.current) {
-        setProperty('--header-position', 'sticky')
-      }
-
+      // Always keep header sticky and visible
+      setProperty('--header-position', 'sticky')
       setProperty('--content-offset', `${downDelay}px`)
 
       if (isInitial.current || scrollY < downDelay) {
         setProperty('--header-height', `${downDelay + height}px`)
         setProperty('--header-mb', `${-downDelay}px`)
-      } else if (top + height < -upDelay) {
-        const offset = Math.max(height, scrollY - upDelay)
-        setProperty('--header-height', `${offset}px`)
-        setProperty('--header-mb', `${height - offset}px`)
-      } else if (top === 0) {
-        setProperty('--header-height', `${scrollY + height}px`)
-        setProperty('--header-mb', `${-scrollY}px`)
+      } else {
+        // Always keep header visible, don't hide it
+        setProperty('--header-height', `${height}px`)
+        setProperty('--header-mb', '0px')
       }
 
-      if (top === 0 && scrollY > 0 && scrollY >= downDelay) {
+      // Always keep header fixed when scrolling
+      if (scrollY > 0) {
         setProperty('--header-inner-position', 'fixed')
-        removeProperty('--header-top')
-        removeProperty('--avatar-top')
+        setProperty('--header-top', '0px')
+        setProperty('--avatar-top', '0px')
       } else {
         removeProperty('--header-inner-position')
         setProperty('--header-top', '0px')
@@ -372,7 +368,7 @@ export function Header() {
   return (
     <>
       <header
-        className="pointer-events-none relative z-50 flex flex-none flex-col"
+        className="pointer-events-auto relative z-50 flex flex-none flex-col"
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',
@@ -418,34 +414,37 @@ export function Header() {
         )}
         <div
           ref={headerRef}
-          className="top-0 z-10 h-16 pt-6"
-          style={{
-            position:
-              'var(--header-position)' as React.CSSProperties['position'],
-          }}
+          className="fixed top-0 left-0 right-0 z-50 h-16 pt-6 pointer-events-auto bg-white/95 backdrop-blur-md dark:bg-zinc-900/95"
         >
-          <Container
-            className="top-[var(--header-top,theme(spacing.6))] w-full"
-            style={{
-              position:
-                'var(--header-inner-position)' as React.CSSProperties['position'],
-            }}
-          >
-            <div className="relative flex gap-4">
-              <div className="flex flex-1">
-                {!isHomePage && (
-                  <AvatarContainer>
-                    <Avatar />
-                  </AvatarContainer>
-                )}
-              </div>
-              <div className="flex flex-1 justify-end md:justify-center">
-                <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
-              </div>
-              <div className="flex justify-end md:flex-1">
+          <Container className="w-full pointer-events-auto">
+            <div className="relative flex gap-4 pointer-events-auto">
+              {/* Mobile Layout */}
+              <div className="flex w-full justify-between items-center md:hidden">
+                <MobileNavigation className="pointer-events-auto" />
+                <AvatarContainer>
+                  <Avatar />
+                </AvatarContainer>
                 <div className="pointer-events-auto">
                   <ThemeToggle />
+                </div>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden md:flex md:w-full md:gap-4">
+                <div className="flex flex-1">
+                  {!isHomePage && (
+                    <AvatarContainer>
+                      <Avatar />
+                    </AvatarContainer>
+                  )}
+                </div>
+                <div className="flex flex-1 justify-center">
+                  <DesktopNavigation className="pointer-events-auto" />
+                </div>
+                <div className="flex justify-end md:flex-1">
+                  <div className="pointer-events-auto">
+                    <ThemeToggle />
+                  </div>
                 </div>
               </div>
             </div>
