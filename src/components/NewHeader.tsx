@@ -53,10 +53,10 @@ function ThemeToggle() {
       size="icon"
       aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
       onClick={() => setTheme(otherTheme)}
-      className="h-9 w-9 rounded-full"
+      className="h-8 w-8 rounded-full md:h-9 md:w-9"
     >
-      <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 md:h-4 md:w-4" />
+      <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 md:h-4 md:w-4" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   )
@@ -94,8 +94,12 @@ function MobileNavigation() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild className="md:hidden">
-        <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
-          <Menu className="h-4 w-4" />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8 rounded-full md:h-9 md:w-9"
+        >
+          <Menu className="h-3.5 w-3.5 md:h-4 md:w-4" />
           <span className="sr-only">Open menu</span>
         </Button>
       </SheetTrigger>
@@ -153,7 +157,11 @@ function ProfileAvatar({
       className={cn('pointer-events-auto', className)}
       {...props}
     >
-      <Avatar className={large ? 'h-16 w-16' : 'h-9 w-9'}>
+      <Avatar
+        className={
+          large ? 'h-12 w-12 md:h-16 md:w-16' : 'h-8 w-8 md:h-9 md:w-9'
+        }
+      >
         <AvatarImage src={avatarImage.src} alt="Profile" />
         <AvatarFallback>ST</AvatarFallback>
       </Avatar>
@@ -276,7 +284,7 @@ export function NewHeader() {
   return (
     <>
       <header
-        className="pointer-events-none relative z-50 flex flex-none flex-col"
+        className="relative z-50 flex flex-none flex-col"
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',
@@ -286,10 +294,10 @@ export function NewHeader() {
           <>
             <div
               ref={avatarRef}
-              className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
+              className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] hidden md:block"
             />
             <Container
-              className="top-0 order-last -mb-3 pt-3"
+              className="top-0 order-last -mb-3 hidden pt-3 md:block"
               style={{
                 position:
                   'var(--header-position)' as React.CSSProperties['position'],
@@ -322,35 +330,46 @@ export function NewHeader() {
         )}
         <div
           ref={headerRef}
-          className="top-0 z-10 h-16 pt-6"
+          className="top-0 z-10 h-12 pt-3 md:h-16 md:pt-6"
           style={{
             position:
               'var(--header-position)' as React.CSSProperties['position'],
           }}
         >
           <Container
-            className="top-[var(--header-top,theme(spacing.6))] w-full"
+            className="top-[var(--header-top,theme(spacing.3))] w-full md:top-[var(--header-top,theme(spacing.6))]"
             style={{
               position:
                 'var(--header-inner-position)' as React.CSSProperties['position'],
             }}
           >
             <div className="relative flex items-center justify-between">
-              <div className="flex items-center">
-                {!isHomePage && (
-                  <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-                    <ProfileAvatar />
-                  </div>
-                )}
+              {/* Mobile Layout: Hamburger - Portrait - Theme */}
+              <div className="flex w-full items-center justify-between md:hidden">
                 <MobileNavigation />
-              </div>
-
-              <div className="flex flex-1 items-center justify-center">
-                <DesktopNavigation />
-              </div>
-
-              <div className="flex items-center justify-end">
+                <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+                  <ProfileAvatar />
+                </div>
                 <ThemeToggle />
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden md:flex md:w-full md:items-center md:justify-between">
+                <div className="flex items-center">
+                  {!isHomePage && (
+                    <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+                      <ProfileAvatar />
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-1 items-center justify-center">
+                  <DesktopNavigation />
+                </div>
+
+                <div className="flex items-center justify-end">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </Container>
@@ -358,7 +377,7 @@ export function NewHeader() {
       </header>
       {isHomePage && (
         <div
-          className="flex-none"
+          className="hidden flex-none md:block"
           style={{ height: 'var(--content-offset)' }}
         />
       )}

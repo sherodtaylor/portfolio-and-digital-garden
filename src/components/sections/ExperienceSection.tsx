@@ -27,7 +27,17 @@ const experiences = [
       'Created Bento UI framework using module federation',
       'Managed 5-engineer team focused on developer tools and infrastructure reliability',
     ],
-    technologies: ['React', 'Node.js', 'TypeScript', 'Kubernetes', 'Docker', 'Golang', 'PostgreSQL', 'GraphQL', 'OpenStack'],
+    technologies: [
+      'React',
+      'Node.js',
+      'TypeScript',
+      'Kubernetes',
+      'Docker',
+      'Golang',
+      'PostgreSQL',
+      'GraphQL',
+      'OpenStack',
+    ],
     color: 'from-orange-500/20 to-red-500/20',
   },
   {
@@ -45,7 +55,17 @@ const experiences = [
       'Designed Activity API platform providing infrastructure event visibility',
       'Architected full-stack software solutions for Bloomberg infrastructure',
     ],
-    technologies: ['Python', 'JavaScript', 'React', 'Node.js', 'AWS', 'Golang', 'PostgreSQL', 'GraphQL', 'OpenStack'],
+    technologies: [
+      'Python',
+      'JavaScript',
+      'React',
+      'Node.js',
+      'AWS',
+      'Golang',
+      'PostgreSQL',
+      'GraphQL',
+      'OpenStack',
+    ],
     color: 'from-orange-500/20 to-red-500/20',
   },
   {
@@ -105,7 +125,7 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
           <div className="flex gap-3 sm:gap-4">
             {/* Company Logo */}
             <div className="relative shrink-0">
-              <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/20 dark:bg-white/10 shadow-sm ring-1 ring-border">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10 sm:h-20 sm:w-20">
                 <Image
                   src={experience.logo}
                   alt={`${experience.company} logo`}
@@ -125,9 +145,7 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
                   </h3>
                   <Badge variant="secondary">{experience.type}</Badge>
                 </div>
-                <p className="font-medium text-primary">
-                  {experience.company}
-                </p>
+                <p className="font-medium text-primary">{experience.company}</p>
                 <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <CalendarDays className="h-3 w-3" />

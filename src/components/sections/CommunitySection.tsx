@@ -16,7 +16,8 @@ const communityActivities = [
     icon: GraduationCap,
     color: 'from-blue-500/20 to-indigo-500/20',
     badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
-    description: 'A comprehensive bootcamp program designed to train underrepresented candidates for technical interviews through mentoring and hands-on training from Bloomberg engineers. Provides 1:1 guidance, curriculum development, and mock interview preparation.',
+    description:
+      'A comprehensive bootcamp program designed to train underrepresented candidates for technical interviews through mentoring and hands-on training from Bloomberg engineers. Provides 1:1 guidance, curriculum development, and mock interview preparation.',
     achievements: [
       'Designed and delivered Systems Design curriculum',
       'Took on 1:1 mentee and prepared them for coding interviews',
@@ -32,7 +33,8 @@ const communityActivities = [
     icon: Heart,
     color: 'from-pink-500/20 to-rose-500/20',
     badgeColor: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
-    description: 'Leading community service initiatives within Bloomberg engineering teams, organizing volunteer activities and coordinating outreach programs to support local NYC communities.',
+    description:
+      'Leading community service initiatives within Bloomberg engineering teams, organizing volunteer activities and coordinating outreach programs to support local NYC communities.',
     achievements: [
       'Logged 15+ volunteer hours in past year',
       'Mobilized multiple engineering teams for community service',
@@ -57,15 +59,15 @@ function CommunityCard({ activity, index }: CommunityCardProps) {
           className={`absolute inset-0 bg-gradient-to-br ${activity.color} opacity-0 transition-opacity group-hover:opacity-100`}
         />
 
-        <CardContent className="relative p-4 sm:p-6 flex flex-col h-full">
+        <CardContent className="relative flex h-full flex-col p-4 sm:p-6">
           {/* Header with Icon */}
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 dark:bg-white/10 shadow-sm ring-1 ring-border shrink-0">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10">
               <IconComponent className="h-6 w-6 text-primary" />
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-semibold text-foreground leading-tight">
+                <h3 className="text-lg font-semibold leading-tight text-foreground">
                   {activity.title}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -79,13 +81,9 @@ function CommunityCard({ activity, index }: CommunityCardProps) {
 
           {/* Role and Duration */}
           <div className="mt-4 space-y-2">
-            <p className="font-medium text-primary">
-              {activity.role}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {activity.duration}
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="font-medium text-primary">{activity.role}</p>
+            <p className="text-sm text-muted-foreground">{activity.duration}</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">
               {activity.description}
             </p>
           </div>
@@ -99,7 +97,7 @@ function CommunityCard({ activity, index }: CommunityCardProps) {
               {activity.achievements.map((achievement, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
+                  className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground"
                 >
                   <Users className="mt-1 h-3 w-3 shrink-0 text-primary" />
                   <span>{achievement}</span>
@@ -122,7 +120,8 @@ export function CommunitySection() {
             Community Involvement
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Giving back through mentorship, volunteer work, and community leadership
+            Giving back through mentorship, volunteer work, and community
+            leadership
           </p>
         </div>
       </MotionDiv>

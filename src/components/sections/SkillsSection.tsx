@@ -103,7 +103,7 @@ function SkillCard({ category, index }: SkillCardProps) {
               variant="ghost"
               size="icon"
               onClick={() => setIsExpanded(!isExpanded)}
-              className="shrink-0 touch-target-44"
+              className="touch-target-44 shrink-0"
             >
               {isExpanded ? (
                 <ChevronUp className="h-4 w-4" />
@@ -131,7 +131,10 @@ function SkillCard({ category, index }: SkillCardProps) {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <div key={skill.name} className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5">
+                  <div
+                    key={skill.name}
+                    className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
+                  >
                     <Image
                       src={skill.icon}
                       alt={skill.name}

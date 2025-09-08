@@ -81,7 +81,11 @@ function MobileNavItem({
 }) {
   return (
     <li className="pointer-events-auto">
-      <Popover.Button as={Link} href={href} className="block py-2 pointer-events-auto cursor-pointer">
+      <Popover.Button
+        as={Link}
+        href={href}
+        className="pointer-events-auto block cursor-pointer py-2"
+      >
         {children}
       </Popover.Button>
     </li>
@@ -161,7 +165,7 @@ function NavItem({
       <Link
         href={href}
         className={clsx(
-          'relative block px-3 py-2 transition pointer-events-auto cursor-pointer z-10',
+          'pointer-events-auto relative z-10 block cursor-pointer px-3 py-2 transition',
           isActive
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
@@ -179,7 +183,7 @@ function NavItem({
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   return (
     <nav {...props} className="pointer-events-auto z-50">
-      <ul className="flex rounded-full bg-white/95 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10 pointer-events-auto z-50">
+      <ul className="pointer-events-auto z-50 flex rounded-full bg-white/95 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md dark:bg-zinc-800/95 dark:text-zinc-200 dark:ring-white/10">
         <NavItem href="/">Home</NavItem>
         <NavItem href="/now">Now</NavItem>
         <NavItem href="/articles">Thoughts</NavItem>
@@ -414,12 +418,12 @@ export function Header() {
         )}
         <div
           ref={headerRef}
-          className="fixed top-0 left-0 right-0 z-50 h-16 pt-6 pointer-events-auto bg-white/95 backdrop-blur-md dark:bg-zinc-900/95"
+          className="pointer-events-auto fixed left-0 right-0 top-0 z-50 h-16 bg-white/95 pt-6 backdrop-blur-md dark:bg-zinc-900/95"
         >
-          <Container className="w-full pointer-events-auto">
-            <div className="relative flex gap-4 pointer-events-auto">
+          <Container className="pointer-events-auto w-full">
+            <div className="pointer-events-auto relative flex gap-4">
               {/* Mobile Layout */}
-              <div className="flex w-full justify-between items-center md:hidden">
+              <div className="flex w-full items-center justify-between md:hidden">
                 <MobileNavigation className="pointer-events-auto" />
                 <AvatarContainer>
                   <Avatar />
