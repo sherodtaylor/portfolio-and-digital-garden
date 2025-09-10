@@ -14,6 +14,7 @@ import {
   Network,
   Cloud,
   Box,
+  ExternalLink,
 } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
@@ -186,23 +187,38 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
         />
 
         <CardContent className="relative flex h-full flex-col p-4 sm:p-6">
-          <div className="flex gap-3 sm:gap-4">
+          <div className="space-y-4">
             {/* Content */}
             <div className="min-w-0 flex-1 space-y-4">
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-lg font-semibold text-foreground">
-                    {experience.role}
-                  </h3>
-                  <Badge variant="secondary">{experience.type}</Badge>
+              <div className="relative">
+                {/* Company Logo - Floating Right */}
+                <div className="absolute -top-2 right-0 shrink-0">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-border sm:h-16 sm:w-16">
+                    <Image
+                      src={experience.logo}
+                      alt={`${experience.company} logo`}
+                      width={48}
+                      height={48}
+                      className="h-8 w-8 sm:h-10 sm:w-10"
+                    />
+                  </div>
+                </div>
+                <div className="sm:pr-18 pr-14">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {experience.role}
+                    </h3>
+                    <Badge variant="secondary">{experience.type}</Badge>
+                  </div>
                 </div>
                 <Link
                   href={experience.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary transition-colors hover:text-primary/80"
+                  className="inline-flex items-center gap-1 font-medium text-primary transition-colors hover:text-primary/80"
                 >
                   {experience.company}
+                  <ExternalLink className="h-3 w-3" />
                 </Link>
                 <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
@@ -267,19 +283,6 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                     )
                   })}
                 </div>
-              </div>
-            </div>
-
-            {/* Company Logo */}
-            <div className="relative shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-border sm:h-20 sm:w-20">
-                <Image
-                  src={experience.logo}
-                  alt={`${experience.company} logo`}
-                  width={48}
-                  height={48}
-                  className="h-10 w-10 sm:h-12 sm:w-12"
-                />
               </div>
             </div>
           </div>

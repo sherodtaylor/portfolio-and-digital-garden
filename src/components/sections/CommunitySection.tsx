@@ -61,11 +61,14 @@ function CommunityCard({ activity, index }: CommunityCardProps) {
 
         <CardContent className="relative flex h-full flex-col p-4 sm:p-6">
           {/* Header with Icon */}
-          <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10">
-              <IconComponent className="h-6 w-6 text-primary" />
+          <div className="relative">
+            {/* Activity Icon - Floating Right */}
+            <div className="absolute -top-2 right-0 shrink-0">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10">
+                <IconComponent className="h-6 w-6 text-primary" />
+              </div>
             </div>
-            <div className="min-w-0 flex-1">
+            <div className="pr-14">
               <div className="flex flex-col gap-1">
                 <h3 className="text-lg font-semibold leading-tight text-foreground">
                   {activity.title}

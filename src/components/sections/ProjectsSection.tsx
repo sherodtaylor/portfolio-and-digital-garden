@@ -74,18 +74,23 @@ export function ProjectsSection() {
         </div>
       </MotionDiv>
 
-      <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-1 lg:grid-cols-2">
+      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
         {projects.map((project) => {
           return (
             <MotionDiv key={project.name}>
-              <Card className="flex h-full w-full flex-col overflow-hidden">
+              <Card className="flex h-full w-full flex-col overflow-hidden break-words">
                 <CardHeader>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <project.icon className="h-6 w-6 text-primary" />
+                  <div className="relative">
+                    {/* Project Icon - Floating Right */}
+                    <div className="absolute -top-2 right-0 shrink-0">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                        <project.icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <CardTitle className="text-xl">{project.name}</CardTitle>
+                    <div className="pr-14">
+                      <CardTitle className="break-words text-xl">
+                        {project.name}
+                      </CardTitle>
                       <div className="mt-2 flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
                           <Badge
@@ -102,7 +107,7 @@ export function ProjectsSection() {
                 </CardHeader>
 
                 <CardContent className="flex-1 space-y-4">
-                  <CardDescription className="text-sm leading-6">
+                  <CardDescription className="break-words text-sm leading-6">
                     {project.description}
                   </CardDescription>
 
@@ -110,7 +115,7 @@ export function ProjectsSection() {
                     {project.highlights.map((highlight, index) => (
                       <div
                         key={index}
-                        className="text-sm text-muted-foreground"
+                        className="break-words text-sm text-muted-foreground"
                       >
                         <span className="font-medium">
                           {highlight.split(':')[0]}:
@@ -123,23 +128,33 @@ export function ProjectsSection() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Github className="h-4 w-4" />
-                    <span className="truncate">{project.link.label}</span>
+                <CardFooter className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex w-full min-w-0 items-center gap-1 overflow-hidden text-sm text-muted-foreground sm:w-auto">
+                    <Github className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
+                    <span className="max-w-full truncate break-all text-xs leading-tight">
+                      {project.link.label}
+                    </span>
                     {project.link.isPrivate && (
-                      <Badge variant="outline" className="text-xs">
+                      <Badge
+                        variant="outline"
+                        className="ml-1 shrink-0 text-xs"
+                      >
                         Private
                       </Badge>
                     )}
                   </div>
 
-                  <Button variant="outline" size="sm" asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full sm:w-auto"
+                    asChild
+                  >
                     <Link
                       href={project.link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2"
+                      className="flex items-center justify-center gap-2"
                     >
                       View Code
                       <ExternalLink className="h-3 w-3" />
