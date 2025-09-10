@@ -167,7 +167,7 @@ function SkillCard({ category, index }: SkillCardProps) {
                     />
                   ) : (
                     <Image
-                      src={category.icon}
+                      src={category.icon as any}
                       alt={category.title}
                       width={24}
                       height={24}
@@ -233,7 +233,7 @@ function SkillCard({ category, index }: SkillCardProps) {
                       <skill.icon className="h-4 w-4 text-primary" />
                     ) : (
                       <Image
-                        src={skill.icon}
+                        src={skill.icon as any}
                         alt={skill.name}
                         width={16}
                         height={16}
