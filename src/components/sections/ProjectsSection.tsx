@@ -6,6 +6,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -77,7 +78,7 @@ export function ProjectsSection() {
         {projects.map((project) => {
           return (
             <MotionDiv key={project.name}>
-              <Card className="h-full w-full overflow-hidden">
+              <Card className="flex h-full w-full flex-col overflow-hidden">
                 <CardHeader>
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -100,7 +101,7 @@ export function ProjectsSection() {
                   </div>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent className="flex-1 space-y-4">
                   <CardDescription className="text-sm leading-6">
                     {project.description}
                   </CardDescription>
@@ -120,31 +121,31 @@ export function ProjectsSection() {
                       </div>
                     ))}
                   </div>
-
-                  <div className="flex items-center justify-between border-t pt-4">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Github className="h-4 w-4" />
-                      <span className="truncate">{project.link.label}</span>
-                      {project.link.isPrivate && (
-                        <Badge variant="outline" className="text-xs">
-                          Private
-                        </Badge>
-                      )}
-                    </div>
-
-                    <Button variant="outline" size="sm" asChild>
-                      <Link
-                        href={project.link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        View Code
-                        <ExternalLink className="h-3 w-3" />
-                      </Link>
-                    </Button>
-                  </div>
                 </CardContent>
+
+                <CardFooter className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Github className="h-4 w-4" />
+                    <span className="truncate">{project.link.label}</span>
+                    {project.link.isPrivate && (
+                      <Badge variant="outline" className="text-xs">
+                        Private
+                      </Badge>
+                    )}
+                  </div>
+
+                  <Button variant="outline" size="sm" asChild>
+                    <Link
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      View Code
+                      <ExternalLink className="h-3 w-3" />
+                    </Link>
+                  </Button>
+                </CardFooter>
               </Card>
             </MotionDiv>
           )

@@ -20,12 +20,12 @@ export default function MotionList({
     if (!showWhenInView) {
       controls.start('visible')
     }
-  }, [])
+  }, [controls, showWhenInView])
   useEffect(() => {
     if (isInView && showWhenInView) {
       controls.start('visible')
     }
-  }, [isInView])
+  }, [controls, isInView, showWhenInView])
   return (
     <motion.ul
       ref={ref}

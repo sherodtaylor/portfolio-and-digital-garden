@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import {
-  Card as ShadcnCard,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card as ShadcnCard, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 export function Card<T extends React.ElementType = 'div'>({

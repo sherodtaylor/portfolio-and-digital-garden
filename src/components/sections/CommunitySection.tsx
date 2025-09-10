@@ -3,7 +3,7 @@
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Users, Heart, GraduationCap, Sparkles } from 'lucide-react'
+import { Users, Heart, GraduationCap } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
 
