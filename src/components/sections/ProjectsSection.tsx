@@ -35,7 +35,7 @@ const projects: Project[] = [
     ],
     link: {
       href: 'https://github.com/sherodtaylor/homelab-setup',
-      label: 'github.com/sherodtaylor/homelab-setup',
+      label: 'sherodtaylor/homelab-setup',
       isPrivate: true,
     },
     icon: Server,
@@ -51,7 +51,7 @@ const projects: Project[] = [
     ],
     link: {
       href: 'https://github.com/sherodtaylor/dotfiles',
-      label: 'github.com/sherodtaylor/dotfiles',
+      label: 'sherodtaylor/dotfiles',
     },
     icon: Settings,
     tags: ['DevOps', 'Automation', 'Neovim', 'Shell Scripting'],

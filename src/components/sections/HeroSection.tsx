@@ -165,9 +165,11 @@ export function HeroSection() {
 
                 {/* CTA Buttons - Same width as portrait */}
                 <div className="flex flex-col gap-2">
-                  <Button size="default" className="group w-full">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Get in touch
+                  <Button size="default" className="group w-full" asChild>
+                    <Link href="mailto:sherodtaylor@gmail.com">
+                      <Mail className="mr-2 h-4 w-4" />
+                      Get in touch
+                    </Link>
                   </Button>
                   <Button
                     variant="outline"

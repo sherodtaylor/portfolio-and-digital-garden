@@ -34,8 +34,6 @@ const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   { name: 'Now', href: '/now' },
   { name: 'Thoughts', href: '/articles' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Uses', href: '/uses' },
 ]
 
 function ThemeToggle() {
