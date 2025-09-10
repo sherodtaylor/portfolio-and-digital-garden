@@ -75,14 +75,13 @@ export function ProjectsSection() {
 
       <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-1 lg:grid-cols-2">
         {projects.map((project) => {
-          const IconComponent = project.icon
           return (
             <MotionDiv key={project.name}>
               <Card className="h-full w-full overflow-hidden">
                 <CardHeader>
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <IconComponent className="h-6 w-6 text-primary" />
+                      <project.icon className="h-6 w-6 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <CardTitle className="text-xl">{project.name}</CardTitle>

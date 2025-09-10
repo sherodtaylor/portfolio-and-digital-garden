@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge'
 import {
   CalendarDays,
   MapPin,
-  Users,
   Zap,
   Code,
   Database,
@@ -178,7 +177,7 @@ interface ExperienceCardProps {
   index: number
 }
 
-function ExperienceCard({ experience, index }: ExperienceCardProps) {
+function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
     <MotionDiv className="relative">
       <Card className="group relative h-full w-full overflow-hidden transition-all duration-300 hover:shadow-lg">

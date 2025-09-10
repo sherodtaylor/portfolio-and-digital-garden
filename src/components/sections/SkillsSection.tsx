@@ -18,10 +18,6 @@ import {
   Database,
   Network,
   Zap,
-  Cloud,
-  Box,
-  Server,
-  HardDrive,
 } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
@@ -128,7 +124,7 @@ interface SkillCardProps {
   index: number
 }
 
-function SkillCard({ category, index }: SkillCardProps) {
+function SkillCard({ category }: SkillCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -167,7 +163,7 @@ function SkillCard({ category, index }: SkillCardProps) {
                     />
                   ) : (
                     <Image
-                      src={category.icon as any}
+                      src={category.icon as StaticImageData}
                       alt={category.title}
                       width={24}
                       height={24}
@@ -233,7 +229,7 @@ function SkillCard({ category, index }: SkillCardProps) {
                       <skill.icon className="h-4 w-4 text-primary" />
                     ) : (
                       <Image
-                        src={skill.icon as any}
+                        src={skill.icon as StaticImageData}
                         alt={skill.name}
                         width={16}
                         height={16}
