@@ -18,6 +18,10 @@ import {
   Database,
   Network,
   Zap,
+  Cloud,
+  Box,
+  Server,
+  HardDrive,
 } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
@@ -34,6 +38,12 @@ import goIcon from '@/images/icons/go.svg'
 import pythonIcon from '@/images/icons/python.png'
 import postgresqlIcon from '@/images/icons/postgresql.svg'
 import graphqlIcon from '@/images/icons/graphql.svg'
+import terraformIcon from '@/images/icons/terraform.svg'
+import packerIcon from '@/images/icons/packer.svg'
+import proxmoxIcon from '@/images/icons/proxmox.svg'
+import openstackIcon from '@/images/icons/openstack.svg'
+import truenasIcon from '@/images/icons/truenas.svg'
+import kubernetesIcon from '@/images/icons/kubernetes.svg'
 
 interface SkillItem {
   name: string
@@ -87,6 +97,13 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Docker', icon: dockerIcon },
       { name: 'Git', icon: gitIcon },
+      { name: 'Terraform', icon: terraformIcon },
+      { name: 'Packer', icon: packerIcon },
+      { name: 'Proxmox', icon: proxmoxIcon },
+      { name: 'OpenStack', icon: openstackIcon },
+      { name: 'Networking', icon: Network },
+      { name: 'TrueNAS', icon: truenasIcon },
+      { name: 'Kubernetes', icon: kubernetesIcon },
     ],
     experience: '10+ years',
   },

@@ -216,11 +216,26 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
                   Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-1">
-                  {experience.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+                  {experience.technologies.map((tech) => {
+                    const TechIcon = getTechIcon(tech)
+                    
+                    return (
+                      <Badge key={tech} variant="outline" className="text-xs flex items-center gap-1">
+                        {typeof TechIcon === 'function' ? (
+                          <TechIcon className="h-3 w-3" />
+                        ) : (
+                          <Image
+                            src={TechIcon}
+                            alt={`${tech} icon`}
+                            width={12}
+                            height={12}
+                            className="h-3 w-3"
+                          />
+                        )}
+                        {tech}
+                      </Badge>
+                    )
+                  })}
                 </div>
               </div>
             </div>
