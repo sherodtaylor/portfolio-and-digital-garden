@@ -50,6 +50,7 @@ export default function MotionList({
       {children.map((child, i) => (
         <motion.li
           key={i}
+          className="h-full"
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: {

@@ -73,7 +73,7 @@ export default function Projects() {
         {projects.map((project) => {
           const IconComponent = project.icon
           return (
-            <Card key={project.name} className="overflow-hidden">
+            <Card key={project.name} className="w-full overflow-hidden">
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">

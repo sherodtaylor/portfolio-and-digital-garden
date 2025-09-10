@@ -54,7 +54,7 @@ function CommunityCard({ activity, index }: CommunityCardProps) {
 
   return (
     <MotionDiv className="relative">
-      <Card className="group relative h-full overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <Card className="group relative h-full w-full overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div
           className={`absolute inset-0 bg-gradient-to-br ${activity.color} opacity-0 transition-opacity group-hover:opacity-100`}
         />

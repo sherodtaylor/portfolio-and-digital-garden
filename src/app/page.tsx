@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { StrengthsSection } from '@/components/sections/StrengthsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { CommunitySection } from '@/components/sections/CommunitySection'
 import { Card } from '@/components/Card'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
@@ -41,6 +42,9 @@ export default async function Home() {
 
       {/* Experience Section */}
       <ExperienceSection />
+
+      {/* Projects Section */}
+      <ProjectsSection />
 
       {/* Community Section */}
       <CommunitySection />

@@ -116,26 +116,13 @@ interface ExperienceCardProps {
 function ExperienceCard({ experience, index }: ExperienceCardProps) {
   return (
     <MotionDiv className="relative">
-      <Card className="group relative h-full overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <Card className="group relative h-full w-full overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div
           className={`absolute inset-0 bg-gradient-to-br ${experience.color} opacity-0 transition-opacity group-hover:opacity-100`}
         />
 
         <CardContent className="relative flex h-full flex-col p-4 sm:p-6">
           <div className="flex gap-3 sm:gap-4">
-            {/* Company Logo */}
-            <div className="relative shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10 sm:h-20 sm:w-20">
-                <Image
-                  src={experience.logo}
-                  alt={`${experience.company} logo`}
-                  width={48}
-                  height={48}
-                  className="h-10 w-10 sm:h-12 sm:w-12"
-                />
-              </div>
-            </div>
-
             {/* Content */}
             <div className="min-w-0 flex-1 space-y-4">
               <div>
@@ -190,6 +177,19 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
                     </Badge>
                   ))}
                 </div>
+              </div>
+            </div>
+
+            {/* Company Logo */}
+            <div className="relative shrink-0">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-border sm:h-20 sm:w-20">
+                <Image
+                  src={experience.logo}
+                  alt={`${experience.company} logo`}
+                  width={48}
+                  height={48}
+                  className="h-10 w-10 sm:h-12 sm:w-12"
+                />
               </div>
             </div>
           </div>
