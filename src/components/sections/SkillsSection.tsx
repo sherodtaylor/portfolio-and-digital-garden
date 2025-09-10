@@ -142,11 +142,13 @@ function SkillCard({ category, index }: SkillCardProps) {
           <div className="flex flex-1 flex-col">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <div className={`rounded-2xl p-2 shadow-sm ring-1 ring-border ${
-                  category.title === 'Leadership & Strategy'
-                    ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
-                    : 'bg-background'
-                }`}>
+                <div
+                  className={`rounded-2xl p-2 shadow-sm ring-1 ring-border ${
+                    category.title === 'Leadership & Strategy'
+                      ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
+                      : 'bg-background'
+                  }`}
+                >
                   {category.icon === Crown ||
                   category.icon === Users ||
                   category.icon === CheckSquare ||
@@ -156,11 +158,13 @@ function SkillCard({ category, index }: SkillCardProps) {
                   category.icon === Database ||
                   category.icon === Network ||
                   category.icon === Zap ? (
-                    <category.icon className={`h-6 w-6 ${
-                      category.title === 'Leadership & Strategy'
-                        ? 'text-amber-600 dark:text-amber-400'
-                        : 'text-primary'
-                    }`} />
+                    <category.icon
+                      className={`h-6 w-6 ${
+                        category.title === 'Leadership & Strategy'
+                          ? 'text-amber-600 dark:text-amber-400'
+                          : 'text-primary'
+                      }`}
+                    />
                   ) : (
                     <Image
                       src={category.icon}

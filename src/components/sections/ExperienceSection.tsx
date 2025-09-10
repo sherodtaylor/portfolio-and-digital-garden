@@ -5,7 +5,17 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CalendarDays, MapPin, Users, Zap, Code, Database, Network, Cloud, Box } from 'lucide-react'
+import {
+  CalendarDays,
+  MapPin,
+  Users,
+  Zap,
+  Code,
+  Database,
+  Network,
+  Cloud,
+  Box,
+} from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
 import logoBBG from '@/images/logos/bbg.svg'
@@ -23,7 +33,7 @@ import graphqlIcon from '@/images/icons/graphql.svg'
 // Function to get icon for technology
 function getTechIcon(tech: string) {
   const techLower = tech.toLowerCase()
-  
+
   // Image icons
   if (techLower.includes('react')) return reactIcon
   if (techLower.includes('node') || techLower === 'node.js') return nodejsIcon
@@ -31,16 +41,33 @@ function getTechIcon(tech: string) {
   if (techLower.includes('docker')) return dockerIcon
   if (techLower.includes('python')) return pythonIcon
   if (techLower.includes('go') || techLower === 'golang') return goIcon
-  if (techLower.includes('postgresql') || techLower === 'postgres') return postgresqlIcon
+  if (techLower.includes('postgresql') || techLower === 'postgres')
+    return postgresqlIcon
   if (techLower.includes('graphql')) return graphqlIcon
-  
+
   // Lucide icons for other technologies
   if (techLower.includes('kubernetes') || techLower === 'k8s') return Box
-  if (techLower.includes('aws') || techLower.includes('cloud') || techLower.includes('openstack')) return Cloud
-  if (techLower.includes('database') || techLower.includes('mongodb') || techLower.includes('redis')) return Database
-  if (techLower.includes('javascript') || techLower.includes('css') || techLower.includes('html')) return Code
-  if (techLower.includes('terraform') || techLower.includes('api')) return Network
-  
+  if (
+    techLower.includes('aws') ||
+    techLower.includes('cloud') ||
+    techLower.includes('openstack')
+  )
+    return Cloud
+  if (
+    techLower.includes('database') ||
+    techLower.includes('mongodb') ||
+    techLower.includes('redis')
+  )
+    return Database
+  if (
+    techLower.includes('javascript') ||
+    techLower.includes('css') ||
+    techLower.includes('html')
+  )
+    return Code
+  if (techLower.includes('terraform') || techLower.includes('api'))
+    return Network
+
   // Default fallback
   return Code
 }
@@ -170,11 +197,11 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
                   </h3>
                   <Badge variant="secondary">{experience.type}</Badge>
                 </div>
-                <Link 
+                <Link
                   href={experience.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary hover:text-primary/80 transition-colors"
+                  className="font-medium text-primary transition-colors hover:text-primary/80"
                 >
                   {experience.company}
                 </Link>
@@ -218,9 +245,13 @@ function ExperienceCard({ experience, index }: ExperienceCardProps) {
                 <div className="flex flex-wrap gap-1">
                   {experience.technologies.map((tech) => {
                     const TechIcon = getTechIcon(tech)
-                    
+
                     return (
-                      <Badge key={tech} variant="outline" className="text-xs flex items-center gap-1">
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="flex items-center gap-1 text-xs"
+                      >
                         {typeof TechIcon === 'function' ? (
                           <TechIcon className="h-3 w-3" />
                         ) : (
