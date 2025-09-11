@@ -1,0 +1,159 @@
+\documentclass[11pt,a4paper]{article}
+
+%% Comprehensive Resume Template - Framer Design with ALL config.yaml data
+%% Based on https://optimistic-studies-120476.framer.app/
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{array}
+
+% Page geometry - tighter margins
+\geometry{
+    top=0.75in,
+    bottom=0.75in,
+    left=0.75in,
+    right=0.75in
+}
+
+% Expert-level spacing and alignment controls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\topsep}{0pt}
+
+% Remove default list spacing completely
+\setlist{nosep, leftmargin=0pt}
+\setlist[itemize]{leftmargin=*, labelindent=0pt, itemindent=0pt}
+
+% Ensure consistent line spacing
+\renewcommand{\baselinestretch}{1.0}
+\linespread{1.0}
+
+% Color definitions from Framer design
+\definecolor{textdark}{HTML}{1F2937}
+\definecolor{textgray}{HTML}{6B7280}
+\definecolor{accentblue}{HTML}{3B82F6}
+\definecolor{rulecolor}{HTML}{E5E7EB}
+
+% Highlight box colors
+\definecolor{highlightgreen}{HTML}{10B981}
+\definecolor{highlightpurple}{HTML}{8B5CF6}
+\definecolor{highlightorange}{HTML}{F59E0B}
+\definecolor{highlightcyan}{HTML}{06B6D4}
+\definecolor{highlightred}{HTML}{EF4444}
+\definecolor{highlightpink}{HTML}{EC4899}
+\definecolor{highlightindigo}{HTML}{6366F1}
+\definecolor{highlightyellow}{HTML}{EAB308}
+
+% Additional color aliases for config.yaml compatibility
+\definecolor{green}{HTML}{10B981}
+\definecolor{purple}{HTML}{8B5CF6}
+\definecolor{orange}{HTML}{F59E0B}
+\definecolor{cyan}{HTML}{06B6D4}
+\definecolor{red}{HTML}{EF4444}
+\definecolor{pink}{HTML}{EC4899}
+\definecolor{indigo}{HTML}{6366F1}
+\definecolor{yellow}{HTML}{EAB308}
+\definecolor{amber}{HTML}{F59E0B}
+\definecolor{emerald}{HTML}{10B981}
+\definecolor{rose}{HTML}{EC4899}
+
+% Font setup - using Nerd Font for icons
+\setmainfont{FiraCode Nerd Font Mono}[
+    UprightFont = FiraCode Nerd Font Mono,
+    BoldFont = FiraCode Nerd Font Mono Bold,
+    ItalicFont = FiraCode Nerd Font Mono,
+    BoldItalicFont = FiraCode Nerd Font Mono Bold
+]
+
+% Title formatting
+\titleformat{\section}
+    {\Large\bfseries\color{textdark}}
+    {}
+    {0em}
+    {}
+    [\vspace{0.2em}\color{rulecolor}\rule{\textwidth}{1pt}\vspace{0.3em}]
+
+\titleformat{\subsection}
+    {\large\bfseries\color{textdark}}
+    {}
+    {0em}
+    {}
+
+% Custom commands for consistent formatting
+\newcommand{\jobtitle}[4]{
+    \textbf{\color{textdark}#1} \hfill \textcolor{textgray}{\small #2} \\
+    \textcolor{textgray}{\small #3} \hfill \textcolor{textgray}{\small #4}
+    \vspace{0.2em}
+}
+
+\newcommand{\project}[3]{
+    \textbf{\color{textdark}#1} \hfill \href{#3}{\textcolor{accentblue}{\small \faLink}}\\
+    \textcolor{textgray}{\small #2}
+    \vspace{0.2em}
+}
+
+\newcommand{\skillcategory}[5]{
+    \textbf{\color{textdark}#1} \hfill \textcolor{textgray}{\small #4} \\
+    \textcolor{textgray}{\small #2} \hfill \textcolor{textgray}{\small #3} \\
+    \vspace{0.1em}
+    {\footnotesize\color{textgray} #5}
+    \vspace{0.4em}
+}
+
+% Highlight box command - updated for smaller icons and equal spacing
+\newcommand{\highlightbox}[3]{
+    \begin{minipage}[t]{0.22\textwidth}
+        \centering
+        {\small\textcolor{#2}{\csname fa#1\endcsname}} \\
+        \vspace{0.2em}
+        {\footnotesize\color{textgray} #3}
+    \end{minipage}
+}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accentblue,
+    filecolor=accentblue,
+    urlcolor=accentblue,
+    pdfpagemode=FullScreen,
+}
+
+\begin{document}
+
+% Header Section
+{{HEADER_CONTENT}}
+
+% Hero Highlights Section
+\vspace{0.5em}
+
+\noindent%
+{{HIGHLIGHTS_CONTENT}}
+
+\vspace{1em}
+
+% Experience Section
+{{EXPERIENCE_CONTENT}}
+
+% Skills Section
+{{SKILLS_CONTENT}}
+
+% Projects Section
+{{PROJECTS_CONTENT}}
+
+\end{document}

@@ -38,6 +38,10 @@ import {
   Network,
   Server,
   Settings,
+  Cog,
+  Box,
+  Calendar,
+  ListTodo,
 } from 'lucide-react'
 
 // Type definitions
@@ -174,19 +178,23 @@ const iconMap: Record<
   truenas: truenasIcon,
   kubernetes: kubernetesIcon,
   // Lucide icons
-  Users,
-  Layers,
-  Activity,
-  Code,
-  Crown,
-  CheckSquare,
-  Package,
-  Palette,
-  Zap,
-  Database,
-  Network,
-  Server,
-  Settings,
+  Users: Users,
+  Layers: Layers,
+  Activity: Activity,
+  Code: Code,
+  Crown: Crown,
+  CheckSquare: CheckSquare,
+  Package: Package,
+  Palette: Palette,
+  Zap: Zap,
+  Database: Database,
+  Network: Network,
+  Server: Server,
+  Settings: Settings,
+  Cog: Cog,
+  Box: Box,
+  Calendar: Calendar,
+  Tasks: ListTodo,
 }
 
 const logoMap: Record<string, StaticImageData> = {
@@ -198,7 +206,18 @@ const logoMap: Record<string, StaticImageData> = {
 export function getIcon(
   iconName: string
 ): StaticImageData | React.ComponentType<{ className?: string }> | null {
-  return iconMap[iconName] || null
+  const icon = iconMap[iconName]
+  if (!icon) {
+    console.warn(
+      `Icon not found: ${iconName}. Available icons:`,
+      Object.keys(iconMap)
+    )
+  } else {
+    console.log(
+      `Icon found: ${iconName}, Type: ${typeof icon}, Is function: ${typeof icon === 'function'}`
+    )
+  }
+  return icon || null
 }
 
 export function getLogo(logoName: string): StaticImageData | null {
