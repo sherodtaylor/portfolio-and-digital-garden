@@ -3,16 +3,19 @@ import { type Metadata } from 'next'
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 import { Analytics } from '@vercel/analytics/react'
+import { getSiteConfig, getPersonalConfig } from '@/lib/config-server'
 
 import '@/styles/tailwind.css'
 
+const siteConfig = getSiteConfig()
+const personalConfig = getPersonalConfig()
+
 export const metadata: Metadata = {
   title: {
-    template: '%s - Sherod Taylor',
-    default: 'Sherod Taylor - Platform Engineering Team Lead @ Bloomberg',
+    template: `%s - ${personalConfig.name}`,
+    default: siteConfig.title,
   },
-  description:
-    'Sherod Taylor  Platform Engineering Team Lead @ Bloomberg with deep technical experience.',
+  description: siteConfig.description,
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,

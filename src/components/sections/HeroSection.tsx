@@ -6,23 +6,26 @@ import { Container } from '@/components/Container'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import { Download, MapPin, Mail } from 'lucide-react'
+import { getIcon, avatarImage } from '@/lib/config'
 import {
-  Download,
-  MapPin,
-  Mail,
-  Users,
-  Layers,
-  Activity,
-  Code,
-  Crown,
-  CheckSquare,
-  Package,
-  Palette,
-} from 'lucide-react'
-import avatarImage from '@/images/profile.jpeg'
+  type PersonalConfig,
+  type ContactConfig,
+  type HeroConfig,
+} from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 
-export function HeroSection() {
+interface HeroSectionProps {
+  personalConfig: PersonalConfig
+  contactConfig: ContactConfig
+  heroConfig: HeroConfig
+}
+
+export function HeroSection({
+  personalConfig,
+  contactConfig,
+  heroConfig,
+}: HeroSectionProps) {
   return (
     <Container className="mt-4 sm:mt-6 md:mt-8 lg:mt-12">
       <MotionDiv>
@@ -33,109 +36,58 @@ export function HeroSection() {
               {/* Availability Badge */}
               <Badge variant="secondary" className="w-fit">
                 <MapPin className="mr-2 h-3 w-3" />
-                New York, NY
+                {personalConfig.location}
               </Badge>
               <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-                Building{' '}
-                <span className="bg-gradient-to-r from-primary to-primary/30 bg-clip-text text-transparent">
-                  scalable solutions
-                </span>{' '}
-                for complex infrastructure
+                {personalConfig.tagline}
               </h1>
             </div>
 
             <div className="space-y-2 sm:space-y-3">
               <h2 className="text-sm text-muted-foreground sm:text-base md:text-lg lg:text-xl">
-                Platform Engineering Team Lead @ Bloomberg
+                {personalConfig.title}
               </h2>
               <p className="text-xs leading-4 text-muted-foreground sm:text-sm sm:leading-5 md:text-base md:leading-6">
-                What started as a passion for solving complex problems has
-                evolved into leading a platform engineering team that serves
-                thousands of developers. At Bloomberg, I've architected systems
-                serving 9,000+ engineers and led teams that deliver
-                mission-critical platforms.
-                <br />
-                <br />I build the invisible infrastructure that makes everything
-                else possible—bridging the gap between technical excellence and
-                team leadership. My sweet spot? Taking ambitious ideas and
-                turning them into elegant, scalable solutions while building the
-                teams that maintain and evolve them.
+                {personalConfig.description}
               </p>
             </div>
 
             {/* Core Strengths - Desktop Only Compact Icons */}
             <div className="hidden gap-2 text-xs md:grid md:grid-cols-2">
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-green-500/10 text-green-600 dark:text-green-400">
-                  <Users className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Team Management
-                </span>
-              </div>
+              {heroConfig.highlights.map((highlight) => {
+                const IconComponent = getIcon(
+                  highlight.icon
+                ) as React.ComponentType<{ className?: string }>
+                const colorClasses = {
+                  green: 'bg-green-500/10 text-green-600 dark:text-green-400',
+                  purple:
+                    'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+                  orange:
+                    'bg-orange-500/10 text-orange-600 dark:text-orange-400',
+                  cyan: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
+                  amber: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+                  emerald:
+                    'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+                  rose: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
+                  indigo:
+                    'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+                }
 
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400">
-                  <Layers className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Distributed Systems
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-orange-500/10 text-orange-600 dark:text-orange-400">
-                  <Activity className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  API Architecture
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
-                  <Code className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Full-Stack Development
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                  <Crown className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Leadership
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                  <CheckSquare className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Project Management
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-rose-500/10 text-rose-600 dark:text-rose-400">
-                  <Package className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Product
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <div className="flex h-5 w-5 items-center justify-center rounded-md bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-                  <Palette className="h-2.5 w-2.5" />
-                </div>
-                <span className="whitespace-nowrap font-medium text-foreground">
-                  Design
-                </span>
-              </div>
+                return (
+                  <div key={highlight.name} className="flex items-center gap-2">
+                    <div
+                      className={`flex h-5 w-5 items-center justify-center rounded-md ${colorClasses[highlight.color as keyof typeof colorClasses]}`}
+                    >
+                      {IconComponent && (
+                        <IconComponent className="h-2.5 w-2.5" />
+                      )}
+                    </div>
+                    <span className="whitespace-nowrap font-medium text-foreground">
+                      {highlight.name}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
@@ -156,17 +108,19 @@ export function HeroSection() {
               {/* Availability Badge and CTA under portrait */}
               <div className="mt-4 space-y-3">
                 {/* Availability Badge */}
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-green-500" />
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Open for new opportunities
-                  </span>
-                </div>
+                {personalConfig.availability.active && (
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-green-500" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {personalConfig.availability.status}
+                    </span>
+                  </div>
+                )}
 
                 {/* CTA Buttons - Same width as portrait */}
                 <div className="flex flex-col gap-2">
                   <Button size="default" className="group w-full" asChild>
-                    <Link href="mailto:sherodtaylor@gmail.com">
+                    <Link href={`mailto:${contactConfig.email}`}>
                       <Mail className="mr-2 h-4 w-4" />
                       Get in touch
                     </Link>
@@ -190,7 +144,7 @@ export function HeroSection() {
                     asChild
                   >
                     <Link
-                      href="https://github.com/sherodtaylor"
+                      href={contactConfig.github}
                       aria-label="GitHub"
                       className="flex items-center justify-center gap-2"
                     >
@@ -205,7 +159,7 @@ export function HeroSection() {
                     asChild
                   >
                     <Link
-                      href="https://www.linkedin.com/in/sherodtaylor/"
+                      href={contactConfig.linkedin}
                       aria-label="LinkedIn"
                       className="flex items-center justify-center gap-2"
                     >

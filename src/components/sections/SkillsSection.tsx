@@ -1,123 +1,16 @@
 'use client'
 
-import { useState } from 'react'
-import Image, { type StaticImageData } from 'next/image'
+import React, { useState } from 'react'
+import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  ChevronDown,
-  ChevronUp,
-  Crown,
-  CheckSquare,
-  Package,
-  Palette,
-  Users,
-  Code,
-  Database,
-  Network,
-  Zap,
-} from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import { getIcon } from '@/lib/config'
+import { type SkillsConfig, type SkillCategory } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
-
-// Import your existing skill icons
-import reactIcon from '@/images/icons/react.png'
-import nextjsIcon from '@/images/icons/next-js.png'
-import typescriptIcon from '@/images/icons/typescript.png'
-import nodejsIcon from '@/images/icons/nodejs.png'
-import dockerIcon from '@/images/icons/docker.png'
-import tailwindcssIcon from '@/images/icons/tailwindcss.png'
-import gitIcon from '@/images/icons/git.png'
-import goIcon from '@/images/icons/go.svg'
-import pythonIcon from '@/images/icons/python.png'
-import postgresqlIcon from '@/images/icons/postgresql.svg'
-import graphqlIcon from '@/images/icons/graphql.svg'
-import terraformIcon from '@/images/icons/terraform.svg'
-import packerIcon from '@/images/icons/packer.svg'
-import proxmoxIcon from '@/images/icons/proxmox.svg'
-import openstackIcon from '@/images/icons/openstack.svg'
-import truenasIcon from '@/images/icons/truenas.svg'
-import kubernetesIcon from '@/images/icons/kubernetes.svg'
-
-interface SkillItem {
-  name: string
-  icon: StaticImageData | React.ComponentType<{ className?: string }>
-}
-
-interface SkillCategory {
-  title: string
-  description: string
-  icon: StaticImageData | React.ComponentType<{ className?: string }>
-  color: string
-  skills: SkillItem[]
-  experience: string
-}
-
-const skillCategories: SkillCategory[] = [
-  {
-    title: 'Frontend Development',
-    description: 'Building modern, responsive web applications',
-    icon: reactIcon,
-    color: 'from-blue-500/20 to-cyan-500/20',
-    skills: [
-      { name: 'React', icon: reactIcon },
-      { name: 'Next.js', icon: nextjsIcon },
-      { name: 'TypeScript', icon: typescriptIcon },
-      { name: 'Tailwind CSS', icon: tailwindcssIcon },
-    ],
-    experience: '12+ years',
-  },
-  {
-    title: 'Backend Development',
-    description: 'Scalable server-side architecture and APIs',
-    icon: nodejsIcon,
-    color: 'from-green-500/20 to-emerald-500/20',
-    skills: [
-      { name: 'Node.js', icon: nodejsIcon },
-      { name: 'TypeScript', icon: typescriptIcon },
-      { name: 'Go', icon: goIcon },
-      { name: 'Python', icon: pythonIcon },
-      { name: 'PostgreSQL', icon: postgresqlIcon },
-      { name: 'GraphQL', icon: graphqlIcon },
-      { name: 'API Integration', icon: Zap },
-    ],
-    experience: '12+ years',
-  },
-  {
-    title: 'DevOps & Infrastructure',
-    description: 'Cloud infrastructure and deployment automation',
-    icon: dockerIcon,
-    color: 'from-purple-500/20 to-pink-500/20',
-    skills: [
-      { name: 'Docker', icon: dockerIcon },
-      { name: 'Git', icon: gitIcon },
-      { name: 'Terraform', icon: terraformIcon },
-      { name: 'Packer', icon: packerIcon },
-      { name: 'Proxmox', icon: proxmoxIcon },
-      { name: 'OpenStack', icon: openstackIcon },
-      { name: 'Networking', icon: Network },
-      { name: 'TrueNAS', icon: truenasIcon },
-      { name: 'Kubernetes', icon: kubernetesIcon },
-    ],
-    experience: '10+ years',
-  },
-  {
-    title: 'Leadership & Strategy',
-    description: 'Team leadership, product management, and design thinking',
-    icon: Crown,
-    color: 'from-amber-500/20 to-orange-500/20',
-    skills: [
-      { name: 'Leadership', icon: Crown },
-      { name: 'People Management', icon: Users },
-      { name: 'Project Management', icon: CheckSquare },
-      { name: 'Product Strategy', icon: Package },
-      { name: 'Design Thinking', icon: Palette },
-    ],
-    experience: '4+ years',
-  },
-]
 
 interface SkillCardProps {
   category: SkillCategory
@@ -126,6 +19,7 @@ interface SkillCardProps {
 
 function SkillCard({ category }: SkillCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const categoryIcon = getIcon(category.icon)
 
   return (
     <MotionDiv className="h-full">
@@ -145,31 +39,28 @@ function SkillCard({ category }: SkillCardProps) {
                       : 'bg-background'
                   }`}
                 >
-                  {category.icon === Crown ||
-                  category.icon === Users ||
-                  category.icon === CheckSquare ||
-                  category.icon === Package ||
-                  category.icon === Palette ||
-                  category.icon === Code ||
-                  category.icon === Database ||
-                  category.icon === Network ||
-                  category.icon === Zap ? (
-                    <category.icon
-                      className={`h-6 w-6 ${
-                        category.title === 'Leadership & Strategy'
-                          ? 'text-amber-600 dark:text-amber-400'
-                          : 'text-primary'
-                      }`}
-                    />
-                  ) : (
+                  {typeof categoryIcon === 'function' ? (
+                    React.createElement(
+                      categoryIcon as React.ComponentType<{
+                        className?: string
+                      }>,
+                      {
+                        className: `h-6 w-6 ${
+                          category.title === 'Leadership & Strategy'
+                            ? 'text-amber-600 dark:text-amber-400'
+                            : 'text-primary'
+                        }`,
+                      }
+                    )
+                  ) : categoryIcon ? (
                     <Image
-                      src={category.icon as StaticImageData}
+                      src={categoryIcon}
                       alt={category.title}
                       width={24}
                       height={24}
                       className="h-6 w-6"
                     />
-                  )}
+                  ) : null}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -212,33 +103,35 @@ function SkillCard({ category }: SkillCardProps) {
                 Technologies
               </h4>
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
-                  >
-                    {skill.icon === Crown ||
-                    skill.icon === Users ||
-                    skill.icon === CheckSquare ||
-                    skill.icon === Package ||
-                    skill.icon === Palette ||
-                    skill.icon === Code ||
-                    skill.icon === Database ||
-                    skill.icon === Network ||
-                    skill.icon === Zap ? (
-                      <skill.icon className="h-4 w-4 text-primary" />
-                    ) : (
-                      <Image
-                        src={skill.icon as StaticImageData}
-                        alt={skill.name}
-                        width={16}
-                        height={16}
-                        className="h-4 w-4"
-                      />
-                    )}
-                    <span className="text-sm font-medium">{skill.name}</span>
-                  </div>
-                ))}
+                {category.skills.map((skill) => {
+                  const skillIcon = getIcon(skill.icon)
+                  return (
+                    <div
+                      key={skill.name}
+                      className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
+                    >
+                      {typeof skillIcon === 'function' ? (
+                        React.createElement(
+                          skillIcon as React.ComponentType<{
+                            className?: string
+                          }>,
+                          {
+                            className: 'h-4 w-4 text-primary',
+                          }
+                        )
+                      ) : skillIcon ? (
+                        <Image
+                          src={skillIcon}
+                          alt={skill.name}
+                          width={16}
+                          height={16}
+                          className="h-4 w-4"
+                        />
+                      ) : null}
+                      <span className="text-sm font-medium">{skill.name}</span>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -248,7 +141,11 @@ function SkillCard({ category }: SkillCardProps) {
   )
 }
 
-export function SkillsSection() {
+interface SkillsSectionProps {
+  skillsConfig: SkillsConfig
+}
+
+export function SkillsSection({ skillsConfig }: SkillsSectionProps) {
   return (
     <Container className="mt-16 sm:mt-20 md:mt-24 lg:mt-28">
       <MotionDiv>
@@ -263,7 +160,7 @@ export function SkillsSection() {
       </MotionDiv>
 
       <MotionList className="mt-12 grid w-full grid-rows-[repeat(auto-fit,1fr)] gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-2">
-        {skillCategories.map((category, index) => (
+        {skillsConfig.categories.map((category, index) => (
           <SkillCard key={category.title} category={category} index={index} />
         ))}
       </MotionList>

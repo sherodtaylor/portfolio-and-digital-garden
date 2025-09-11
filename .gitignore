@@ -34,3 +34,14 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .obsidian/
+
+# Resume generation
+/venv/
+/dist/
+generated-resume.*
+*.aux
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz

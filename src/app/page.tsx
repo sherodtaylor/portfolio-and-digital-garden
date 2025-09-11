@@ -8,6 +8,15 @@ import { CommunitySection } from '@/components/sections/CommunitySection'
 import { Card } from '@/components/Card'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import {
+  getPersonalConfig,
+  getContactConfig,
+  getHeroConfig,
+  getSkillsConfig,
+  getExperienceConfig,
+  getProjectsConfig,
+  getSectionsConfig,
+} from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 
 function Article({ article }: { article: ArticleWithSlug }) {
@@ -26,25 +35,39 @@ function Article({ article }: { article: ArticleWithSlug }) {
 }
 
 export default async function Home() {
+  // Get all configuration data server-side
+  const personalConfig = getPersonalConfig()
+  const contactConfig = getContactConfig()
+  const heroConfig = getHeroConfig()
+  const skillsConfig = getSkillsConfig()
+  const experienceConfig = getExperienceConfig()
+  const projectsConfig = getProjectsConfig()
+  const sectionsConfig = getSectionsConfig()
+
   const fetchedArticles = await getAllArticles()
-  const articles = fetchedArticles?.slice(0, 3) || []
+  const articles =
+    fetchedArticles?.slice(0, sectionsConfig.latest_articles.max_count) || []
 
   return (
     <>
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        personalConfig={personalConfig}
+        contactConfig={contactConfig}
+        heroConfig={heroConfig}
+      />
 
       {/* Core Strengths Section */}
       <StrengthsSection />
 
       {/* Skills Section */}
-      <SkillsSection />
+      <SkillsSection skillsConfig={skillsConfig} />
 
       {/* Experience Section */}
-      <ExperienceSection />
+      <ExperienceSection experienceConfig={experienceConfig} />
 
       {/* Projects Section */}
-      <ProjectsSection />
+      <ProjectsSection projectsConfig={projectsConfig} />
 
       {/* Community Section */}
       <CommunitySection />
@@ -54,10 +77,10 @@ export default async function Home() {
         <MotionDiv>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Latest Articles
+              {sectionsConfig.latest_articles.title}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Thoughts on software development, leadership, and technology
+              {sectionsConfig.latest_articles.description}
             </p>
           </div>
         </MotionDiv>

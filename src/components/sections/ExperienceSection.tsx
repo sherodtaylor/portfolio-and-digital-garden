@@ -16,36 +16,23 @@ import {
   Box,
   ExternalLink,
 } from 'lucide-react'
+import { getIcon, getLogo } from '@/lib/config'
+import {
+  type ExperienceConfig,
+  type ExperiencePosition,
+} from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
-import logoBBG from '@/images/logos/bbg.svg'
-import logoPaxos from '@/images/logos/paxos.svg'
-import logoMadisonReed from '@/images/logos/madison-reed.svg'
-import reactIcon from '@/images/icons/react.png'
-import nodejsIcon from '@/images/icons/nodejs.png'
-import typescriptIcon from '@/images/icons/typescript.png'
-import dockerIcon from '@/images/icons/docker.png'
-import pythonIcon from '@/images/icons/python.png'
-import goIcon from '@/images/icons/go.svg'
-import postgresqlIcon from '@/images/icons/postgresql.svg'
-import graphqlIcon from '@/images/icons/graphql.svg'
 
 // Function to get icon for technology
 function getTechIcon(tech: string) {
   const techLower = tech.toLowerCase()
 
-  // Image icons
-  if (techLower.includes('react')) return reactIcon
-  if (techLower.includes('node') || techLower === 'node.js') return nodejsIcon
-  if (techLower.includes('typescript')) return typescriptIcon
-  if (techLower.includes('docker')) return dockerIcon
-  if (techLower.includes('python')) return pythonIcon
-  if (techLower.includes('go') || techLower === 'golang') return goIcon
-  if (techLower.includes('postgresql') || techLower === 'postgres')
-    return postgresqlIcon
-  if (techLower.includes('graphql')) return graphqlIcon
+  // Try to get from our icon mapping first
+  const mappedIcon = getIcon(techLower) || getIcon(tech)
+  if (mappedIcon) return mappedIcon
 
-  // Lucide icons for other technologies
+  // Fallback logic for technologies not in our mapping
   if (techLower.includes('kubernetes') || techLower === 'k8s') return Box
   if (
     techLower.includes('aws') ||
@@ -72,109 +59,10 @@ function getTechIcon(tech: string) {
   return Code
 }
 
-const experiences = [
-  {
-    company: 'Bloomberg LP',
-    companyUrl: 'https://www.bloomberg.com',
-    role: 'Platform Engineering Team Lead',
-    period: 'March 2023 - Present',
-    location: 'New York, NY',
-    type: 'Full-time',
-    logo: logoBBG,
-    description:
-      'Leading centralized API platform development and managing a 5-engineer team focused on developer tools. Created Bento UI framework using module federation.',
-    achievements: [
-      'Built centralized API platform for Private Cloud infrastructure',
-      'Designed Activity API platform providing infrastructure event visibility',
-      'Created Bento UI framework using module federation',
-      'Managed 5-engineer team focused on developer tools and infrastructure reliability',
-    ],
-    technologies: [
-      'React',
-      'Node.js',
-      'TypeScript',
-      'Kubernetes',
-      'Docker',
-      'Golang',
-      'PostgreSQL',
-      'GraphQL',
-      'OpenStack',
-    ],
-    color: 'from-orange-500/20 to-red-500/20',
-  },
-  {
-    company: 'Bloomberg LP',
-    companyUrl: 'https://www.bloomberg.com',
-    role: 'Senior Software Engineer',
-    period: 'August 2018 - March 2023',
-    location: 'New York, NY',
-    type: 'Full-time',
-    logo: logoBBG,
-    description:
-      'Led data center modernization project and architected full-stack software solutions for Bloomberg infrastructure.',
-    achievements: [
-      'Led data center modernization project',
-      'Built centralized API platform for Private Cloud infrastructure',
-      'Designed Activity API platform providing infrastructure event visibility',
-      'Architected full-stack software solutions for Bloomberg infrastructure',
-    ],
-    technologies: [
-      'Python',
-      'JavaScript',
-      'React',
-      'Node.js',
-      'AWS',
-      'Golang',
-      'PostgreSQL',
-      'GraphQL',
-      'OpenStack',
-    ],
-    color: 'from-orange-500/20 to-red-500/20',
-  },
-  {
-    company: 'Paxos (formerly itBit)',
-    companyUrl: 'https://paxos.com',
-    role: 'Senior Software Engineer',
-    period: 'April 2015 - August 2018',
-    location: 'New York, NY',
-    type: 'Full-time',
-    logo: logoPaxos,
-    description:
-      'Led infrastructure modernization and REST API platform development. Designed SWIFT banking system integration and implemented zero downtime deployments.',
-    achievements: [
-      'Completed full Terraform migration of manually deployed systems',
-      'Designed and implemented TLS client certificate authentication',
-      'Led REST API platform development for institutional trading',
-      'Designed SWIFT banking system for institutional trading integration',
-      'Implemented zero downtime deployments using HA Proxy',
-      'Proposed framework using Node.js, React.js, and Flux architecture',
-      'Contributed to becoming second-largest Bitcoin exchange by volume',
-    ],
-    technologies: ['Node.js', 'React.js', 'Terraform', 'Docker', 'PostgreSQL'],
-    color: 'from-blue-500/20 to-indigo-500/20',
-  },
-  {
-    company: 'Madison Reed',
-    companyUrl: 'https://www.madison-reed.com',
-    role: 'Software Engineer',
-    period: 'September 2013 - May 2015',
-    location: 'San Francisco, CA',
-    type: 'Full-time',
-    logo: logoMadisonReed,
-    description:
-      'Implemented Redis caching system, developed custom CMS, and led migration from Magento to custom Node.js framework.',
-    achievements: [
-      'Implemented Redis caching system reducing database calls',
-      'Developed custom CMS tailored to company workflow',
-      'Led migration from Magento to custom Node.js order processing framework',
-    ],
-    technologies: ['Node.js', 'Redis', 'MongoDB', 'JavaScript', 'CSS'],
-    color: 'from-pink-500/20 to-rose-500/20',
-  },
-]
+// Remove hardcoded experiences - we'll use config
 
 interface ExperienceCardProps {
-  experience: (typeof experiences)[0]
+  experience: ExperiencePosition
   index: number
 }
 
@@ -194,13 +82,15 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                 {/* Company Logo - Floating Right */}
                 <div className="absolute -top-2 right-0 shrink-0">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-border sm:h-16 sm:w-16">
-                    <Image
-                      src={experience.logo}
-                      alt={`${experience.company} logo`}
-                      width={48}
-                      height={48}
-                      className="h-8 w-8 sm:h-10 sm:w-10"
-                    />
+                    {getLogo(experience.logo) && (
+                      <Image
+                        src={getLogo(experience.logo)!}
+                        alt={`${experience.company} logo`}
+                        width={48}
+                        height={48}
+                        className="h-8 w-8 sm:h-10 sm:w-10"
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="sm:pr-18 pr-14">
@@ -212,7 +102,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                   </div>
                 </div>
                 <Link
-                  href={experience.companyUrl}
+                  href={experience.company_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 font-medium text-primary transition-colors hover:text-primary/80"
@@ -292,7 +182,13 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
   )
 }
 
-export function ExperienceSection() {
+interface ExperienceSectionProps {
+  experienceConfig: ExperienceConfig
+}
+
+export function ExperienceSection({
+  experienceConfig,
+}: ExperienceSectionProps) {
   const totalYears = new Date().getFullYear() - 2013
 
   return (
@@ -310,7 +206,7 @@ export function ExperienceSection() {
 
       <div className="mx-auto mt-12 max-w-6xl">
         <MotionList className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
-          {experiences.map((experience, index) => (
+          {experienceConfig.positions.map((experience, index) => (
             <ExperienceCard
               key={`${experience.company}-${experience.period}`}
               experience={experience}

@@ -1,0 +1,201 @@
+# Portfolio Configuration
+# Edit this file to customize your portfolio content
+
+personal:
+  name: "Sherod Taylor"
+  title: "Platform Engineering Team Lead @ Bloomberg"
+  location: "New York, NY"
+  tagline: "Building scalable solutions for complex infrastructure"
+  description: |
+    What started as a passion for solving complex problems has evolved into leading a platform engineering team that serves thousands of developers. At Bloomberg, I've architected systems serving 9,000+ engineers and led teams that deliver mission-critical platforms.
+
+    I build the invisible infrastructure that makes everything else possible—bridging the gap between technical excellence and team leadership. My sweet spot? Taking ambitious ideas and turning them into elegant, scalable solutions while building the teams that maintain and evolve them.
+  availability:
+    status: "Open for new opportunities"
+    active: true
+
+contact:
+  email: "sherodtaylor@gmail.com"
+  website: "https://www.sherodtaylor.dev"
+  github: "https://github.com/sherodtaylor"
+  linkedin: "https://www.linkedin.com/in/sherodtaylor/"
+
+site:
+  title: "Sherod Taylor - Platform Engineering Team Lead @ Bloomberg"
+  description: "Sherod Taylor Platform Engineering Team Lead @ Bloomberg with deep technical experience."
+
+hero:
+  highlights:
+    - name: "Team Management"
+      icon: "Users"
+      color: "green"
+    - name: "Distributed Systems"
+      icon: "Layers"
+      color: "purple"
+    - name: "API Architecture"
+      icon: "Activity"
+      color: "orange"
+    - name: "Full-Stack Development"
+      icon: "Code"
+      color: "cyan"
+    - name: "Leadership"
+      icon: "Crown"
+      color: "amber"
+    - name: "Project Management"
+      icon: "CheckSquare"
+      color: "emerald"
+    - name: "Product"
+      icon: "Package"
+      color: "rose"
+    - name: "Design"
+      icon: "Palette"
+      color: "indigo"
+
+skills:
+  categories:
+    - title: "Frontend Development"
+      description: "Building modern, responsive web applications"
+      icon: "react"
+      color: "from-blue-500/20 to-cyan-500/20"
+      experience: "12+ years"
+      skills:
+        - { name: "React", icon: "react" }
+        - { name: "Next.js", icon: "nextjs" }
+        - { name: "TypeScript", icon: "typescript" }
+        - { name: "Tailwind CSS", icon: "tailwindcss" }
+    - title: "Backend Development"
+      description: "Scalable server-side architecture and APIs"
+      icon: "nodejs"
+      color: "from-green-500/20 to-emerald-500/20"
+      experience: "12+ years"
+      skills:
+        - { name: "Node.js", icon: "nodejs" }
+        - { name: "TypeScript", icon: "typescript" }
+        - { name: "Go", icon: "go" }
+        - { name: "Python", icon: "python" }
+        - { name: "PostgreSQL", icon: "postgresql" }
+        - { name: "GraphQL", icon: "graphql" }
+        - { name: "API Integration", icon: "Zap" }
+    - title: "DevOps & Infrastructure"
+      description: "Cloud infrastructure and deployment automation"
+      icon: "docker"
+      color: "from-purple-500/20 to-pink-500/20"
+      experience: "10+ years"
+      skills:
+        - { name: "Docker", icon: "docker" }
+        - { name: "Git", icon: "git" }
+        - { name: "Terraform", icon: "terraform" }
+        - { name: "Packer", icon: "packer" }
+        - { name: "Proxmox", icon: "proxmox" }
+        - { name: "OpenStack", icon: "openstack" }
+        - { name: "Networking", icon: "Network" }
+        - { name: "TrueNAS", icon: "truenas" }
+        - { name: "Kubernetes", icon: "kubernetes" }
+    - title: "Leadership & Strategy"
+      description: "Team leadership, product management, and design thinking"
+      icon: "Crown"
+      color: "from-amber-500/20 to-orange-500/20"
+      experience: "4+ years"
+      skills:
+        - { name: "Leadership", icon: "Crown" }
+        - { name: "People Management", icon: "Users" }
+        - { name: "Project Management", icon: "CheckSquare" }
+        - { name: "Product Strategy", icon: "Package" }
+        - { name: "Design Thinking", icon: "Palette" }
+
+experience:
+  positions:
+    - company: "Bloomberg LP"
+      company_url: "https://www.bloomberg.com"
+      role: "Platform Engineering Team Lead"
+      period: "March 2023 - Present"
+      location: "New York, NY"
+      type: "Full-time"
+      logo: "bbg"
+      description: "Leading centralized API platform development and managing a 5-engineer team focused on developer tools. Created Bento UI framework using module federation."
+      achievements:
+        - "Built centralized API platform for Private Cloud infrastructure"
+        - "Designed Activity API platform providing infrastructure event visibility"
+        - "Created Bento UI framework using module federation"
+        - "Managed 5-engineer team focused on developer tools and infrastructure reliability"
+      technologies: ["React", "Node.js", "TypeScript", "Kubernetes", "Docker", "Golang", "PostgreSQL", "GraphQL", "OpenStack"]
+      color: "from-orange-500/20 to-red-500/20"
+    - company: "Bloomberg LP"
+      company_url: "https://www.bloomberg.com"
+      role: "Senior Software Engineer"
+      period: "August 2018 - March 2023"
+      location: "New York, NY"
+      type: "Full-time"
+      logo: "bbg"
+      description: "Led data center modernization project and architected full-stack software solutions for Bloomberg infrastructure."
+      achievements:
+        - "Led data center modernization project"
+        - "Built centralized API platform for Private Cloud infrastructure"
+        - "Designed Activity API platform providing infrastructure event visibility"
+        - "Architected full-stack software solutions for Bloomberg infrastructure"
+      technologies: ["Python", "JavaScript", "React", "Node.js", "AWS", "Golang", "PostgreSQL", "GraphQL", "OpenStack"]
+      color: "from-orange-500/20 to-red-500/20"
+    - company: "Paxos (formerly itBit)"
+      company_url: "https://paxos.com"
+      role: "Senior Software Engineer"
+      period: "April 2015 - August 2018"
+      location: "New York, NY"
+      type: "Full-time"
+      logo: "paxos"
+      description: "Led infrastructure modernization and REST API platform development. Designed SWIFT banking system integration and implemented zero downtime deployments."
+      achievements:
+        - "Completed full Terraform migration of manually deployed systems"
+        - "Designed and implemented TLS client certificate authentication"
+        - "Led REST API platform development for institutional trading"
+        - "Designed SWIFT banking system for institutional trading integration"
+        - "Implemented zero downtime deployments using HA Proxy"
+        - "Proposed framework using Node.js, React.js, and Flux architecture"
+        - "Contributed to becoming second-largest Bitcoin exchange by volume"
+      technologies: ["Node.js", "React.js", "Terraform", "Docker", "PostgreSQL"]
+      color: "from-blue-500/20 to-indigo-500/20"
+    - company: "Madison Reed"
+      company_url: "https://www.madison-reed.com"
+      role: "Software Engineer"
+      period: "September 2013 - May 2015"
+      location: "San Francisco, CA"
+      type: "Full-time"
+      logo: "madison-reed"
+      description: "Implemented Redis caching system, developed custom CMS, and led migration from Magento to custom Node.js framework."
+      achievements:
+        - "Implemented Redis caching system reducing database calls"
+        - "Developed custom CMS tailored to company workflow"
+        - "Led migration from Magento to custom Node.js order processing framework"
+      technologies: ["Node.js", "Redis", "MongoDB", "JavaScript", "CSS"]
+      color: "from-pink-500/20 to-rose-500/20"
+
+projects:
+  items:
+    - name: "Home Lab AI Model Deployment"
+      description: "Built personal infrastructure for AI model experimentation and deployment, gaining practical experience with model serving challenges relevant to production AI systems."
+      highlights:
+        - "Local Model Deployment: Successfully deployed various language and vision models with performance optimization"
+        - "Infrastructure Design: Built GPU-accelerated inference pipeline with monitoring and resource management"
+        - "AI-Powered Applications: Self-hosted AI-leveraging applications including Immich (Google Photos alternative)"
+      link:
+        href: "https://github.com/sherodtaylor/homelab-setup"
+        label: "sherodtaylor/homelab-setup"
+        is_private: true
+      icon: "Server"
+      tags: ["AI/ML", "Infrastructure", "Docker", "GPU Computing"]
+    - name: "Dotfiles"
+      description: "Maintained comprehensive dotfiles and development environment configurations for consistent, reproducible development setups across multiple systems."
+      highlights:
+        - "Cross-Platform Configuration: Unified development environment setup for macOS and Linux systems"
+        - "Editor Configuration: Advanced Neovim configurations with language servers and productivity enhancements"
+      link:
+        href: "https://github.com/sherodtaylor/dotfiles"
+        label: "sherodtaylor/dotfiles"
+        is_private: false
+      icon: "Settings"
+      tags: ["DevOps", "Automation", "Neovim", "Shell Scripting"]
+
+sections:
+  latest_articles:
+    title: "Latest Articles"
+    description: "Thoughts on software development, leadership, and technology"
+    max_count: 3
