@@ -6,7 +6,7 @@ personal:
   title: "Platform Engineering Team Lead @ Bloomberg"
   location: "New York, NY"
   tagline: "Building scalable solutions for complex infrastructure"
-  description: "What started as a passion for solving complex problems has evolved into leading a platform engineering team that serves thousands of developers. At Bloomberg, I've architected systems serving 9,000+ engineers and led teams that deliver mission-critical platforms.\n\n\nI build the invisible infrastructure that makes everything else possible—bridging the gap between technical excellence and team leadership. My sweet spot? Taking ambitious ideas and turning them into elegant, scalable solutions while building the teams that maintain and evolve them."
+  description: "Platform Engineering Team Lead at Bloomberg managing 5 engineers and delivering APIs that serve 9,000+ developers daily. 4+ years in engineering leadership, 12+ years building scalable systems. I excel at translating business needs into technical strategy while developing talent and shipping reliable infrastructure."
   availability:
     status: "Open for new opportunities"
     active: true
@@ -167,18 +167,19 @@ experience:
 
 projects:
   items:
-    - name: "Home Lab AI Model Deployment"
-      description: "Built personal infrastructure for AI model experimentation and deployment, gaining practical experience with model serving challenges relevant to production AI systems."
+    - name: "Home Lab Infrastructure"
+      description: "Production home lab running critical daily services for my household while serving as a real-world testing ground for infrastructure provisioning techniques. What I deploy at work, I validate at home first."
       highlights:
-        - "Local Model Deployment: Successfully deployed various language and vision models with performance optimization"
-        - "Infrastructure Design: Built GPU-accelerated inference pipeline with monitoring and resource management"
-        - "AI-Powered Applications: Self-hosted AI-leveraging applications including Immich (Google Photos alternative)"
+        - "Daily Production Use: Running 10+ services my family depends on - Home Assistant controls our lights and thermostats, TrueNAS stores 8TB of family photos/documents, Immich organizes years of memories with AI facial recognition, Jellyfin streams our media library to every device"
+        - "Real Provisioning Practice: Infrastructure as Code using Packer and Terraform means I can rebuild any failed service in minutes - learned this when my media server crashed during movie night. Now every service has automated provisioning pipelines just like production systems at work"
+        - "Kubernetes Testing: Deployed local K8s clusters for testing containerized applications and understanding orchestration challenges before production deployments"
+        - "AI Experimentation: Leveraging Ollama to self-host LLMs and computer vision models, understanding inference infrastructure requirements and optimizing resource allocation for AI workloads"
       link:
         href: "https://github.com/sherodtaylor/homelab-setup"
         label: "sherodtaylor/homelab-setup"
         is_private: true
       icon: "Server"
-      tags: ["AI/ML", "Infrastructure", "Docker", "GPU Computing"]
+      tags: ["Proxmox", "Infrastructure as Code", "Kubernetes", "Home Automation", "Packer", "Terraform"]
     - name: "Dotfiles"
       description: "Maintained comprehensive dotfiles and development environment configurations for consistent, reproducible development setups across multiple systems."
       highlights:
