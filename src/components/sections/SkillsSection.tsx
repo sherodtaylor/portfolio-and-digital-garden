@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -11,6 +11,13 @@ import { getIcon } from '@/lib/config'
 import { type SkillsConfig, type SkillCategory } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
+
+// Type guard to check if icon is a StaticImageData
+const isStaticImageData = (
+  icon: StaticImageData | React.ComponentType<{ className?: string }> | null
+): icon is StaticImageData => {
+  return icon !== null && typeof icon === 'object' && 'src' in icon
+}
 
 interface SkillCardProps {
   category: SkillCategory
@@ -39,8 +46,7 @@ function SkillCard({ category }: SkillCardProps) {
                       : 'bg-background'
                   }`}
                 >
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {categoryIcon && !(categoryIcon as any).src ? (
+                  {categoryIcon && !isStaticImageData(categoryIcon) ? (
                     React.createElement(
                       categoryIcon as React.ComponentType<{
                         className?: string
@@ -53,7 +59,7 @@ function SkillCard({ category }: SkillCardProps) {
                         }`,
                       }
                     )
-                  ) : categoryIcon ? (
+                  ) : categoryIcon && isStaticImageData(categoryIcon) ? (
                     <Image
                       src={categoryIcon}
                       alt={category.title}
@@ -111,8 +117,7 @@ function SkillCard({ category }: SkillCardProps) {
                       key={skill.name}
                       className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
                     >
-                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                      {skillIcon && !(skillIcon as any).src ? (
+                      {skillIcon && !isStaticImageData(skillIcon) ? (
                         React.createElement(
                           skillIcon as React.ComponentType<{
                             className?: string
@@ -121,7 +126,7 @@ function SkillCard({ category }: SkillCardProps) {
                             className: 'h-4 w-4 text-primary',
                           }
                         )
-                      ) : skillIcon ? (
+                      ) : skillIcon && isStaticImageData(skillIcon) ? (
                         <Image
                           src={skillIcon}
                           alt={skill.name}
