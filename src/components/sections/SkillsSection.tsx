@@ -39,7 +39,8 @@ function SkillCard({ category }: SkillCardProps) {
                       : 'bg-background'
                   }`}
                 >
-                  {categoryIcon && !categoryIcon.src ? (
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  {categoryIcon && !(categoryIcon as any).src ? (
                     React.createElement(
                       categoryIcon as React.ComponentType<{
                         className?: string
@@ -110,7 +111,8 @@ function SkillCard({ category }: SkillCardProps) {
                       key={skill.name}
                       className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
                     >
-                      {skillIcon && !skillIcon.src ? (
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {skillIcon && !(skillIcon as any).src ? (
                         React.createElement(
                           skillIcon as React.ComponentType<{
                             className?: string
