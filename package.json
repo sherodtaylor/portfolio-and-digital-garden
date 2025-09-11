@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run resume:build && next dev",
-    "build": "npm run resume:build && next build",
+    "build": "next build",
     "start": "next start",
     "resume:build": "make",
     "resume:clean": "make clean",

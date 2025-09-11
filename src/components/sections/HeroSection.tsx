@@ -129,9 +129,16 @@ export function HeroSection({
                     variant="outline"
                     size="default"
                     className="group w-full"
+                    asChild
                   >
-                    <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
-                    Download Resume
+                    <Link
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                      Download Resume
+                    </Link>
                   </Button>
                 </div>
 

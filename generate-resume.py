@@ -75,7 +75,7 @@ def generate_header(config):
 {{\\small\\color{{textgray}} {escape_latex(personal['location'])}}}
 
 \\vspace{{0.3em}}
-{{\\scriptsize\\color{{accentblue}}
+{{\\tiny\\color{{accentblue}}
     \\faEnvelope\\ \\href{{mailto:{contact['email']}}}{{{contact['email']}}} \\quad
     \\faGlobe\\ \\href{{{contact['website']}}}{{www.sherodtaylor.dev}} \\quad
     \\faGithub\\ \\href{{{contact['github']}}}{{github.com/sherodtaylor}} \\quad
@@ -133,7 +133,7 @@ def generate_experience(config):
             experience_content += "\\begin{itemize}\n"
             for achievement in exp['achievements']:
                 escaped_achievement = escape_latex(achievement)
-                experience_content += f"    \\item {escaped_achievement}\n"
+                experience_content += f"    \\item {{\\small {escaped_achievement}}}\n"
             experience_content += "\\end{itemize}\n"
         
         # Add technologies used
@@ -142,7 +142,7 @@ def generate_experience(config):
             tech_string = " • ".join(tech_list)
             experience_content += f"""
 \\vspace{{0.2em}}
-{{\\scriptsize\\color{{textgray}} Technologies: {tech_string}}}
+{{\\footnotesize\\color{{textgray}} Technologies: {tech_string}}}
 
 """
         
@@ -196,7 +196,7 @@ def generate_projects(config):
             tags = [escape_latex(tag) for tag in project['tags']]
             tags_string = ", ".join(tags)
             projects_content += f"""\\vspace{{0.1em}}
-{{\\scriptsize\\color{{textgray}} {tags_string}}}
+{{\\footnotesize\\color{{textgray}} {tags_string}}}
 
 """
         

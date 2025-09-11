@@ -7,7 +7,7 @@ PYTHON_SCRIPT = generate-resume.py
 YAML_CONFIG = config.yaml
 GENERATED_TEX = generated-resume.tex
 OUTPUT_NAME = resume
-DIST_DIR = dist
+DIST_DIR = public
 TEX_PATH = /Library/TeX/texbin
 REQUIRED_FONT = FiraCode Nerd Font Mono
 
@@ -102,8 +102,8 @@ clean:
 # Clean everything including output
 .PHONY: clean-all
 clean-all: clean
-	@echo "Removing dist folder..."
-	rm -rf $(DIST_DIR)
+	@echo "Removing resume from public folder..."
+	rm -f $(DIST_DIR)/$(OUTPUT_NAME).pdf
 	@echo "Full cleanup complete."
 
 # Show help
