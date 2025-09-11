@@ -1,17 +1,55 @@
 'use client'
 
+import React from 'react'
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Users } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
-import { getCommunityConfig } from '@/lib/config-server'
 import { getIcon } from '@/lib/config'
 import { type StaticImageData } from 'next/image'
 import Image from 'next/image'
 
-const communityConfig = getCommunityConfig()
+// Community data - will be replaced with config loading later
+const communityConfig = {
+  title: 'Community & Leadership',
+  description: 'Giving back through mentorship and volunteer work',
+  activities: [
+    {
+      title: 'Bloomberg Diversity Interview Prep Bootcamp',
+      role: 'Volunteer Instructor & Mentor',
+      duration: '6-month program',
+      type: 'Mentorship',
+      icon: 'GraduationCap',
+      color: 'from-blue-500/20 to-indigo-500/20',
+      description:
+        'A comprehensive bootcamp program designed to train underrepresented candidates for technical interviews through mentoring and hands-on training from Bloomberg engineers. Provides 1:1 guidance, curriculum development, and mock interview preparation.',
+      achievements: [
+        'Designed and delivered Systems Design curriculum',
+        'Took on 1:1 mentee and prepared them for coding interviews',
+        'Provided weekly mock interviews and detailed feedback sessions',
+        'Followed training schedule for 6 months: algos, system design, coding interviews',
+      ],
+    },
+    {
+      title: 'Bloomberg Community Service Leadership',
+      role: 'Community Service Leader',
+      duration: 'Ongoing',
+      type: 'Volunteer',
+      icon: 'Heart',
+      color: 'from-pink-500/20 to-rose-500/20',
+      description:
+        'Leading community service initiatives within Bloomberg engineering teams, organizing volunteer activities and coordinating outreach programs to support local NYC communities.',
+      achievements: [
+        'Logged 15+ volunteer hours in past year',
+        'Mobilized multiple engineering teams for community service',
+        'Coordinated homeless aid initiatives and care package distribution',
+        'Organized NYC park cleanup efforts',
+      ],
+    },
+  ],
+}
 
 // Badge color mapping based on activity type
 const badgeColorMap: Record<string, string> = {
@@ -24,7 +62,17 @@ interface CommunityCardProps {
 }
 
 function CommunityCard({ activity }: CommunityCardProps) {
-  const IconComponent = activity.icon
+  const icon = getIcon(activity.icon)
+  const badgeColor =
+    badgeColorMap[activity.type] ||
+    'bg-gray-500/10 text-gray-600 dark:text-gray-400'
+
+  // Type guard to check if icon is a static image
+  const isStaticImageData = (
+    icon: StaticImageData | React.ComponentType<{ className?: string }> | null
+  ): icon is StaticImageData => {
+    return icon !== null && typeof icon === 'object' && 'src' in icon
+  }
 
   return (
     <MotionDiv className="relative">
@@ -39,7 +87,24 @@ function CommunityCard({ activity }: CommunityCardProps) {
             {/* Activity Icon - Floating Right */}
             <div className="absolute -top-2 right-0 shrink-0">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 shadow-sm ring-1 ring-border dark:bg-white/10">
-                <IconComponent className="h-6 w-6 text-primary" />
+                {icon && isStaticImageData(icon) ? (
+                  <Image
+                    src={icon}
+                    alt={`${activity.title} icon`}
+                    width={24}
+                    height={24}
+                    className="h-6 w-6"
+                  />
+                ) : icon ? (
+                  React.createElement(
+                    icon as React.ComponentType<{ className?: string }>,
+                    {
+                      className: 'h-6 w-6 text-primary',
+                    }
+                  )
+                ) : (
+                  <Users className="h-6 w-6 text-primary" />
+                )}
               </div>
             </div>
             <div className="pr-14">
@@ -48,7 +113,7 @@ function CommunityCard({ activity }: CommunityCardProps) {
                   {activity.title}
                 </h3>
                 <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className={activity.badgeColor}>
+                  <Badge variant="secondary" className={badgeColor}>
                     {activity.type}
                   </Badge>
                 </div>
@@ -105,7 +170,7 @@ export function CommunitySection() {
 
       <div className="mx-auto mt-12 max-w-4xl">
         <MotionList className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
-          {communityActivities.map((activity) => (
+          {communityConfig.activities.map((activity) => (
             <CommunityCard key={activity.title} activity={activity} />
           ))}
         </MotionList>
