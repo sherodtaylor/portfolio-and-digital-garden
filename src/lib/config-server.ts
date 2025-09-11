@@ -118,6 +118,23 @@ export interface ProjectsConfig {
   items: ProjectItem[]
 }
 
+export interface CommunityActivity {
+  title: string
+  role: string
+  duration: string
+  type: string
+  icon: string
+  color: string
+  description: string
+  achievements: string[]
+}
+
+export interface CommunityConfig {
+  title: string
+  description: string
+  activities: CommunityActivity[]
+}
+
 export interface LatestArticlesConfig {
   title: string
   description: string
@@ -136,6 +153,7 @@ export interface AppConfig {
   skills: SkillsConfig
   experience: ExperienceConfig
   projects: ProjectsConfig
+  community: CommunityConfig
   sections: SectionsConfig
 }
 
@@ -225,6 +243,10 @@ export function getExperienceConfig(): ExperienceConfig {
 
 export function getProjectsConfig(): ProjectsConfig {
   return getConfig().projects
+}
+
+export function getCommunityConfig(): CommunityConfig {
+  return getConfig().community
 }
 
 export function getSectionsConfig(): SectionsConfig {

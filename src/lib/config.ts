@@ -42,6 +42,8 @@ import {
   Box,
   Calendar,
   ListTodo,
+  GraduationCap,
+  Heart,
 } from 'lucide-react'
 
 // Type definitions
@@ -133,6 +135,23 @@ export interface ProjectsConfig {
   items: ProjectItem[]
 }
 
+export interface CommunityActivity {
+  title: string
+  role: string
+  duration: string
+  type: string
+  icon: string
+  color: string
+  description: string
+  achievements: string[]
+}
+
+export interface CommunityConfig {
+  title: string
+  description: string
+  activities: CommunityActivity[]
+}
+
 export interface LatestArticlesConfig {
   title: string
   description: string
@@ -151,6 +170,7 @@ export interface AppConfig {
   skills: SkillsConfig
   experience: ExperienceConfig
   projects: ProjectsConfig
+  community: CommunityConfig
   sections: SectionsConfig
 }
 
@@ -195,6 +215,8 @@ const iconMap: Record<
   Box: Box,
   Calendar: Calendar,
   Tasks: ListTodo,
+  GraduationCap: GraduationCap,
+  Heart: Heart,
 }
 
 const logoMap: Record<string, StaticImageData> = {

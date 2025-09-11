@@ -3,49 +3,24 @@
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Users, Heart, GraduationCap } from 'lucide-react'
+import { Users } from 'lucide-react'
 import MotionDiv from '@/components/motion-div'
 import MotionList from '@/components/motion-list'
+import { getCommunityConfig } from '@/lib/config-server'
+import { getIcon } from '@/lib/config'
+import { type StaticImageData } from 'next/image'
+import Image from 'next/image'
 
-const communityActivities = [
-  {
-    title: 'Bloomberg Diversity Interview Prep Bootcamp',
-    role: 'Volunteer Instructor & Mentor',
-    duration: '6-month program',
-    type: 'Mentorship',
-    icon: GraduationCap,
-    color: 'from-blue-500/20 to-indigo-500/20',
-    badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
-    description:
-      'A comprehensive bootcamp program designed to train underrepresented candidates for technical interviews through mentoring and hands-on training from Bloomberg engineers. Provides 1:1 guidance, curriculum development, and mock interview preparation.',
-    achievements: [
-      'Designed and delivered Systems Design curriculum',
-      'Took on 1:1 mentee and prepared them for coding interviews',
-      'Provided weekly mock interviews and detailed feedback sessions',
-      'Followed training schedule for 6 months: algos, system design, coding interviews',
-    ],
-  },
-  {
-    title: 'Bloomberg Community Service Leadership',
-    role: 'Community Service Leader',
-    duration: 'Ongoing',
-    type: 'Volunteer',
-    icon: Heart,
-    color: 'from-pink-500/20 to-rose-500/20',
-    badgeColor: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
-    description:
-      'Leading community service initiatives within Bloomberg engineering teams, organizing volunteer activities and coordinating outreach programs to support local NYC communities.',
-    achievements: [
-      'Logged 15+ volunteer hours in past year',
-      'Mobilized multiple engineering teams for community service',
-      'Coordinated homeless aid initiatives and care package distribution',
-      'Organized NYC park cleanup efforts',
-    ],
-  },
-]
+const communityConfig = getCommunityConfig()
+
+// Badge color mapping based on activity type
+const badgeColorMap: Record<string, string> = {
+  Mentorship: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+  Volunteer: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
+}
 
 interface CommunityCardProps {
-  activity: (typeof communityActivities)[0]
+  activity: (typeof communityConfig.activities)[0]
 }
 
 function CommunityCard({ activity }: CommunityCardProps) {

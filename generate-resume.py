@@ -128,6 +128,15 @@ def generate_experience(config):
 
 """
         
+        # Add description if available
+        if 'description' in exp and exp['description']:
+            escaped_description = escape_latex(exp['description'])
+            experience_content += f"""{{\\small {escaped_description}}}
+
+\\vspace{{0.3em}}
+
+"""
+        
         # Add achievements
         if 'achievements' in exp and exp['achievements']:
             experience_content += "\\begin{itemize}\n"
@@ -191,6 +200,15 @@ def generate_projects(config):
 
 """
         
+        # Add highlights if available
+        if 'highlights' in project and project['highlights']:
+            projects_content += "\\begin{itemize}\n"
+            for highlight in project['highlights']:
+                escaped_highlight = escape_latex(highlight)
+                projects_content += f"    \\item {{\\small {escaped_highlight}}}\n"
+            projects_content += "\\end{itemize}\n"
+            projects_content += "\\vspace{0.2em}\n"
+        
         # Add tags if available
         if 'tags' in project and project['tags']:
             tags = [escape_latex(tag) for tag in project['tags']]
@@ -204,6 +222,43 @@ def generate_projects(config):
     
     return projects_content
 
+def generate_community(config):
+    """Generate the community section."""
+    if 'community' not in config:
+        return ""
+    
+    community_data = config['community']
+    activities = community_data['activities']
+    
+    community_content = "% Community Section\n\\section{Community \\& Leadership}\n\n"
+    
+    for activity in activities:
+        title = escape_latex(activity['title'])
+        role = escape_latex(activity['role'])
+        duration = escape_latex(activity['duration'])
+        activity_type = escape_latex(activity['type'])
+        description = escape_latex(activity['description'])
+        
+        community_content += f"""\\communityrole{{{title}}}{{{role}}}{{{duration}}}{{{activity_type}}}
+
+{{\\small {description}}}
+
+\\vspace{{0.3em}}
+
+"""
+        
+        # Add achievements if available
+        if 'achievements' in activity and activity['achievements']:
+            community_content += "\\begin{itemize}\n"
+            for achievement in activity['achievements']:
+                escaped_achievement = escape_latex(achievement)
+                community_content += f"    \\item {{\\small {escaped_achievement}}}\n"
+            community_content += "\\end{itemize}\n"
+        
+        community_content += "\\vspace{0.5em}\n\n"
+    
+    return community_content
+
 def process_template(template_content, config):
     """Process the template by substituting placeholders with generated content."""
     
@@ -213,6 +268,7 @@ def process_template(template_content, config):
     experience = generate_experience(config)
     skills = generate_skills(config)
     projects = generate_projects(config)
+    community = generate_community(config)
     
     # Define substitution mappings
     substitutions = {
@@ -221,6 +277,7 @@ def process_template(template_content, config):
         '{{EXPERIENCE_CONTENT}}': experience,
         '{{SKILLS_CONTENT}}': skills,
         '{{PROJECTS_CONTENT}}': projects,
+        '{{COMMUNITY_CONTENT}}': community,
     }
     
     # Perform substitutions
