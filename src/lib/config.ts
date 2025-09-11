@@ -208,16 +208,10 @@ export function getIcon(
 ): StaticImageData | React.ComponentType<{ className?: string }> | null {
   const icon = iconMap[iconName]
   if (!icon) {
-    console.warn(
-      `Icon not found: ${iconName}. Available icons:`,
-      Object.keys(iconMap)
-    )
-  } else {
-    console.log(
-      `Icon found: ${iconName}, Type: ${typeof icon}, Is function: ${typeof icon === 'function'}`
-    )
+    // Icon not found - returning null
+    return null
   }
-  return icon || null
+  return icon
 }
 
 export function getLogo(logoName: string): StaticImageData | null {

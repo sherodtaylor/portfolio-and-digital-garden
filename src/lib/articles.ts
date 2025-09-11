@@ -29,12 +29,12 @@ export async function getAllArticles() {
   const articleFilenames = await glob('*/page.mdx', {
     cwd: './src/app/articles',
   })
-  console.log(articleFilenames)
 
   try {
     const articles = await Promise.all(articleFilenames.map(importArticle))
     return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
   } catch (e) {
-    console.log(e)
+    // Error loading articles - returning empty array
+    return []
   }
 }

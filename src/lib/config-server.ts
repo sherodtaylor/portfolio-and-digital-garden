@@ -26,22 +26,8 @@ import logoBBG from '@/images/logos/bbg.svg'
 import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
 
-// Lucide icon imports
-import {
-  Users,
-  Layers,
-  Activity,
-  Code,
-  Crown,
-  CheckSquare,
-  Package,
-  Palette,
-  Zap,
-  Database,
-  Network,
-  Server,
-  Settings,
-} from 'lucide-react'
+// Note: This file handles server-side configuration and static assets only
+// Lucide icons are handled client-side in config.ts
 
 // Type definitions
 export interface PersonalConfig {
@@ -207,8 +193,8 @@ export function getConfig(): AppConfig {
     cachedConfig = config
     return config
   } catch (error) {
-    console.error('Failed to load config.yaml:', error)
-    throw new Error('Could not load application configuration')
+    // Failed to load config.yaml
+    throw new Error(`Could not load application configuration: ${error}`)
   }
 }
 

@@ -46,10 +46,9 @@ const communityActivities = [
 
 interface CommunityCardProps {
   activity: (typeof communityActivities)[0]
-  index: number
 }
 
-function CommunityCard({ activity, index }: CommunityCardProps) {
+function CommunityCard({ activity }: CommunityCardProps) {
   const IconComponent = activity.icon
 
   return (
@@ -131,12 +130,8 @@ export function CommunitySection() {
 
       <div className="mx-auto mt-12 max-w-4xl">
         <MotionList className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
-          {communityActivities.map((activity, index) => (
-            <CommunityCard
-              key={activity.title}
-              activity={activity}
-              index={index}
-            />
+          {communityActivities.map((activity) => (
+            <CommunityCard key={activity.title} activity={activity} />
           ))}
         </MotionList>
       </div>

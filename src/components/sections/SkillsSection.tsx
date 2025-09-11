@@ -20,11 +20,6 @@ interface SkillCardProps {
 function SkillCard({ category }: SkillCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const categoryIcon = getIcon(category.icon)
-  console.log(
-    `Category: ${category.title}, Icon: ${category.icon}, Result:`,
-    categoryIcon,
-    typeof categoryIcon
-  )
 
   return (
     <MotionDiv className="h-full">
@@ -110,11 +105,6 @@ function SkillCard({ category }: SkillCardProps) {
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => {
                   const skillIcon = getIcon(skill.icon)
-                  console.log(
-                    `Skill: ${skill.name}, Icon: ${skill.icon}, Result:`,
-                    skillIcon,
-                    typeof skillIcon
-                  )
                   return (
                     <div
                       key={skill.name}
