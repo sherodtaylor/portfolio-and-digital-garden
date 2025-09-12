@@ -3,8 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
-import { Menu, Sun, Moon, X } from 'lucide-react'
+import { Menu, Github } from 'lucide-react'
 
 import { Container } from '@/components/Container'
 import { Button } from '@/components/ui/button'
@@ -36,26 +35,23 @@ const navItems: NavItem[] = [
   { name: 'Thoughts', href: '/articles' },
 ]
 
-function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme()
-  const otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
+function GitHubLink() {
   return (
     <Button
       variant="ghost"
       size="icon"
-      aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      onClick={() => setTheme(otherTheme)}
-      className="h-8 w-8 rounded-full md:h-9 md:w-9"
+      asChild
+      className="-m-1 h-10 w-10 rounded-full transition-transform active:scale-95 md:m-0 md:h-9 md:w-9"
     >
-      <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 md:h-4 md:w-4" />
-      <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 md:h-4 md:w-4" />
-      <span className="sr-only">Toggle theme</span>
+      <a
+        href="https://github.com/sherodtaylor"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit my GitHub profile"
+      >
+        <Github className="h-4 w-4 md:h-5 md:w-5" />
+        <span className="sr-only">GitHub</span>
+      </a>
     </Button>
   )
 }
@@ -95,7 +91,7 @@ function MobileNavigation() {
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8 rounded-full md:h-9 md:w-9"
+          className="-m-1 h-10 w-10 rounded-full transition-transform active:scale-95"
         >
           <Menu className="h-3.5 w-3.5 md:h-4 md:w-4" />
           <span className="sr-only">Open menu</span>
@@ -103,29 +99,21 @@ function MobileNavigation() {
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] sm:w-[400px]">
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src={avatarImage.src} alt="Profile" />
-                <AvatarFallback>ST</AvatarFallback>
-              </Avatar>
-              <span className="font-semibold">Sherod Taylor</span>
-            </div>
-            <SheetClose asChild>
-              <Button variant="ghost" size="icon" className="h-6 w-6">
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </SheetClose>
+          <div className="mb-4 flex items-center gap-2">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={avatarImage.src} alt="Profile" />
+              <AvatarFallback>ST</AvatarFallback>
+            </Avatar>
+            <span className="font-semibold">Sherod Taylor</span>
           </div>
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground',
+                  'flex items-center rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground active:scale-[0.98]',
                   pathname === item.href
                     ? 'bg-accent text-accent-foreground'
                     : 'text-muted-foreground'
@@ -348,7 +336,7 @@ export function NewHeader() {
                 <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
                   <ProfileAvatar />
                 </div>
-                <ThemeToggle />
+                <GitHubLink />
               </div>
 
               {/* Desktop Layout */}
@@ -366,7 +354,7 @@ export function NewHeader() {
                 </div>
 
                 <div className="flex items-center justify-end">
-                  <ThemeToggle />
+                  <GitHubLink />
                 </div>
               </div>
             </div>

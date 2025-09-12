@@ -51,7 +51,16 @@ Card.Title = function CardTitle<T extends React.ElementType = 'h2'>({
 
   return (
     <Component className="text-base font-semibold tracking-tight text-foreground">
-      {href ? <Card.Link href={href}>{children}</Card.Link> : children}
+      {href ? (
+        <>
+          <Link href={href} className="absolute inset-0 z-20">
+            <span className="sr-only">{children}</span>
+          </Link>
+          <span className="relative z-10">{children}</span>
+        </>
+      ) : (
+        children
+      )}
     </Component>
   )
 }
@@ -72,10 +81,10 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-primary transition-colors hover:text-primary/80"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-primary transition-colors group-hover:text-primary/80"
     >
       {children}
-      <ChevronRight className="ml-1 h-4 w-4" />
+      <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
     </div>
   )
 }

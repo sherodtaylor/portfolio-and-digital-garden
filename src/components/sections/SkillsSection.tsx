@@ -37,10 +37,10 @@ function SkillCard({ category }: SkillCardProps) {
 
         <CardContent className="relative flex flex-1 flex-col justify-center p-4">
           <div className="flex flex-1 flex-col">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-1 items-start gap-3">
                 <div
-                  className={`rounded-2xl p-2 shadow-sm ring-1 ring-border ${
+                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl shadow-sm ring-1 ring-border ${
                     category.title === 'Leadership & Strategy'
                       ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
                       : 'bg-background'
@@ -52,7 +52,7 @@ function SkillCard({ category }: SkillCardProps) {
                         className?: string
                       }>,
                       {
-                        className: `h-6 w-6 ${
+                        className: `h-5 w-5 flex-shrink-0 ${
                           category.title === 'Leadership & Strategy'
                             ? 'text-amber-600 dark:text-amber-400'
                             : 'text-primary'
@@ -63,18 +63,21 @@ function SkillCard({ category }: SkillCardProps) {
                     <Image
                       src={categoryIcon}
                       alt={category.title}
-                      width={24}
-                      height={24}
-                      className="h-6 w-6"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5 flex-shrink-0 object-contain"
                     />
                   ) : null}
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
                     <h3 className="font-semibold text-foreground">
                       {category.title}
                     </h3>
-                    <Badge variant="outline" className="text-xs">
+                    <Badge
+                      variant="outline"
+                      className="whitespace-nowrap text-xs"
+                    >
                       {category.experience}
                     </Badge>
                   </div>

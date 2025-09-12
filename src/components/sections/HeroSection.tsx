@@ -34,22 +34,91 @@ export function HeroSection({
           <div className="flex flex-col justify-center space-y-6 sm:space-y-6 md:space-y-6 lg:col-span-3 lg:space-y-6">
             <div className="space-y-2 text-center sm:text-left">
               {/* Availability Badge */}
-              <Badge variant="secondary" className="w-fit">
-                <MapPin className="mr-2 h-3 w-3" />
-                {personalConfig.location}
-              </Badge>
+              <div className="flex justify-center sm:justify-start">
+                <Badge variant="secondary" className="w-fit">
+                  <MapPin className="mr-2 h-3 w-3" />
+                  {personalConfig.location}
+                </Badge>
+              </div>
               <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
                 {personalConfig.tagline}
               </h1>
             </div>
 
-            <div className="space-y-2 sm:space-y-3">
+            <div className="space-y-2 text-center sm:space-y-3 sm:text-left">
               <h2 className="text-sm text-muted-foreground sm:text-base md:text-lg lg:text-xl">
                 {personalConfig.title}
               </h2>
               <p className="text-xs leading-4 text-muted-foreground sm:text-sm sm:leading-5 md:text-base md:leading-6">
                 {personalConfig.description}
               </p>
+            </div>
+
+            {/* Mobile CTA Buttons - Show only on mobile, below description */}
+            <div className="flex flex-col items-center gap-3 lg:hidden">
+              {personalConfig.availability.active && (
+                <div className="flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-500" />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {personalConfig.availability.status}
+                  </span>
+                </div>
+              )}
+              <div className="flex w-full flex-col gap-2">
+                <Button size="default" className="group w-full" asChild>
+                  <Link href={`mailto:${contactConfig.email}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    Get in touch
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="group w-full"
+                  asChild
+                >
+                  <Link
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                    Download Resume
+                  </Link>
+                </Button>
+              </div>
+              <div className="grid w-full grid-cols-2 gap-2">
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="h-auto px-4 py-3"
+                  asChild
+                >
+                  <Link
+                    href={contactConfig.github}
+                    aria-label="GitHub"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <GitHubIcon className="h-4 w-4" />
+                    <span className="text-sm font-medium">GitHub</span>
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="h-auto px-4 py-3"
+                  asChild
+                >
+                  <Link
+                    href={contactConfig.linkedin}
+                    aria-label="LinkedIn"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <LinkedInIcon className="h-4 w-4" />
+                    <span className="text-sm font-medium">LinkedIn</span>
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* Core Strengths - Desktop Only Compact Icons */}
