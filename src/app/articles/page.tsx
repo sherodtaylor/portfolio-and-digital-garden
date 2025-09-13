@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -8,21 +9,21 @@ import { formatDate } from '@/lib/formatDate'
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
-      <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
-          {article.title}
-        </Card.Title>
-        <Card.Eyebrow
-          as="time"
-          dateTime={article.date}
-          className="md:hidden"
-          decorate
-        >
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
-      </Card>
+      <Link href={`/articles/${article.slug}`} className="block md:col-span-3">
+        <Card>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Eyebrow
+            as="time"
+            dateTime={article.date}
+            className="md:hidden"
+            decorate
+          >
+            {formatDate(article.date)}
+          </Card.Eyebrow>
+          <Card.Description>{article.description}</Card.Description>
+          <Card.Cta>Read article</Card.Cta>
+        </Card>
+      </Link>
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
