@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { StrengthsSection } from '@/components/sections/StrengthsSection'
@@ -22,16 +21,16 @@ import MotionDiv from '@/components/motion-div'
 
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
-    <Link href={`/articles/${article.slug}`} className="block">
-      <Card as="article">
-        <Card.Title>{article.title}</Card.Title>
-        <Card.Eyebrow as="time" dateTime={article.date} decorate>
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
-      </Card>
-    </Link>
+    <Card as="article">
+      <Card.Title href={`/articles/${article.slug}`}>
+        {article.title}
+      </Card.Title>
+      <Card.Eyebrow as="time" dateTime={article.date} decorate>
+        {formatDate(article.date)}
+      </Card.Eyebrow>
+      <Card.Description>{article.description}</Card.Description>
+      <Card.Cta>Read article</Card.Cta>
+    </Card>
   )
 }
 
