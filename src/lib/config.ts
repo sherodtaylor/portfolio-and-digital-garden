@@ -1,7 +1,7 @@
 import { type StaticImageData } from 'next/image'
 
 // Import all the static image assets
-import avatarImage from '@/images/profile.jpeg'
+import avatarImage from '@/images/photos/personal-image.png'
 import reactIcon from '@/images/icons/react.png'
 import nextjsIcon from '@/images/icons/next-js.png'
 import typescriptIcon from '@/images/icons/typescript.png'

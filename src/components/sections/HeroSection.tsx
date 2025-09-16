@@ -31,8 +31,8 @@ export function HeroSection({
       <MotionDiv>
         <div className="grid gap-6 lg:grid-cols-5 lg:gap-8 xl:gap-12">
           {/* Content Side - 60% width */}
-          <div className="flex flex-col justify-center space-y-6 sm:space-y-6 md:space-y-6 lg:col-span-3 lg:space-y-6">
-            <div className="space-y-2 text-center sm:text-left">
+          <div className="flex flex-col justify-center space-y-4 sm:space-y-6 md:space-y-6 lg:col-span-3 lg:space-y-6">
+            <div className="space-y-2">
               {/* Availability Badge */}
               <div className="flex justify-center sm:justify-start">
                 <Badge variant="secondary" className="w-fit">
@@ -40,22 +40,22 @@ export function HeroSection({
                   {personalConfig.location}
                 </Badge>
               </div>
-              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="text-center text-3xl font-bold tracking-tight text-foreground sm:text-left sm:text-3xl md:text-4xl lg:text-5xl">
                 {personalConfig.tagline}
               </h1>
             </div>
 
-            <div className="space-y-2 text-center sm:space-y-3 sm:text-left">
-              <h2 className="text-sm text-muted-foreground sm:text-base md:text-lg lg:text-xl">
+            <div className="space-y-2 text-left sm:space-y-3">
+              <h2 className="text-base text-muted-foreground sm:text-base md:text-lg lg:text-xl">
                 {personalConfig.title}
               </h2>
-              <p className="text-xs leading-4 text-muted-foreground sm:text-sm sm:leading-5 md:text-base md:leading-6">
+              <p className="text-sm leading-5 text-muted-foreground sm:text-sm sm:leading-5 md:text-base md:leading-6">
                 {personalConfig.description}
               </p>
             </div>
 
             {/* Mobile CTA Buttons - Show only on mobile, below description */}
-            <div className="flex flex-col items-center gap-3 lg:hidden">
+            <div className="flex flex-col items-center gap-2 lg:hidden">
               {personalConfig.availability.active && (
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-green-500" />
@@ -65,15 +65,15 @@ export function HeroSection({
                 </div>
               )}
               <div className="flex w-full flex-col gap-2">
-                <Button size="default" className="group w-full" asChild>
+                <Button size="sm" className="group w-full" asChild>
                   <Link href={`mailto:${contactConfig.email}`}>
-                    <Mail className="mr-2 h-4 w-4" />
+                    <Mail className="mr-2 h-3.5 w-3.5" />
                     Get in touch
                   </Link>
                 </Button>
                 <Button
                   variant="outline"
-                  size="default"
+                  size="sm"
                   className="group w-full"
                   asChild
                 >
@@ -82,7 +82,7 @@ export function HeroSection({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                    <Download className="mr-2 h-3.5 w-3.5 transition-transform group-hover:translate-y-1" />
                     Download Resume
                   </Link>
                 </Button>
@@ -90,32 +90,32 @@ export function HeroSection({
               <div className="grid w-full grid-cols-2 gap-2">
                 <Button
                   variant="outline"
-                  size="default"
-                  className="h-auto px-4 py-3"
+                  size="sm"
+                  className="h-auto px-3 py-2"
                   asChild
                 >
                   <Link
                     href={contactConfig.github}
                     aria-label="GitHub"
-                    className="flex items-center justify-center gap-2"
+                    className="flex items-center justify-center gap-1.5"
                   >
-                    <GitHubIcon className="h-4 w-4" />
-                    <span className="text-sm font-medium">GitHub</span>
+                    <GitHubIcon className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">GitHub</span>
                   </Link>
                 </Button>
                 <Button
                   variant="outline"
-                  size="default"
-                  className="h-auto px-4 py-3"
+                  size="sm"
+                  className="h-auto px-3 py-2"
                   asChild
                 >
                   <Link
                     href={contactConfig.linkedin}
                     aria-label="LinkedIn"
-                    className="flex items-center justify-center gap-2"
+                    className="flex items-center justify-center gap-1.5"
                   >
-                    <LinkedInIcon className="h-4 w-4" />
-                    <span className="text-sm font-medium">LinkedIn</span>
+                    <LinkedInIcon className="h-3.5 w-3.5" />
+                    <span className="text-xs font-medium">LinkedIn</span>
                   </Link>
                 </Button>
               </div>
@@ -163,15 +163,14 @@ export function HeroSection({
           {/* Portrait Side - 40% width */}
           <div className="relative hidden lg:col-span-2 lg:block">
             <div className="w-full">
-              <div className="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 p-4">
-                <div className="relative h-full w-full overflow-hidden rounded-xl">
-                  <Image
-                    src={avatarImage}
-                    alt="Sherod Taylor"
-                    className="h-full w-full object-cover"
-                    priority
-                  />
-                </div>
+              <div className="aspect-square rotate-3 overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
+                <Image
+                  src={avatarImage}
+                  alt="Sherod Taylor"
+                  sizes="(min-width: 1024px) 32rem, 20rem"
+                  className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+                  priority
+                />
               </div>
 
               {/* Availability Badge and CTA under portrait */}

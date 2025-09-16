@@ -26,7 +26,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'Now', href: '/now' },
+  { name: 'Profile', href: '/now' },
   { name: 'Thoughts', href: '/articles' },
 ]
 
@@ -57,20 +57,34 @@ function DesktopNavigation() {
   return (
     <NavigationMenu className="hidden md:block">
       <NavigationMenuList>
-        {navItems.map((item) => (
-          <NavigationMenuItem key={item.href}>
-            <NavigationMenuLink
-              asChild
-              className={cn(
-                navigationMenuTriggerStyle(),
-                'h-9 bg-transparent hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-                pathname === item.href && 'bg-accent text-accent-foreground'
-              )}
-            >
-              <Link href={item.href}>{item.name}</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ))}
+        {navItems.map((item) => {
+          if (item.name === 'Profile') {
+            return (
+              <NavigationMenuItem key={item.href}>
+                <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
+                  <Avatar className="h-6 w-6">
+                    <AvatarImage src={avatarImage.src} alt="Profile" />
+                    <AvatarFallback>ST</AvatarFallback>
+                  </Avatar>
+                </div>
+              </NavigationMenuItem>
+            )
+          }
+          return (
+            <NavigationMenuItem key={item.href}>
+              <NavigationMenuLink
+                asChild
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  'h-9 bg-transparent hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                  pathname === item.href && 'bg-accent text-accent-foreground'
+                )}
+              >
+                <Link href={item.href}>{item.name}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )
+        })}
       </NavigationMenuList>
     </NavigationMenu>
   )
@@ -94,59 +108,31 @@ function MobileNavigation() {
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] sm:w-[400px]">
         <div className="flex flex-col gap-4">
-          <div className="mb-4 flex items-center gap-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={avatarImage.src} alt="Profile" />
-              <AvatarFallback>ST</AvatarFallback>
-            </Avatar>
+          <div className="mb-4">
             <span className="font-semibold">Sherod Taylor</span>
           </div>
           <nav className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  'flex items-center rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground active:scale-[0.98]',
-                  pathname === item.href
-                    ? 'bg-accent text-accent-foreground'
-                    : 'text-muted-foreground'
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems
+              .filter((item) => item.name !== 'Profile')
+              .map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    'flex items-center rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground active:scale-[0.98]',
+                    pathname === item.href
+                      ? 'bg-accent text-accent-foreground'
+                      : 'text-muted-foreground'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
           </nav>
         </div>
       </SheetContent>
     </Sheet>
-  )
-}
-
-function ProfileAvatar({
-  large = false,
-  className,
-  ...props
-}: Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> & {
-  large?: boolean
-}) {
-  return (
-    <Link
-      href="/"
-      aria-label="Home"
-      className={cn('pointer-events-auto', className)}
-      {...props}
-    >
-      <Avatar
-        className={
-          large ? 'h-12 w-12 md:h-16 md:w-16' : 'h-8 w-8 md:h-9 md:w-9'
-        }
-      >
-        <AvatarImage src={avatarImage.src} alt="Profile" />
-        <AvatarFallback>ST</AvatarFallback>
-      </Avatar>
-    </Link>
   )
 }
 
@@ -271,44 +257,6 @@ export function NewHeader() {
           marginBottom: 'var(--header-mb)',
         }}
       >
-        {isHomePage && (
-          <>
-            <div
-              ref={avatarRef}
-              className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] hidden md:block"
-            />
-            <Container
-              className="top-0 order-last -mb-3 hidden pt-3 md:block"
-              style={{
-                position:
-                  'var(--header-position)' as React.CSSProperties['position'],
-              }}
-            >
-              <div
-                className="top-[var(--avatar-top,theme(spacing.3))] w-full"
-                style={{
-                  position:
-                    'var(--header-inner-position)' as React.CSSProperties['position'],
-                }}
-              >
-                <div className="relative">
-                  <div
-                    className="absolute left-0 top-3 h-10 w-10 origin-left rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition-opacity dark:bg-zinc-800/90 dark:ring-white/10"
-                    style={{
-                      opacity: 'var(--avatar-border-opacity, 0)',
-                      transform: 'var(--avatar-border-transform)',
-                    }}
-                  />
-                  <ProfileAvatar
-                    large
-                    className="block h-16 w-16 origin-left"
-                    style={{ transform: 'var(--avatar-image-transform)' }}
-                  />
-                </div>
-              </div>
-            </Container>
-          </>
-        )}
         <div
           ref={headerRef}
           className="top-0 z-10 h-12 pt-3 md:h-16 md:pt-6"
@@ -329,20 +277,17 @@ export function NewHeader() {
               <div className="flex w-full items-center justify-between md:hidden">
                 <MobileNavigation />
                 <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-                  <ProfileAvatar />
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={avatarImage.src} alt="Profile" />
+                    <AvatarFallback>ST</AvatarFallback>
+                  </Avatar>
                 </div>
                 <GitHubLink />
               </div>
 
               {/* Desktop Layout */}
               <div className="hidden md:flex md:w-full md:items-center md:justify-between">
-                <div className="flex items-center">
-                  {!isHomePage && (
-                    <div className="rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10">
-                      <ProfileAvatar />
-                    </div>
-                  )}
-                </div>
+                <div className="flex items-center"></div>
 
                 <div className="flex flex-1 items-center justify-center">
                   <DesktopNavigation />
