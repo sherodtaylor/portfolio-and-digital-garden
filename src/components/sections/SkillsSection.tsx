@@ -1,12 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Image, { type StaticImageData } from 'next/image'
 import { Container } from '@/components/Container'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { ChevronDown, ChevronUp } from 'lucide-react'
 import { getIcon } from '@/lib/config'
 import { type SkillsConfig, type SkillCategory } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
@@ -25,125 +23,94 @@ interface SkillCardProps {
 }
 
 function SkillCard({ category }: SkillCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
   const categoryIcon = getIcon(category.icon)
 
   return (
     <MotionDiv className="h-full">
-      <Card className="group relative flex h-full min-h-[102px] w-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <Card className="group relative flex h-full w-full flex-col overflow-hidden transition-all duration-300 hover:shadow-lg">
         <div
           className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 transition-opacity group-hover:opacity-100`}
         />
 
-        <CardContent className="relative flex flex-1 flex-col justify-center p-4">
-          <div className="flex flex-1 flex-col">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex flex-1 items-start gap-3">
-                <div
-                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl shadow-sm ring-1 ring-border ${
-                    category.title === 'Leadership & Strategy'
-                      ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
-                      : 'bg-background'
-                  }`}
-                >
-                  {categoryIcon && !isStaticImageData(categoryIcon) ? (
-                    React.createElement(
-                      categoryIcon as React.ComponentType<{
-                        className?: string
-                      }>,
-                      {
-                        className: `h-5 w-5 flex-shrink-0 ${
-                          category.title === 'Leadership & Strategy'
-                            ? 'text-amber-600 dark:text-amber-400'
-                            : 'text-primary'
-                        }`,
-                      }
-                    )
-                  ) : categoryIcon && isStaticImageData(categoryIcon) ? (
-                    <Image
-                      src={categoryIcon}
-                      alt={category.title}
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 flex-shrink-0 object-contain"
-                    />
-                  ) : null}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-semibold text-foreground">
-                      {category.title}
-                    </h3>
-                    <Badge
-                      variant="outline"
-                      className="whitespace-nowrap text-xs"
-                    >
-                      {category.experience}
-                    </Badge>
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                </div>
+        <CardContent className="relative flex flex-1 flex-col p-4">
+          {/* Header */}
+          <div className="mb-3 flex items-start gap-3">
+            <div
+              className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg shadow-sm ring-1 ring-border ${
+                category.title === 'Leadership & Strategy'
+                  ? 'bg-gradient-to-br from-amber-500/20 to-orange-500/20'
+                  : 'bg-background'
+              }`}
+            >
+              {categoryIcon && !isStaticImageData(categoryIcon) ? (
+                React.createElement(
+                  categoryIcon as React.ComponentType<{
+                    className?: string
+                  }>,
+                  {
+                    className: `h-4 w-4 flex-shrink-0 ${
+                      category.title === 'Leadership & Strategy'
+                        ? 'text-amber-600 dark:text-amber-400'
+                        : 'text-primary'
+                    }`,
+                  }
+                )
+              ) : categoryIcon && isStaticImageData(categoryIcon) ? (
+                <Image
+                  src={categoryIcon}
+                  alt={category.title}
+                  width={16}
+                  height={16}
+                  className="h-4 w-4 flex-shrink-0 object-contain"
+                />
+              ) : null}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <h3 className="text-sm font-semibold text-foreground">
+                  {category.title}
+                </h3>
+                <Badge variant="outline" className="whitespace-nowrap text-xs">
+                  {category.experience}
+                </Badge>
               </div>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="touch-target-44 shrink-0"
-              >
-                {isExpanded ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </Button>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                {category.description}
+              </p>
             </div>
           </div>
 
-          {/* Expanded Content */}
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              isExpanded ? 'mt-6 max-h-96 opacity-100' : 'max-h-0 opacity-0'
-            }`}
-          >
-            <div className="space-y-4">
-              <h4 className="text-sm font-medium text-foreground">
-                Technologies
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => {
-                  const skillIcon = getIcon(skill.icon)
-                  return (
-                    <div
-                      key={skill.name}
-                      className="flex items-center gap-2 rounded-full bg-background/50 px-3 py-1.5"
-                    >
-                      {skillIcon && !isStaticImageData(skillIcon) ? (
-                        React.createElement(
-                          skillIcon as React.ComponentType<{
-                            className?: string
-                          }>,
-                          {
-                            className: 'h-4 w-4 text-primary',
-                          }
-                        )
-                      ) : skillIcon && isStaticImageData(skillIcon) ? (
-                        <Image
-                          src={skillIcon}
-                          alt={skill.name}
-                          width={16}
-                          height={16}
-                          className="h-4 w-4"
-                        />
-                      ) : null}
-                      <span className="text-sm font-medium">{skill.name}</span>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-1.5">
+            {category.skills.map((skill) => {
+              const skillIcon = getIcon(skill.icon)
+              return (
+                <div
+                  key={skill.name}
+                  className="flex items-center gap-1.5 rounded-full bg-background/50 px-2 py-1"
+                >
+                  {skillIcon && !isStaticImageData(skillIcon) ? (
+                    React.createElement(
+                      skillIcon as React.ComponentType<{
+                        className?: string
+                      }>,
+                      {
+                        className: 'h-3 w-3 text-primary',
+                      }
+                    )
+                  ) : skillIcon && isStaticImageData(skillIcon) ? (
+                    <Image
+                      src={skillIcon}
+                      alt={skill.name}
+                      width={12}
+                      height={12}
+                      className="h-3 w-3"
+                    />
+                  ) : null}
+                  <span className="text-xs font-medium">{skill.name}</span>
+                </div>
+              )
+            })}
           </div>
         </CardContent>
       </Card>

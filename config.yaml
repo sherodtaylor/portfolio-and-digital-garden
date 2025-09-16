@@ -57,9 +57,14 @@ skills:
       experience: "12+ years"
       skills:
         - { name: "React", icon: "react" }
+        - { name: "Angular", icon: "Angular" }
         - { name: "Next.js", icon: "nextjs" }
         - { name: "TypeScript", icon: "typescript" }
+        - { name: "JavaScript", icon: "JavaScript" }
         - { name: "Tailwind CSS", icon: "tailwindcss" }
+        - { name: "Vite", icon: "Zap" }
+        - { name: "Webpack", icon: "Webpack" }
+        - { name: "Module Federation", icon: "Network" }
     - title: "Backend Development"
       description: "Scalable server-side architecture and APIs"
       icon: "nodejs"
@@ -71,7 +76,11 @@ skills:
         - { name: "Go", icon: "go" }
         - { name: "Python", icon: "python" }
         - { name: "PostgreSQL", icon: "postgresql" }
+        - { name: "Redis", icon: "redis" }
         - { name: "GraphQL", icon: "graphql" }
+        - { name: "Apache Kafka", icon: "kafka" }
+        - { name: "Apache Airflow", icon: "airflow" }
+        - { name: "Event Sourcing", icon: "Activity" }
         - { name: "API Integration", icon: "Zap" }
     - title: "DevOps & Infrastructure"
       description: "Cloud infrastructure and deployment automation"
@@ -179,7 +188,7 @@ projects:
         label: "sherodtaylor/homelab-setup"
         is_private: true
       icon: "Server"
-      tags: ["Proxmox", "Infrastructure as Code", "Kubernetes", "Home Automation", "Packer", "Terraform"]
+      tags: ["Proxmox", "Kubernetes", "Docker", "Terraform", "Packer", "TrueNAS", "Home Assistant", "Jellyfin"]
     - name: "Dotfiles"
       description: "Maintained comprehensive dotfiles and development environment configurations for consistent, reproducible development setups across multiple systems."
       highlights:
@@ -190,7 +199,7 @@ projects:
         label: "sherodtaylor/dotfiles"
         is_private: false
       icon: "Settings"
-      tags: ["DevOps", "Automation", "Neovim", "Shell Scripting"]
+      tags: ["Neovim", "Zsh", "Git", "Tmux", "Shell", "macOS", "Linux", "Docker"]
 
 community:
   title: "Community & Leadership"

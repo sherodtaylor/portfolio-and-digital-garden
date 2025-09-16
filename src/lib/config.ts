@@ -19,6 +19,17 @@ import proxmoxIcon from '@/images/icons/proxmox.svg'
 import openstackIcon from '@/images/icons/openstack.svg'
 import truenasIcon from '@/images/icons/truenas.svg'
 import kubernetesIcon from '@/images/icons/kubernetes.svg'
+import redisIcon from '@/images/icons/redis.svg'
+import kafkaIcon from '@/images/icons/kafka.svg'
+import airflowIcon from '@/images/icons/airflow.svg'
+import mongodbIcon from '@/images/icons/mongodb.svg'
+import javascriptIcon from '@/images/icons/javascript.svg'
+import cssIcon from '@/images/icons/css.svg'
+import awsIcon from '@/images/icons/aws.svg'
+import angularIcon from '@/images/icons/angular.svg'
+import webpackIcon from '@/images/icons/webpack.svg'
+import homeassistantIcon from '@/images/icons/homeassistant.svg'
+import jellyfinIcon from '@/images/icons/jellyfin.svg'
 import logoBBG from '@/images/logos/bbg.svg'
 import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
@@ -44,6 +55,8 @@ import {
   ListTodo,
   GraduationCap,
   Heart,
+  PlayCircle,
+  Home,
 } from 'lucide-react'
 
 // Type definitions
@@ -181,22 +194,72 @@ const iconMap: Record<
 > = {
   // Static image icons
   react: reactIcon,
+  React: reactIcon,
+  'React.js': reactIcon,
   nextjs: nextjsIcon,
+  'Next.js': nextjsIcon,
   typescript: typescriptIcon,
+  TypeScript: typescriptIcon,
   nodejs: nodejsIcon,
+  'Node.js': nodejsIcon,
   docker: dockerIcon,
+  Docker: dockerIcon,
   tailwindcss: tailwindcssIcon,
+  'Tailwind CSS': tailwindcssIcon,
+  TailwindCSS: tailwindcssIcon,
   git: gitIcon,
+  Git: gitIcon,
   go: goIcon,
+  Go: goIcon,
+  Golang: goIcon,
   python: pythonIcon,
+  Python: pythonIcon,
   postgresql: postgresqlIcon,
+  PostgreSQL: postgresqlIcon,
   graphql: graphqlIcon,
+  GraphQL: graphqlIcon,
   terraform: terraformIcon,
+  Terraform: terraformIcon,
   packer: packerIcon,
+  Packer: packerIcon,
   proxmox: proxmoxIcon,
+  Proxmox: proxmoxIcon,
   openstack: openstackIcon,
+  OpenStack: openstackIcon,
   truenas: truenasIcon,
+  TrueNAS: truenasIcon,
   kubernetes: kubernetesIcon,
+  Kubernetes: kubernetesIcon,
+  K8s: kubernetesIcon,
+  redis: redisIcon,
+  Redis: redisIcon,
+  kafka: kafkaIcon,
+  'Apache Kafka': kafkaIcon,
+  airflow: airflowIcon,
+  'Apache Airflow': airflowIcon,
+  mongodb: mongodbIcon,
+  MongoDB: mongodbIcon,
+  javascript: javascriptIcon,
+  JavaScript: javascriptIcon,
+  css: cssIcon,
+  CSS: cssIcon,
+  aws: awsIcon,
+  AWS: awsIcon,
+  angular: angularIcon,
+  Angular: angularIcon,
+  webpack: webpackIcon,
+  Webpack: webpackIcon,
+  // Additional tech mappings
+  'Home Assistant': homeassistantIcon,
+  Jellyfin: jellyfinIcon,
+  Neovim: Code,
+  Zsh: Code,
+  Shell: Code,
+  Tmux: Code,
+  macOS: Settings,
+  Linux: Settings,
+  Vite: Zap,
+  'Module Federation': Network,
   // Lucide icons
   Users: Users,
   Layers: Layers,
@@ -217,6 +280,8 @@ const iconMap: Record<
   Tasks: ListTodo,
   GraduationCap: GraduationCap,
   Heart: Heart,
+  PlayCircle: PlayCircle,
+  Home: Home,
 }
 
 const logoMap: Record<string, StaticImageData> = {

@@ -1,6 +1,8 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
+import Image, { type StaticImageData } from 'next/image'
 import { Container } from '@/components/Container'
 import {
   Card,
@@ -16,6 +18,13 @@ import { ExternalLink, Github } from 'lucide-react'
 import { getIcon } from '@/lib/config'
 import { type ProjectsConfig } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
+
+// Type guard to check if icon is a StaticImageData
+const isStaticImageData = (
+  icon: StaticImageData | React.ComponentType<{ className?: string }> | null
+): icon is StaticImageData => {
+  return icon !== null && typeof icon === 'object' && 'src' in icon
+}
 
 interface ProjectsSectionProps {
   projectsConfig: ProjectsConfig
@@ -58,17 +67,6 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                       <CardTitle className="break-words text-xl">
                         {project.name}
                       </CardTitle>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <Badge
-                            key={tag}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 </CardHeader>
@@ -92,6 +90,40 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                         </span>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Technology Pills */}
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {project.tags.map((tag) => {
+                      const tagIcon = getIcon(tag)
+                      return (
+                        <Badge
+                          key={tag}
+                          variant="outline"
+                          className="flex items-center gap-1.5 bg-primary/5 text-xs font-medium transition-colors hover:bg-primary/10"
+                        >
+                          {tagIcon && !isStaticImageData(tagIcon) ? (
+                            React.createElement(
+                              tagIcon as React.ComponentType<{
+                                className?: string
+                              }>,
+                              {
+                                className: 'h-3 w-3',
+                              }
+                            )
+                          ) : tagIcon && isStaticImageData(tagIcon) ? (
+                            <Image
+                              src={tagIcon}
+                              alt={tag}
+                              width={12}
+                              height={12}
+                              className="h-3 w-3 object-contain"
+                            />
+                          ) : null}
+                          {tag}
+                        </Badge>
+                      )
+                    })}
                   </div>
                 </CardContent>
 
