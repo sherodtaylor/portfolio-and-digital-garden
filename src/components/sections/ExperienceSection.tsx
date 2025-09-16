@@ -94,12 +94,9 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                   </div>
                 </div>
                 <div className="sm:pr-18 pr-14">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {experience.role}
-                    </h3>
-                    <Badge variant="secondary">{experience.type}</Badge>
-                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {experience.role}
+                  </h3>
                 </div>
                 <Link
                   href={experience.company_url}

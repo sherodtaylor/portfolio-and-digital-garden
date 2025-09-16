@@ -279,6 +279,7 @@ const iconMap: Record<
   Calendar: Calendar,
   Tasks: ListTodo,
   GraduationCap: GraduationCap,
+  graduationcap: GraduationCap,
   Heart: Heart,
   PlayCircle: PlayCircle,
   Home: Home,

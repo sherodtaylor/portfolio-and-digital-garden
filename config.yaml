@@ -6,7 +6,7 @@ personal:
   title: "Platform Engineering Team Lead @ Bloomberg"
   location: "New York, NY"
   tagline: "Hi I'm Sherod"
-  description: "Currently I am a Platform Engineering Team Lead at Bloomberg managing 5 engineers and delivering APIs that serve 9,000+ developers daily. 4+ years in engineering leadership, 12+ years building scalable systems. I excel at translating business needs into technical strategy while developing talent and shipping reliable infrastructure."
+  description: "Leading 5 engineers and delivering Bloomberg's Private Cloud that serve 9,000+ developers daily. 4+ years in engineering leadership, 12+ years turning complex problems into reliable infrastructure that scales. When I'm not architecting systems or leading my team, you'll find me tinkering with my home lab." 
   availability:
     status: "Open for new opportunities"
     active: true
@@ -108,6 +108,7 @@ skills:
         - { name: "Project Management", icon: "CheckSquare" }
         - { name: "Product Strategy", icon: "Package" }
         - { name: "Design Thinking", icon: "Palette" }
+        - { name: "Mentoring", icon: "Heart" }
 
 experience:
   positions:

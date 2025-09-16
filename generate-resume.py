@@ -69,9 +69,6 @@ def generate_header(config):
 {{\\normalsize\\color{{textgray}} {escape_latex(personal['title'])}}}
 
 \\vspace{{0.1em}}
-{{\\small\\color{{textdark}}\\textit{{{escape_latex(personal['tagline'])}}}}}
-
-\\vspace{{0.1em}}
 {{\\small\\color{{textgray}} {escape_latex(personal['location'])}}}
 
 \\vspace{{0.3em}}
