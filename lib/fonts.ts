@@ -1,4 +1,5 @@
 import localFont from 'next/font/local'
+import { Fira_Code } from 'next/font/google'
 
 export const serif = localFont({
   variable: '--font-serif',
@@ -35,4 +36,10 @@ export const sans = localFont({
       style: 'italic',
     },
   ],
+})
+
+export const firaCode = Fira_Code({
+  variable: '--font-mono',
+  subsets: ['latin'],
+  display: 'swap',
 })

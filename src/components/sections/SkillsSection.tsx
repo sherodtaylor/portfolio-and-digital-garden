@@ -74,8 +74,8 @@ function SkillCard({ category }: SkillCardProps) {
                   {category.experience}
                 </Badge>
               </div>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                {category.description}
+              <p className="text-xs leading-relaxed text-white">
+                • {category.description}
               </p>
             </div>
           </div>
@@ -124,19 +124,19 @@ interface SkillsSectionProps {
 
 export function SkillsSection({ skillsConfig }: SkillsSectionProps) {
   return (
-    <Container className="mt-16 sm:mt-20 md:mt-24 lg:mt-28">
+    <Container className="mt-12 sm:mt-16 md:mt-20 lg:mt-24">
       <MotionDiv>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Skills & Expertise
+        <div className="mx-auto max-w-2xl text-left lg:text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            → Skills & Expertise
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
             Technologies and tools I use to bring ideas to life
           </p>
         </div>
       </MotionDiv>
 
-      <MotionList className="mt-12 grid w-full grid-rows-[repeat(auto-fit,1fr)] gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <MotionList className="mt-8 grid w-full grid-rows-[repeat(auto-fit,1fr)] gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-2">
         {skillsConfig.categories.map((category, index) => (
           <SkillCard key={category.title} category={category} index={index} />
         ))}

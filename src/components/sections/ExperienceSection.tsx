@@ -122,8 +122,8 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
                 </div>
               </div>
 
-              <p className="text-sm leading-6 text-muted-foreground">
-                {experience.description}
+              <p className="text-sm leading-6 text-white">
+                • {experience.description}
               </p>
 
               <div className="flex-1">
@@ -192,20 +192,20 @@ export function ExperienceSection({
   const totalYears = new Date().getFullYear() - 2013
 
   return (
-    <Container className="mt-16 sm:mt-20 md:mt-24 lg:mt-28">
+    <Container className="mt-12 sm:mt-16 md:mt-20 lg:mt-24">
       <MotionDiv>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Work Experience
+        <div className="mx-auto max-w-2xl text-left lg:text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            → Work Experience
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
             {totalYears}+ years of building scalable software solutions
           </p>
         </div>
       </MotionDiv>
 
-      <div className="mx-auto mt-12 max-w-6xl">
-        <MotionList className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
+      <div className="mx-auto mt-8 max-w-6xl">
+        <MotionList className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
           {experienceConfig.positions.map((experience, index) => (
             <ExperienceCard
               key={`${experience.company}-${experience.period}`}

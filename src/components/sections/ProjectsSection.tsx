@@ -32,20 +32,20 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
   return (
-    <Container className="mt-24 md:mt-28">
+    <Container className="mt-12 sm:mt-16 md:mt-20 lg:mt-24">
       <MotionDiv>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Personal Projects
+        <div className="mx-auto max-w-2xl text-left lg:text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            → Personal Projects
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
             Technical projects showcasing AI infrastructure, development tools,
             and automation solutions
           </p>
         </div>
       </MotionDiv>
 
-      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-2">
+      <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         {projectsConfig.items.map((project) => {
           const IconComponent = getIcon(project.icon) as React.ComponentType<{
             className?: string
@@ -72,8 +72,8 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                 </CardHeader>
 
                 <CardContent className="flex-1 space-y-4">
-                  <CardDescription className="break-words text-sm leading-6">
-                    {project.description}
+                  <CardDescription className="break-words text-sm leading-6 text-white">
+                    • {project.description}
                   </CardDescription>
 
                   <div className="space-y-2">

@@ -1,6 +1,5 @@
 import { Container } from '@/components/Container'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { StrengthsSection } from '@/components/sections/StrengthsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
@@ -57,9 +56,6 @@ export default async function Home() {
         heroConfig={heroConfig}
       />
 
-      {/* Core Strengths Section */}
-      <StrengthsSection />
-
       {/* Skills Section */}
       <SkillsSection skillsConfig={skillsConfig} />
 
@@ -73,19 +69,19 @@ export default async function Home() {
       <CommunitySection />
 
       {/* Latest Articles Section */}
-      <Container className="mt-24 md:mt-28">
+      <Container className="mt-12 sm:mt-16 md:mt-20 lg:mt-24">
         <MotionDiv>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <div className="mx-auto max-w-2xl text-left lg:text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {sectionsConfig.latest_articles.title}
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground sm:text-base">
               {sectionsConfig.latest_articles.description}
             </p>
           </div>
         </MotionDiv>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-8 grid max-w-5xl gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles?.map((article) => (
             <Article key={article.slug} article={article} />
           ))}
