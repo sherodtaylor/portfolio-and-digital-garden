@@ -29,9 +29,9 @@ export function HeroSection({
   return (
     <Container className="mt-4 sm:mt-6 md:mt-8 lg:mt-12">
       <MotionDiv>
-        <div className="grid gap-6 lg:grid-cols-5 lg:gap-8 xl:gap-12">
-          {/* Content Side - 60% width */}
-          <div className="flex flex-col justify-center space-y-4 sm:space-y-6 md:space-y-6 lg:col-span-3 lg:space-y-6">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+          {/* Content Side - 50% width */}
+          <div className="flex flex-col justify-center space-y-4 sm:space-y-6 md:space-y-6 lg:space-y-6">
             {/* Location Badge - Desktop only */}
             <div className="hidden justify-center sm:justify-start lg:flex">
               <Badge variant="secondary" className="w-fit">
@@ -98,6 +98,84 @@ export function HeroSection({
               <p className="text-xs leading-4 text-white sm:text-sm sm:leading-5 md:text-base md:leading-6">
                 {personalConfig.description}
               </p>
+            </div>
+
+            {/* Desktop CTA Buttons and Social Links */}
+            <div className="hidden lg:block">
+              {/* Availability Badge */}
+              {personalConfig.availability.active && (
+                <div className="mb-4 flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-green-500" />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {personalConfig.availability.status}
+                  </span>
+                </div>
+              )}
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col gap-3">
+                <div className="flex gap-3">
+                  <Button size="default" className="group flex-1" asChild>
+                    <Link href={`mailto:${contactConfig.email}`}>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Get in touch
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="default"
+                    className="group flex-1"
+                    asChild
+                  >
+                    <Link
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                      Download Resume
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    size="default"
+                    className="flex-1 border-gray-600 bg-gray-600 hover:bg-gray-700"
+                    asChild
+                  >
+                    <Link
+                      href={contactConfig.github}
+                      aria-label="GitHub"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <GitHubIcon className="h-4 w-4 text-white" />
+                      <span className="text-sm font-medium text-white">
+                        GitHub
+                      </span>
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="default"
+                    className="flex-1 border-gray-600 bg-gray-600 hover:bg-gray-700"
+                    asChild
+                  >
+                    <Link
+                      href={contactConfig.linkedin}
+                      aria-label="LinkedIn"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <LinkedInIcon className="h-4 w-4 text-white" />
+                      <span className="text-sm font-medium text-white">
+                        LinkedIn
+                      </span>
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             </div>
 
             {/* Core Strengths Icons - Mobile only, above CTA */}
@@ -170,7 +248,7 @@ export function HeroSection({
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-auto px-3 py-2"
+                  className="h-auto border-gray-600 bg-gray-600 px-3 py-2 hover:bg-gray-700"
                   asChild
                 >
                   <Link
@@ -178,14 +256,16 @@ export function HeroSection({
                     aria-label="GitHub"
                     className="flex items-center justify-center gap-1.5"
                   >
-                    <GitHubIcon className="h-3.5 w-3.5" />
-                    <span className="text-xs font-medium">GitHub</span>
+                    <GitHubIcon className="h-3.5 w-3.5 text-white" />
+                    <span className="text-xs font-medium text-white">
+                      GitHub
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-auto px-3 py-2"
+                  className="h-auto border-gray-600 bg-gray-600 px-3 py-2 hover:bg-gray-700"
                   asChild
                 >
                   <Link
@@ -193,17 +273,19 @@ export function HeroSection({
                     aria-label="LinkedIn"
                     className="flex items-center justify-center gap-1.5"
                   >
-                    <LinkedInIcon className="h-3.5 w-3.5" />
-                    <span className="text-xs font-medium">LinkedIn</span>
+                    <LinkedInIcon className="h-3.5 w-3.5 text-white" />
+                    <span className="text-xs font-medium text-white">
+                      LinkedIn
+                    </span>
                   </Link>
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* Portrait Side - 40% width */}
-          <div className="relative hidden lg:col-span-2 lg:block">
-            <div className="w-full">
+          {/* Portrait Side - 50% width */}
+          <div className="relative hidden lg:flex lg:flex-col lg:items-center lg:justify-center">
+            <div className="w-full max-w-md">
               <div className="aspect-square rotate-3 overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 p-4">
                 <Image
                   src={avatarImage}
@@ -212,78 +294,6 @@ export function HeroSection({
                   className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
                   priority
                 />
-              </div>
-
-              {/* Availability Badge and CTA under portrait */}
-              <div className="mt-4 space-y-3">
-                {/* Availability Badge */}
-                {personalConfig.availability.active && (
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500" />
-                    <span className="text-sm font-medium text-muted-foreground">
-                      {personalConfig.availability.status}
-                    </span>
-                  </div>
-                )}
-
-                {/* CTA Buttons - Same width as portrait */}
-                <div className="flex flex-col gap-2">
-                  <Button size="default" className="group w-full" asChild>
-                    <Link href={`mailto:${contactConfig.email}`}>
-                      <Mail className="mr-2 h-4 w-4" />
-                      Get in touch
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="default"
-                    className="group w-full"
-                    asChild
-                  >
-                    <Link
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Download className="mr-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
-                      Download Resume
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Social Links - Equal width */}
-                <div className="grid grid-cols-2 gap-2">
-                  <Button
-                    variant="outline"
-                    size="default"
-                    className="h-auto bg-white/20 px-4 py-3 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20"
-                    asChild
-                  >
-                    <Link
-                      href={contactConfig.github}
-                      aria-label="GitHub"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <GitHubIcon className="h-4 w-4" />
-                      <span className="text-sm font-medium">GitHub</span>
-                    </Link>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="default"
-                    className="h-auto bg-white/20 px-4 py-3 hover:bg-white/30 dark:bg-white/10 dark:hover:bg-white/20"
-                    asChild
-                  >
-                    <Link
-                      href={contactConfig.linkedin}
-                      aria-label="LinkedIn"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <LinkedInIcon className="h-4 w-4" />
-                      <span className="text-sm font-medium">LinkedIn</span>
-                    </Link>
-                  </Button>
-                </div>
               </div>
             </div>
           </div>

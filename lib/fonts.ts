@@ -41,5 +41,6 @@ export const sans = localFont({
 export const firaCode = Fira_Code({
   variable: '--font-mono',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })

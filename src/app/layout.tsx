@@ -48,7 +48,7 @@ export default function RootLayout({
       className={`h-full antialiased ${firaCode.variable}`}
       suppressHydrationWarning
     >
-      <body className="flex h-full bg-zinc-50 dark:bg-black">
+      <body className="flex h-full bg-zinc-50 font-mono dark:bg-black">
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>

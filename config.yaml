@@ -3,7 +3,7 @@
 
 personal:
   name: "Sherod Taylor"
-  title: "Platform Engineering Team Lead @ Bloomberg"
+  title: "Platform Engineering Manager @ Bloomberg"
   location: "New York, NY"
   tagline: "Hi I'm Sherod"
   description: "Leading 5 engineers and delivering Bloomberg's Private Cloud that serve 9,000+ developers daily. 4+ years in engineering leadership, 12+ years turning complex problems into reliable infrastructure that scales. When I'm not architecting systems or leading my team, you'll find me tinkering with my home lab." 
@@ -18,8 +18,8 @@ contact:
   linkedin: "https://www.linkedin.com/in/sherodtaylor/"
 
 site:
-  title: "Sherod Taylor - Platform Engineering Team Lead @ Bloomberg"
-  description: "Sherod Taylor Platform Engineering Team Lead @ Bloomberg with deep technical experience."
+  title: "Sherod Taylor - Platform Engineering Manager @ Bloomberg"
+  description: "Sherod Taylor Platform Engineering Manager @ Bloomberg with deep technical experience."
 
 hero:
   highlights:
@@ -114,7 +114,7 @@ experience:
   positions:
     - company: "Bloomberg LP"
       company_url: "https://www.bloomberg.com"
-      role: "Platform Engineering Team Lead"
+      role: "Platform Engineering Manager"
       period: "March 2023 - Present"
       location: "New York, NY"
       type: "Full-time"
