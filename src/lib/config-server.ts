@@ -25,6 +25,7 @@ import kubernetesIcon from '@/images/icons/kubernetes.svg'
 import logoBBG from '@/images/logos/bbg.svg'
 import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
+import logoSpareCoins from '@/images/logos/SpareCoins.png'
 
 // Note: This file handles server-side configuration and static assets only
 // Lucide icons are handled client-side in config.ts
@@ -105,6 +106,13 @@ export interface ProjectLink {
   is_private?: boolean
 }
 
+export interface ProjectDemo {
+  title: string
+  description: string
+  preview_text: string
+  preview_subtitle: string
+}
+
 export interface ProjectItem {
   name: string
   description: string
@@ -112,6 +120,8 @@ export interface ProjectItem {
   link: ProjectLink
   icon: string
   tags: string[]
+  gif?: string
+  demo?: ProjectDemo
 }
 
 export interface ProjectsConfig {
@@ -177,12 +187,14 @@ const iconMap: Record<string, StaticImageData> = {
   openstack: openstackIcon,
   truenas: truenasIcon,
   kubernetes: kubernetesIcon,
+  sparecoins: logoSpareCoins,
 }
 
 const logoMap: Record<string, StaticImageData> = {
   bbg: logoBBG,
   paxos: logoPaxos,
   'madison-reed': logoMadisonReed,
+  sparecoins: logoSpareCoins,
 }
 
 export function getStaticIcon(iconName: string): StaticImageData | null {

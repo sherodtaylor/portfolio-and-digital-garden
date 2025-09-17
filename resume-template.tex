@@ -12,6 +12,7 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{bookmark}
 \usepackage{fontawesome5}
 \usepackage{multicol}
 \usepackage{graphicx}
@@ -19,12 +20,12 @@
 \usepackage{tabularx}
 \usepackage{array}
 
-% Page geometry - tighter margins
+% Page geometry - optimized for single page
 \geometry{
-    top=0.75in,
-    bottom=0.75in,
-    left=0.75in,
-    right=0.75in
+    top=0.5in,
+    bottom=0.5in,
+    left=0.6in,
+    right=0.6in
 }
 
 % Expert-level spacing and alignment controls
@@ -121,14 +122,13 @@
     \vspace{0.2em}
 }
 
-% Highlight box command - updated for smaller icons and equal spacing
-\newcommand{\highlightbox}[3]{
-    \begin{minipage}[t]{0.22\textwidth}
-        \centering
-        {\small\textcolor{#2}{\csname fa#1\endcsname}} \\
-        \vspace{0.2em}
-        {\footnotesize\color{textgray} #3}
-    \end{minipage}
+% Highlight box command - optimized for better spacing
+\newcommand{\highlightbox}[3]{%
+    \begin{minipage}[t]{0.23\textwidth}%
+        \centering%
+        {\small\textcolor{#2}{\csname fa#1\endcsname}} \\[0.1em]%
+        {\footnotesize\color{textgray} #3}%
+    \end{minipage}%
 }
 
 % Hyperlink setup

@@ -14,8 +14,16 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github } from 'lucide-react'
-import { getIcon } from '@/lib/config'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { ExternalLink, Github, Play } from 'lucide-react'
+import { getIcon, getGif } from '@/lib/config'
 import { type ProjectsConfig } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
 
@@ -47,9 +55,14 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
 
       <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
         {projectsConfig.items.map((project) => {
-          const IconComponent = getIcon(project.icon) as React.ComponentType<{
-            className?: string
-          }>
+          const iconResult = getIcon(project.icon)
+          const IconComponent = !isStaticImageData(iconResult)
+            ? (iconResult as React.ComponentType<{
+                className?: string
+              }>)
+            : null
+          const iconImage = isStaticImageData(iconResult) ? iconResult : null
+          const gifAsset = project.gif ? getGif(project.gif) : null
           return (
             <MotionDiv key={project.name}>
               <Card className="flex h-full w-full flex-col overflow-hidden break-words">
@@ -60,6 +73,15 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                       <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                         {IconComponent && (
                           <IconComponent className="h-6 w-6 text-primary" />
+                        )}
+                        {iconImage && (
+                          <Image
+                            src={iconImage}
+                            alt={`${project.name} icon`}
+                            width={24}
+                            height={24}
+                            className="h-6 w-6 object-contain"
+                          />
                         )}
                       </div>
                     </div>
@@ -75,6 +97,68 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                   <CardDescription className="break-words text-sm leading-6 text-white">
                     • {project.description}
                   </CardDescription>
+
+                  {/* Full-width GIF preview banner */}
+                  {gifAsset && (
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="group relative cursor-pointer overflow-hidden rounded-lg border border-border/50 bg-gradient-to-br from-primary/5 to-primary/10 transition-all duration-300 hover:border-primary/30">
+                          {/* Background GIF */}
+                          <div className="absolute inset-0">
+                            <Image
+                              src={gifAsset}
+                              alt={`${project.name} background preview`}
+                              fill
+                              className="object-cover object-center"
+                              unoptimized
+                            />
+                          </div>
+
+                          {/* Overlay content */}
+                          <div className="relative z-10 flex items-center justify-center bg-gradient-to-r from-black/60 via-black/40 to-black/60 p-6">
+                            <div className="text-center">
+                              <div className="flex items-center justify-center gap-2 text-white">
+                                <Play className="h-5 w-5" />
+                                <span className="font-medium">
+                                  {project.demo?.preview_text ||
+                                    'View Live Demo'}
+                                </span>
+                              </div>
+                              <p className="mt-1 text-xs text-white/80">
+                                {project.demo?.preview_subtitle ||
+                                  'Interactive mobile application showcase'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-md">
+                        <DialogHeader>
+                          <DialogTitle>
+                            {project.demo?.title ||
+                              `${project.name} Mobile Demo`}
+                          </DialogTitle>
+                          <DialogDescription>
+                            {project.demo?.description ||
+                              'Interactive demonstration of the mobile application features and animations.'}
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex justify-center py-4">
+                          <div className="relative">
+                            <Image
+                              src={gifAsset}
+                              alt={`${project.name} mobile demo`}
+                              width={240}
+                              height={480}
+                              className="rounded-xl shadow-2xl ring-1 ring-border/20"
+                              unoptimized
+                            />
+                            <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/5 to-transparent" />
+                          </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  )}
 
                   <div className="space-y-2">
                     {project.highlights.map((highlight, index) => (

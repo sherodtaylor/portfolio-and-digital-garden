@@ -79,11 +79,11 @@ def generate_header(config):
     \\faLinkedin\\ \\href{{{contact['linkedin']}}}{{linkedin.com/in/sherodtaylor}}
 }}
 
-\\vspace{{0.8em}}
+\\vspace{{0.5em}}
 
 % Summary above highlights
 
-\\vspace{{0.3em}}
+\\vspace{{0.2em}}
 
 {{\\small {escape_latex(personal['description'])}}}
 
@@ -101,13 +101,13 @@ def generate_highlights(config):
         
         highlight_boxes.append(f"\\highlightbox{{{icon}}}{{{color}}}{{{title}}}")
     
-    # Split into two rows of 4 boxes each using \\hfill for equal spacing
-    row1 = "\\hfill".join(highlight_boxes[:4]) + "\\\\\\\\"
-    row2 = "\\hfill".join(highlight_boxes[4:]) if len(highlight_boxes) > 4 else ""
-    
-    return f"""{row1}
-\\vspace{{0.4em}}
-{row2}"""
+    # Split into two rows of 4 boxes each with proper spacing
+    row1 = "\\quad".join(highlight_boxes[:4]) + "\\\\\\\\"
+    row2 = "\\quad".join(highlight_boxes[4:]) if len(highlight_boxes) > 4 else ""
+
+    return f"""\\noindent{row1}
+\\vspace{{0.3em}}
+\\noindent{row2}"""
 
 def generate_experience(config):
     """Generate the experience section."""
@@ -152,7 +152,7 @@ def generate_experience(config):
 
 """
         
-        experience_content += "\\vspace{0.5em}\n\n"
+        experience_content += "\\vspace{0.3em}\n\n"
     
     return experience_content
 
@@ -252,7 +252,7 @@ def generate_community(config):
                 community_content += f"    \\item {{\\small {escaped_achievement}}}\n"
             community_content += "\\end{itemize}\n"
         
-        community_content += "\\vspace{0.5em}\n\n"
+        community_content += "\\vspace{0.3em}\n\n"
     
     return community_content
 

@@ -177,6 +177,25 @@ experience:
 
 projects:
   items:
+    - name: "SpareCoins"
+      description: "A crypto investment mobile application that rounds up spare change from everyday transactions and automatically invests it in cryptocurrency. Think Acorns for crypto - democratizing crypto investing through micro-investing with seamless bank integration."
+      highlights:
+        - "Automated Crypto Investing: Connects to bank accounts to round up transaction spare change and automatically purchases cryptocurrency through Coinbase exchange integration"
+        - "GraphQL-First Architecture: Built robust backend API using Golang, GraphQL, and Echo framework with OAuth authentication. Generated type-safe client code using GraphQL codegen for seamless frontend integration"
+        - "Rich Mobile UX: Developed React Native frontend with Apollo GraphQL for data fetching. Created engaging user experience with custom Lottie animations for transaction flows, account linking, and investment progress visualization"
+        - "Financial Integration: Implemented secure bank account connectivity using Plaid API for real-time transaction monitoring with automated round-up calculations and crypto purchase execution"
+      link:
+        href: "https://github.com/sherodtaylor/sparecoins"
+        label: "sherodtaylor/sparecoins"
+        is_private: true
+      icon: "sparecoins"
+      gif: "sparecoins.gif"
+      demo:
+        title: "SpareCoins Mobile Demo"
+        description: "Interactive demonstration of the mobile application features and animations."
+        preview_text: "View Live Demo"
+        preview_subtitle: "Interactive mobile application showcase"
+      tags: ["React Native", "Golang", "GraphQL", "Apollo", "Lottie", "OAuth", "Echo", "Plaid", "Coinbase API", "FinTech"]
     - name: "Home Lab Infrastructure"
       description: "Production home lab running critical daily services for my household while serving as a real-world testing ground for infrastructure provisioning techniques. What I deploy at work, I validate at home first."
       highlights:

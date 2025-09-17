@@ -33,6 +33,8 @@ import jellyfinIcon from '@/images/icons/jellyfin.svg'
 import logoBBG from '@/images/logos/bbg.svg'
 import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
+import logoSpareCoins from '@/images/logos/SpareCoins.png'
+import spareCoinsGif from '@/images/gifs/sparecoins.gif'
 
 // Lucide icon imports
 import {
@@ -135,6 +137,13 @@ export interface ProjectLink {
   is_private?: boolean
 }
 
+export interface ProjectDemo {
+  title: string
+  description: string
+  preview_text: string
+  preview_subtitle: string
+}
+
 export interface ProjectItem {
   name: string
   description: string
@@ -142,6 +151,8 @@ export interface ProjectItem {
   link: ProjectLink
   icon: string
   tags: string[]
+  gif?: string
+  demo?: ProjectDemo
 }
 
 export interface ProjectsConfig {
@@ -252,6 +263,7 @@ const iconMap: Record<
   // Additional tech mappings
   'Home Assistant': homeassistantIcon,
   Jellyfin: jellyfinIcon,
+  sparecoins: logoSpareCoins,
   Neovim: Code,
   Zsh: Code,
   Shell: Code,
@@ -289,6 +301,11 @@ const logoMap: Record<string, StaticImageData> = {
   bbg: logoBBG,
   paxos: logoPaxos,
   'madison-reed': logoMadisonReed,
+  sparecoins: logoSpareCoins,
+}
+
+const gifMap: Record<string, StaticImageData> = {
+  'sparecoins.gif': spareCoinsGif,
 }
 
 export function getIcon(
@@ -304,6 +321,10 @@ export function getIcon(
 
 export function getLogo(logoName: string): StaticImageData | null {
   return logoMap[logoName] || null
+}
+
+export function getGif(gifName: string): StaticImageData | null {
+  return gifMap[gifName] || null
 }
 
 export { avatarImage }
