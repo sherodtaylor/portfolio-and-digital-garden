@@ -35,6 +35,7 @@ import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
 import logoSpareCoins from '@/images/logos/SpareCoins.png'
 import spareCoinsGif from '@/images/gifs/sparecoins.gif'
+import homelabDashboard from '@/images/projects/homelab-dashboard.png'
 
 // Lucide icon imports
 import {
@@ -306,6 +307,7 @@ const logoMap: Record<string, StaticImageData> = {
 
 const gifMap: Record<string, StaticImageData> = {
   'sparecoins.gif': spareCoinsGif,
+  'homelab-dashboard.png': homelabDashboard,
 }
 
 export function getIcon(

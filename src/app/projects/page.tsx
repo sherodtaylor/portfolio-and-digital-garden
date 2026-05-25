@@ -24,21 +24,22 @@ interface Project {
 
 const projects: Project[] = [
   {
-    name: 'Home Lab AI Model Deployment',
+    name: 'AI-First Home Lab',
     description:
-      'Built personal infrastructure for AI model experimentation and deployment, gaining practical experience with model serving challenges relevant to production AI systems.',
+      'Self-hosted k3s cluster I use to prototype the autonomous-agent and AI-systems patterns I care about at work. Two Claude Code agents live in the cluster as full engineering teammates, an egress credential firewall keeps real secrets at the network boundary, and the same nodes run the everyday family services so AI workloads share real production load.',
     highlights: [
-      'Local Model Deployment: Successfully deployed various language and vision models with performance optimization',
-      'Infrastructure Design: Built GPU-accelerated inference pipeline with monitoring and resource management',
-      'AI-Powered Applications: Self-hosted AI-leveraging applications including Immich (Google Photos alternative)',
+      "Autonomous AI Engineering Swarm: Two Claude Code agents (InfraBot for k3s/Flux, DevBot for code) run as long-lived StatefulSets, take work via Matrix chat, open and review each other's PRs, and auto-address review comments",
+      'Egress Credential Firewall: Agent pods only ever hold placeholder tokens — a custom iron-proxy MITM-rewrites real GitHub and Anthropic credentials at the cluster edge, so a compromised agent leaks nothing useful outside the allowlist',
+      "MCP-Driven Observability: VictoriaMetrics and VictoriaLogs are exposed to the agents as MCP servers, so 'check the api-latency dashboard' becomes a single prompt instead of a Grafana tab",
+      'Self-Hosted LLM and Vision Stack: Ollama serves language and vision models alongside Immich face recognition over years of family photos — real numbers on the cost/perf trade-offs of self-hosted inference',
+      'Daily Production Load: 10+ services my family depends on — Home Assistant, TrueNAS (8 TB), Jellyfin — share the cluster with the AI workloads, which is the only honest test',
     ],
     link: {
-      href: 'https://github.com/sherodtaylor/homelab-setup',
-      label: 'github.com/sherodtaylor/homelab-setup',
-      isPrivate: true,
+      href: 'https://github.com/sherodtaylor/homelab',
+      label: 'github.com/sherodtaylor/homelab',
     },
     icon: Server,
-    tags: ['AI/ML', 'Infrastructure', 'Docker', 'GPU Computing'],
+    tags: ['AI Agents', 'Claude Code', 'MCP', 'k3s', 'Ollama', 'iron-proxy'],
   },
   {
     name: 'Dotfiles',
