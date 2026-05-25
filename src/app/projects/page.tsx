@@ -1,3 +1,4 @@
+import React from 'react'
 import { type Metadata } from 'next'
 import Link from 'next/link'
 
@@ -11,7 +12,15 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, Server, Settings } from 'lucide-react'
+import { ExternalLink, Github, Server, Settings, Bot } from 'lucide-react'
+import Image, { type StaticImageData } from 'next/image'
+import { getIcon } from '@/lib/config'
+
+const isStaticImageData = (
+  icon: StaticImageData | React.ComponentType<{ className?: string }> | null
+): icon is StaticImageData => {
+  return icon !== null && typeof icon === 'object' && 'src' in icon
+}
 
 interface Project {
   name: string
@@ -24,21 +33,79 @@ interface Project {
 
 const projects: Project[] = [
   {
-    name: 'Home Lab AI Model Deployment',
+    name: 'Agent Swarm',
     description:
-      'Built personal infrastructure for AI model experimentation and deployment, gaining practical experience with model serving challenges relevant to production AI systems.',
+      'Autonomous AI engineering teammates that live inside the home lab cluster and treat Matrix as the input channel. Tag a bot, it opens a PR; tag the other bot, it reviews. They auto-address review comments, use the cluster’s own observability stack via MCP, and never hold the real credentials — those stay behind an egress proxy at the cluster edge.',
     highlights: [
-      'Local Model Deployment: Successfully deployed various language and vision models with performance optimization',
-      'Infrastructure Design: Built GPU-accelerated inference pipeline with monitoring and resource management',
-      'AI-Powered Applications: Self-hosted AI-leveraging applications including Immich (Google Photos alternative)',
+      'Two-Agent Crew, One Parametric Image: InfraBot (k3s/Flux) and DevBot (code) run as separate StatefulSets from the same ghcr.io/sherodtaylor/agent-swarm image. Per-agent persona, MCP config, and subagents live under agents/<name>/; everything else is shared',
+      'Matrix-Driven, Autonomous PR Workflow: Messages in #dev / #infra are real Claude Code prompts. After opening a PR the author mentions the other bot for review; the reviewer runs the code-review skill and posts inline findings. A Stop-hook re-wakes the author on unaddressed comments so iteration happens without a human in the loop',
+      'Egress Credential Firewall (iron-proxy): Productionized so agents never hold real GitHub or Anthropic tokens — iron-proxy (https://github.com/ironsh/iron-proxy) swaps placeholders for real credentials at the cluster edge against a domain allowlist. A compromised pod leaks nothing useful',
+      "MCP for Everything Observable: VictoriaMetrics + VictoriaLogs MCP servers, a stdio NATS MCP server for the durable event log, and the Matrix channel plugin for inputs. 'Check the api-latency dashboard' becomes a single prompt",
+      'Two-Pane Runtime: Each pod runs claude in tmux — pane 0 owns the Matrix identity, pane 1 runs a second claude --remote-control with its own $HOME so humans can attach via kubectl exec or the Claude desktop/web app',
     ],
     link: {
-      href: 'https://github.com/sherodtaylor/homelab-setup',
-      label: 'github.com/sherodtaylor/homelab-setup',
-      isPrivate: true,
+      href: 'https://github.com/sherodtaylor/agent-swarm',
+      label: 'github.com/sherodtaylor/agent-swarm',
+    },
+    icon: Bot,
+    tags: [
+      'Claude Code',
+      'MCP',
+      'AI Agents',
+      'Matrix',
+      'NATS',
+      'k3s',
+      'Flux GitOps',
+      'iron-proxy',
+      'Bun',
+      'Go',
+      'Docker',
+      'tmux',
+      'GitHub Actions',
+    ],
+  },
+  {
+    name: 'Home Lab Cluster',
+    description:
+      "Self-hosted k3s cluster running every app my family actually depends on. Flux reconciles every manifest from sherodtaylor/homelab, Traefik fronts the lot with auto-renewed Let's Encrypt certs, ExternalSecrets pulls credentials from Infisical, and VictoriaMetrics + VictoriaLogs catch anything that drifts — so the house keeps running while I keep tinkering.",
+    highlights: [
+      'Media + Entertainment: Jellyfin and Plex stream the family library, Jellyseerr handles requests, the *arr stack (Sonarr, Radarr, Lidarr, Prowlarr) automates discovery, qBittorrent and Sabnzbd handle downloads, Audiobookshelf catalogues the audiobook collection',
+      'Photos + Files + Storage: Immich runs face recognition over years of family photos, Nextcloud hosts personal files, TrueNAS (8 TB via NFS) backs every stateful service in the cluster',
+      'Home Automation: Home Assistant runs the house — lights, thermostats, schedules, sensors across the home — all on the same cluster, not a separate appliance',
+      "Observability Built-in: VictoriaMetrics + VictoriaLogs ingest every pod's metrics and logs; Grafana dashboards and Alertmanager catch regressions before they become outages",
+      'GitOps All the Way Down: Flux reconciles every Kustomization and HelmRelease from sherodtaylor/homelab; cert-manager + kubernetes-replicator handle TLS across namespaces; the cluster rebuilds from a single git push',
+    ],
+    link: {
+      href: 'https://github.com/sherodtaylor/homelab',
+      label: 'github.com/sherodtaylor/homelab',
     },
     icon: Server,
-    tags: ['AI/ML', 'Infrastructure', 'Docker', 'GPU Computing'],
+    tags: [
+      'Proxmox',
+      'k3s',
+      'Flux GitOps',
+      'Helm',
+      'Traefik',
+      'cert-manager',
+      'ExternalSecrets',
+      'Infisical',
+      'TrueNAS',
+      'Home Assistant',
+      'Jellyfin',
+      'Plex',
+      'Immich',
+      'Nextcloud',
+      'Audiobookshelf',
+      'Sonarr',
+      'Radarr',
+      'Prowlarr',
+      'qBittorrent',
+      'VictoriaMetrics',
+      'VictoriaLogs',
+      'Grafana',
+      'Alertmanager',
+      "Let's Encrypt",
+    ],
   },
   {
     name: 'Dotfiles',
@@ -82,15 +149,31 @@ export default function Projects() {
                   <div className="min-w-0 flex-1">
                     <CardTitle className="text-xl">{project.name}</CardTitle>
                     <div className="mt-2 flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
+                      {project.tags.map((tag) => {
+                        const tagIcon = getIcon(tag)
+                        return (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="flex items-center gap-1.5 text-xs"
+                          >
+                            {tagIcon && !isStaticImageData(tagIcon) ? (
+                              React.createElement(tagIcon, {
+                                className: 'h-3 w-3',
+                              })
+                            ) : tagIcon && isStaticImageData(tagIcon) ? (
+                              <Image
+                                src={tagIcon}
+                                alt={tag}
+                                width={12}
+                                height={12}
+                                className="h-3 w-3"
+                              />
+                            ) : null}
+                            <span>{tag}</span>
+                          </Badge>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>

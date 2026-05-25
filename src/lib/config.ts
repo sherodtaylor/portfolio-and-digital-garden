@@ -35,6 +35,7 @@ import logoPaxos from '@/images/logos/paxos.svg'
 import logoMadisonReed from '@/images/logos/madison-reed.svg'
 import logoSpareCoins from '@/images/logos/SpareCoins.png'
 import spareCoinsGif from '@/images/gifs/sparecoins.gif'
+import homelabDashboard from '@/images/projects/homelab-dashboard.png'
 
 // Lucide icon imports
 import {
@@ -59,6 +60,19 @@ import {
   Heart,
   PlayCircle,
   Home,
+  Bot,
+  Shield,
+  MessageSquare,
+  Cloud,
+  Terminal,
+  Download,
+  Tv,
+  Image as ImageIcon,
+  GitBranch,
+  Workflow,
+  BookOpen,
+  LineChart,
+  Lock,
 } from 'lucide-react'
 
 // Type definitions
@@ -267,11 +281,47 @@ const iconMap: Record<
   Neovim: Code,
   Zsh: Code,
   Shell: Code,
-  Tmux: Code,
+  Tmux: Terminal,
+  tmux: Terminal,
   macOS: Settings,
   Linux: Settings,
   Vite: Zap,
   'Module Federation': Network,
+  // Homelab + agent-swarm tech (lucide fallbacks for tools without dedicated icons)
+  k3s: kubernetesIcon,
+  Flux: GitBranch,
+  'Flux GitOps': GitBranch,
+  Helm: Package,
+  Traefik: Network,
+  'cert-manager': Lock,
+  ExternalSecrets: Lock,
+  Infisical: Lock,
+  Grafana: LineChart,
+  VictoriaMetrics: LineChart,
+  VictoriaLogs: BookOpen,
+  Alertmanager: Activity,
+  Matrix: MessageSquare,
+  NATS: Workflow,
+  Conduit: MessageSquare,
+  Immich: ImageIcon,
+  Nextcloud: Cloud,
+  Plex: PlayCircle,
+  Jellyseerr: PlayCircle,
+  Audiobookshelf: BookOpen,
+  Sonarr: Tv,
+  Radarr: Tv,
+  Lidarr: Tv,
+  Prowlarr: Tv,
+  qBittorrent: Download,
+  Sabnzbd: Download,
+  Ollama: Bot,
+  'Claude Code': Bot,
+  MCP: Workflow,
+  'AI Agents': Bot,
+  'iron-proxy': Shield,
+  Bun: Zap,
+  'GitHub Actions': Cog,
+  "Let's Encrypt": Lock,
   // Lucide icons
   Users: Users,
   Layers: Layers,
@@ -306,6 +356,7 @@ const logoMap: Record<string, StaticImageData> = {
 
 const gifMap: Record<string, StaticImageData> = {
   'sparecoins.gif': spareCoinsGif,
+  'homelab-dashboard.png': homelabDashboard,
 }
 
 export function getIcon(
