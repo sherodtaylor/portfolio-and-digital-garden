@@ -192,8 +192,19 @@ def generate_projects(config):
         name = escape_latex(project['name'])
         description = escape_latex(project['description'])
         link_url = project['link']['href']  # Changed from 'url' to 'href'
-        
+
         projects_content += f"""\\project{{{name}}}{{{description}}}{{{link_url}}}
+
+"""
+
+        # Optional secondary link (e.g. framework docs / hosted website)
+        if 'website' in project and project['website']:
+            site_url = project['website']['href']
+            site_label = escape_latex(project['website'].get('label', 'Website'))
+            projects_content += f"""\\vspace{{0.1em}}
+{{\\footnotesize\\color{{accentblue}}\\faGlobe\\ \\href{{{site_url}}}{{{site_label}}}: {site_url}}}
+
+\\vspace{{0.2em}}
 
 """
         

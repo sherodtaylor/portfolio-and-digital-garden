@@ -177,20 +177,24 @@ experience:
 
 projects:
   items:
-    - name: "Agent Swarm"
-      description: "Autonomous AI engineering teammates that live inside the home lab cluster and treat Matrix as the input channel. Tag a bot, it opens a PR; tag the other bot, it reviews. They auto-address review comments, use the cluster's own observability stack via MCP, and never hold the real credentials — those stay behind an egress proxy at the cluster edge."
+    - name: "agent-smith"
+      description: "Autonomous AI engineering teammates that live inside the home lab cluster and treat Matrix as the input channel. Tag a bot, it opens a PR; tag the other bot, it reviews; the product-manager bot owns PRDs and roadmap. They auto-address review comments, use the cluster's own observability stack via MCP, and never hold the real credentials — those stay behind an egress proxy at the cluster edge. Packaged as a public Helm chart anyone can deploy."
       highlights:
-        - "Two-Agent Crew, One Parametric Image: InfraBot (k3s/Flux) and DevBot (code) run as separate StatefulSets from the same ghcr.io/sherodtaylor/agent-swarm image. Per-agent persona, MCP config, and subagents live under agents/<name>/; everything else is shared"
+        - "Three-Agent Crew, One Parametric Image: DevBot (code), InfraBot (k3s/Flux), and PMBot (product/PRDs) run as separate StatefulSets from the same ghcr.io/sherodtaylor/agent-smith image. Per-agent persona, MCP config, and subagents live under agents/<name>/; the shared base CLAUDE.md is one ConfigMap"
         - "Matrix-Driven, Autonomous PR Workflow: Messages in #dev / #infra are real Claude Code prompts. After opening a PR the author mentions the other bot for review; the reviewer runs the code-review skill and posts inline findings. A Stop-hook re-wakes the author on unaddressed comments so iteration happens without a human in the loop"
-        - "Egress Credential Firewall (iron-proxy): Productionized so agents never hold real GitHub or Anthropic tokens — iron-proxy (https://github.com/ironsh/iron-proxy) swaps placeholders for real credentials at the cluster edge against a domain allowlist. A compromised pod leaks nothing useful"
+        - "Egress Credential Firewall (iron-proxy): Productionized so agents never hold real GitHub or Anthropic tokens — iron-proxy MITMs egress with a private CA and swaps placeholder tokens for real credentials per-host against a domain allowlist. A compromised pod leaks nothing useful"
         - "MCP for Everything Observable: VictoriaMetrics + VictoriaLogs MCP servers, a stdio NATS MCP server for the durable event log, and the Matrix channel plugin for inputs. 'Check the api-latency dashboard' becomes a single prompt"
         - "Two-Pane Runtime: Each pod runs claude in tmux — pane 0 owns the Matrix identity, pane 1 runs a second claude --remote-control with its own $HOME so humans can attach via kubectl exec or the Claude desktop/web app"
+        - "Public OSS Distribution: image (ghcr.io/sherodtaylor/agent-smith) and Helm chart (oci://ghcr.io/sherodtaylor/charts/agent-smith) ship every release; framework docs at sherodtaylor.github.io/agent-smith"
       link:
-        href: "https://github.com/sherodtaylor/agent-swarm"
-        label: "sherodtaylor/agent-swarm"
+        href: "https://github.com/sherodtaylor/agent-smith"
+        label: "sherodtaylor/agent-smith"
         is_private: false
+      website:
+        href: "https://sherodtaylor.github.io/agent-smith"
+        label: "Framework docs"
       icon: "Bot"
-      tags: ["Claude Code", "MCP", "AI Agents", "Matrix", "NATS", "k3s", "Flux GitOps", "iron-proxy", "Bun", "Go", "Docker", "tmux", "GitHub Actions"]
+      tags: ["Claude Code", "MCP", "AI Agents", "Matrix", "NATS", "k3s", "Flux GitOps", "Helm", "iron-proxy", "Bun", "Go", "Docker", "tmux", "GitHub Actions"]
     - name: "SpareCoins"
       description: "A crypto investment mobile application that rounds up spare change from everyday transactions and automatically invests it in cryptocurrency. Think Acorns for crypto - democratizing crypto investing through micro-investing with seamless bank integration."
       highlights:

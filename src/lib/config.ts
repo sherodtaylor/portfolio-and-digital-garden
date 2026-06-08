@@ -158,11 +158,17 @@ export interface ProjectDemo {
   preview_subtitle: string
 }
 
+export interface ProjectWebsite {
+  href: string
+  label: string
+}
+
 export interface ProjectItem {
   name: string
   description: string
   highlights: string[]
   link: ProjectLink
+  website?: ProjectWebsite
   icon: string
   tags: string[]
   gif?: string
