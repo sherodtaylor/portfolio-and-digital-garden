@@ -344,6 +344,7 @@ const iconMap: Record<
   Settings: Settings,
   Cog: Cog,
   Box: Box,
+  Bot: Bot,
   Calendar: Calendar,
   Tasks: ListTodo,
   GraduationCap: GraduationCap,
