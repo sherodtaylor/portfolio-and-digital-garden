@@ -6,7 +6,7 @@ personal:
   title: "Platform Engineering Manager @ Bloomberg"
   location: "New York, NY"
   tagline: "Hi I'm Sherod"
-  description: "Platform Engineering Manager at Bloomberg, leading two teams (10 engineers) building AI tooling and the developer platform 9,000+ engineers ship on every day. 12+ years turning infrastructure into leverage for other teams — most recently an OpenAPI→MCP server library and a unified API gateway that makes internal infrastructure callable by AI agents end-to-end. Off-hours: home lab of three Claude Code agents that open and review their own PRs."
+  description: "Platform Engineering Manager at Bloomberg, leading two teams (10 engineers) building AI tooling and the developer platform 9,000+ engineers ship on every day. 12+ years turning infrastructure into leverage for other teams — most recently making internal platform APIs callable by AI agents end-to-end. Off-hours: home lab of three Claude Code agents that open and review their own PRs."
   availability:
     status: "Open for new opportunities"
     active: true
@@ -119,15 +119,14 @@ experience:
       location: "New York, NY"
       type: "Full-time"
       logo: "bbg"
-      description: "Platform Engineering Manager leading two teams (10 engineers) building the AI tooling and developer platform that powers 9,000+ Bloomberg engineers. Focused on making the internal infrastructure callable by AI agents end-to-end — from the OpenAPI→MCP server library to the unified API gateway that fronts the platform."
+      description: "Platform Engineering Manager leading two teams (10 engineers) building AI tooling and the developer platform that powers 9,000+ Bloomberg engineers. Focused on making internal platform APIs callable by AI agents end-to-end alongside the human users they already serve."
       achievements:
         - "Lead two engineering teams (10 engineers total) covering AI platform tooling and the internal developer platform"
-        - "Built a reusable Go library that converts any OpenAPI spec into an MCP tool server, making internal APIs first-class clients for agentic developer tools"
-        - "Drove a cross-repo JWT integration that lets AI agent identities authenticate natively against the internal API gateway alongside human users"
+        - "Drove the bridge from the team's API surface to agentic developer tools — internal libraries, gateway changes, and identity work so AI agents authenticate as first-class clients alongside humans"
         - "Founded the team's microfrontend framework (Vite + Module Federation): other product teams self-serve onto the platform with full auth, deployment, and shared UI primitives — collapsing a former central-team bottleneck"
         - "Coach engineers to work ahead via POCs in the margin: validate a direction, surface real constraints, graduate the work into the roadmap with known tradeoffs"
         - "Stay hands-on in the codebase — model the working-ahead behavior I expect from the team and run POCs alongside ICs"
-      technologies: ["Go", "TypeScript", "React", "Module Federation", "MCP", "OpenAPI", "JWT", "Kubernetes", "Observability", "Python"]
+      technologies: ["Go", "TypeScript", "React", "Module Federation", "Kubernetes", "Observability", "Python", "AI / LLM tooling"]
       color: "from-orange-500/20 to-red-500/20"
     - company: "Bloomberg LP"
       company_url: "https://www.bloomberg.com"
