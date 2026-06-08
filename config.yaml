@@ -6,7 +6,7 @@ personal:
   title: "Platform Engineering Manager @ Bloomberg"
   location: "New York, NY"
   tagline: "Hi I'm Sherod"
-  description: "Leading 5 engineers and delivering Bloomberg's Private Cloud that serve 9,000+ developers daily. 4+ years in engineering leadership, 12+ years turning complex problems into reliable infrastructure that scales. When I'm not architecting systems or leading my team, you'll find me tinkering with my home lab." 
+  description: "Platform Engineering Manager at Bloomberg leading two teams (10 engineers) focused on AI tooling and the developer platform that serves 9,000+ engineers daily. 4+ years in engineering leadership, 12+ years building the infrastructure that lets other teams move faster — including the AI-callable API surface, MCP integrations, and the microfrontend framework other Bloomberg teams build on top of. When I'm not in the codebase with my team, I'm tinkering with my home lab."
   availability:
     status: "Open for new opportunities"
     active: true
@@ -119,13 +119,15 @@ experience:
       location: "New York, NY"
       type: "Full-time"
       logo: "bbg"
-      description: "Leading centralized API platform development and managing a 5-engineer team focused on developer tools. Created Bento UI framework using module federation."
+      description: "Platform Engineering Manager leading two teams (10 engineers) building the AI tooling and developer platform that powers 9,000+ Bloomberg engineers. Focused on making the internal infrastructure callable by AI agents end-to-end — from the OpenAPI→MCP server library to the unified API gateway that fronts the platform."
       achievements:
-        - "Built centralized API platform for Private Cloud infrastructure"
-        - "Designed Activity API platform providing infrastructure event visibility"
-        - "Created Bento UI framework using module federation"
-        - "Managed 5-engineer team focused on developer tools and infrastructure reliability"
-      technologies: ["React", "Node.js", "TypeScript", "Kubernetes", "Docker", "Golang", "PostgreSQL", "GraphQL", "OpenStack"]
+        - "Lead two engineering teams (10 engineers total) covering AI platform tooling and the internal developer platform"
+        - "Built a reusable Go library that converts any OpenAPI spec into an MCP tool server, making internal APIs first-class clients for agentic developer tools"
+        - "Drove a cross-repo JWT integration that lets AI agent identities authenticate natively against the internal API gateway alongside human users"
+        - "Founded the team's microfrontend framework (Vite + Module Federation): other product teams self-serve onto the platform with full auth, deployment, and shared UI primitives — collapsing a former central-team bottleneck"
+        - "Coach engineers to work ahead via POCs in the margin: validate a direction, surface real constraints, graduate the work into the roadmap with known tradeoffs"
+        - "Stay hands-on in the codebase — model the working-ahead behavior I expect from the team and run POCs alongside ICs"
+      technologies: ["Go", "TypeScript", "React", "Module Federation", "MCP", "OpenAPI", "JWT", "Kubernetes", "Observability", "Python"]
       color: "from-orange-500/20 to-red-500/20"
     - company: "Bloomberg LP"
       company_url: "https://www.bloomberg.com"
@@ -134,13 +136,13 @@ experience:
       location: "New York, NY"
       type: "Full-time"
       logo: "bbg"
-      description: "Led data center modernization project and architected full-stack software solutions for Bloomberg infrastructure."
+      description: "Founding engineer on Bloomberg's internal infrastructure provisioning platform. Architected full-stack software for the platform from day one and grew into a tech-lead role while staying hands-on in the codebase."
       achievements:
-        - "Led data center modernization project"
-        - "Built centralized API platform for Private Cloud infrastructure"
-        - "Designed Activity API platform providing infrastructure event visibility"
-        - "Architected full-stack software solutions for Bloomberg infrastructure"
-      technologies: ["Python", "JavaScript", "React", "Node.js", "AWS", "Golang", "PostgreSQL", "GraphQL", "OpenStack"]
+        - "Founding engineer on the internal infrastructure provisioning platform — designed the allocation lifecycle state machine, API-level observability instrumentation, and the workflow analytics stack used to drive SLO definition and capacity planning"
+        - "Built the platform's unified API gateway as the external API surface for managed infrastructure — single consistent contract regardless of which underlying system serves the request"
+        - "Designed and shipped the API-level observability layer (per-endpoint metrics, per-team SLO dashboards, runtime-switchable) before the team had any API observability"
+        - "Grew into tech-lead role while staying hands-on — modeled the working-ahead instinct that became how the team operates"
+      technologies: ["Python", "Go", "JavaScript", "React", "Node.js", "Module Federation", "GraphQL", "Observability", "Kubernetes"]
       color: "from-orange-500/20 to-red-500/20"
     - company: "Paxos (formerly itBit)"
       company_url: "https://paxos.com"
