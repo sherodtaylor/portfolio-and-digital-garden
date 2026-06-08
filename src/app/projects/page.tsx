@@ -12,7 +12,14 @@ import {
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, Server, Settings, Bot } from 'lucide-react'
+import {
+  ExternalLink,
+  Github,
+  Globe,
+  Server,
+  Settings,
+  Bot,
+} from 'lucide-react'
 import Image, { type StaticImageData } from 'next/image'
 import { getIcon } from '@/lib/config'
 
@@ -27,25 +34,31 @@ interface Project {
   description: string
   highlights: string[]
   link: { href: string; label: string; isPrivate?: boolean }
+  website?: { href: string; label: string }
   icon: React.ComponentType<{ className?: string }>
   tags: string[]
 }
 
 const projects: Project[] = [
   {
-    name: 'Agent Swarm',
+    name: 'agent-smith',
     description:
-      'Autonomous AI engineering teammates that live inside the home lab cluster and treat Matrix as the input channel. Tag a bot, it opens a PR; tag the other bot, it reviews. They auto-address review comments, use the cluster’s own observability stack via MCP, and never hold the real credentials — those stay behind an egress proxy at the cluster edge.',
+      'Autonomous AI engineering teammates that live inside the home lab cluster and treat Matrix as the input channel. Tag a bot, it opens a PR; tag the other bot, it reviews; the product-manager bot owns PRDs and roadmap. They auto-address review comments, use the cluster’s own observability stack via MCP, and never hold the real credentials — those stay behind an egress proxy at the cluster edge. Packaged as a public Helm chart anyone can deploy.',
     highlights: [
-      'Two-Agent Crew, One Parametric Image: InfraBot (k3s/Flux) and DevBot (code) run as separate StatefulSets from the same ghcr.io/sherodtaylor/agent-swarm image. Per-agent persona, MCP config, and subagents live under agents/<name>/; everything else is shared',
+      'Three-Agent Crew, One Parametric Image: DevBot (code), InfraBot (k3s/Flux), and PMBot (product/PRDs) run as separate StatefulSets from the same ghcr.io/sherodtaylor/agent-smith image. Per-agent persona, MCP config, and subagents live under agents/<name>/; the shared base CLAUDE.md is one ConfigMap',
       'Matrix-Driven, Autonomous PR Workflow: Messages in #dev / #infra are real Claude Code prompts. After opening a PR the author mentions the other bot for review; the reviewer runs the code-review skill and posts inline findings. A Stop-hook re-wakes the author on unaddressed comments so iteration happens without a human in the loop',
-      'Egress Credential Firewall (iron-proxy): Productionized so agents never hold real GitHub or Anthropic tokens — iron-proxy (https://github.com/ironsh/iron-proxy) swaps placeholders for real credentials at the cluster edge against a domain allowlist. A compromised pod leaks nothing useful',
+      'Egress Credential Firewall (iron-proxy): Productionized so agents never hold real GitHub or Anthropic tokens — iron-proxy MITMs egress with a private CA and swaps placeholder tokens for real credentials per-host against a domain allowlist. A compromised pod leaks nothing useful',
       "MCP for Everything Observable: VictoriaMetrics + VictoriaLogs MCP servers, a stdio NATS MCP server for the durable event log, and the Matrix channel plugin for inputs. 'Check the api-latency dashboard' becomes a single prompt",
       'Two-Pane Runtime: Each pod runs claude in tmux — pane 0 owns the Matrix identity, pane 1 runs a second claude --remote-control with its own $HOME so humans can attach via kubectl exec or the Claude desktop/web app',
+      'Public OSS Distribution: image (ghcr.io/sherodtaylor/agent-smith) and Helm chart (oci://ghcr.io/sherodtaylor/charts/agent-smith) ship every release; framework docs at sherodtaylor.github.io/agent-smith',
     ],
     link: {
-      href: 'https://github.com/sherodtaylor/agent-swarm',
-      label: 'github.com/sherodtaylor/agent-swarm',
+      href: 'https://github.com/sherodtaylor/agent-smith',
+      label: 'github.com/sherodtaylor/agent-smith',
+    },
+    website: {
+      href: 'https://sherodtaylor.github.io/agent-smith',
+      label: 'Framework docs',
     },
     icon: Bot,
     tags: [
@@ -56,6 +69,7 @@ const projects: Project[] = [
       'NATS',
       'k3s',
       'Flux GitOps',
+      'Helm',
       'iron-proxy',
       'Bun',
       'Go',
@@ -208,17 +222,32 @@ export default function Projects() {
                     )}
                   </div>
 
-                  <Button variant="outline" size="sm" asChild>
-                    <Link
-                      href={project.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      View Code
-                      <ExternalLink className="h-3 w-3" />
-                    </Link>
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    {project.website && (
+                      <Button variant="outline" size="sm" asChild>
+                        <Link
+                          href={project.website.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <Globe className="h-3 w-3" />
+                          {project.website.label}
+                        </Link>
+                      </Button>
+                    )}
+                    <Button variant="outline" size="sm" asChild>
+                      <Link
+                        href={project.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
+                        View Code
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>

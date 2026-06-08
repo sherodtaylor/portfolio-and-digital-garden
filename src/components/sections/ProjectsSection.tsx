@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { ExternalLink, Github, Play } from 'lucide-react'
+import { ExternalLink, Github, Globe, Play } from 'lucide-react'
 import { getIcon, getGif } from '@/lib/config'
 import { type ProjectsConfig } from '@/lib/config-server'
 import MotionDiv from '@/components/motion-div'
@@ -227,22 +227,42 @@ export function ProjectsSection({ projectsConfig }: ProjectsSectionProps) {
                     )}
                   </div>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full sm:w-auto"
-                    asChild
-                  >
-                    <Link
-                      href={project.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
+                  <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+                    {project.website && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full sm:w-auto"
+                        asChild
+                      >
+                        <Link
+                          href={project.website.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          <Globe className="h-3 w-3" />
+                          {project.website.label}
+                        </Link>
+                      </Button>
+                    )}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full sm:w-auto"
+                      asChild
                     >
-                      View Code
-                      <ExternalLink className="h-3 w-3" />
-                    </Link>
-                  </Button>
+                      <Link
+                        href={project.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        View Code
+                        <ExternalLink className="h-3 w-3" />
+                      </Link>
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             </MotionDiv>
